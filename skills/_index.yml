@@ -1,0 +1,24 @@
+generated: '2026-08-01'
+method: generated
+source: openapi/netomi-agentdesk-openapi.json
+note: |
+  Packaged agent operating instructions for the marquee flows in the live AgentDesk
+  REST API. Every operationId cited was verified against
+  openapi/netomi-agentdesk-openapi.json. Netomi publishes no AGENTS.md or skill files
+  of its own — searched and not found — so these are generated, grounded only in real
+  operations plus the conventions and error registry already captured in this repo.
+skills:
+- file: netomi-ask-and-collect-response.md
+  name: Ask Netomi and collect the response
+  api: openapi/netomi-agentdesk-openapi.json
+  operations: [conversationEngineAsync, getResponse, getConversationHistory,
+    getStructuredResponse]
+- file: netomi-authorize-visitor-session.md
+  name: Authorize a Netomi visitor session
+  api: openapi/netomi-agentdesk-openapi.json
+  operations: [messagesPost_4, statusAPI, healthCheck]
+- file: netomi-tune-rate-limits-and-test-utterances.md
+  name: Tune a Netomi bot's rate limits and regression-test its utterances
+  api: openapi/netomi-agentdesk-openapi.json
+  operations: [fetchRateConfig, saveRateConfig, updatedRateConfig, deleteRateConfig,
+    submitRequest, pollScript, postRequest]

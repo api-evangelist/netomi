@@ -1,0 +1,116 @@
+generated: '2026-08-01'
+method: searched
+source: https://www.netomi.com/governance + https://www.netomi.com/architecture +
+  first-party SDK documentation + live probes
+note: |
+  Standards and compliance posture asserted by Netomi's own public pages, plus what
+  could be verified by probe. `conforms: null` means Netomi neither claims nor denies
+  it and nothing observable settled it. Compliance certifications below are Netomi's
+  published claims; no audit report or trust-center attestation portal was found to
+  independently verify them.
+standards:
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 surface. /.well-known/oauth-authorization-server and
+    /.well-known/oauth-protected-resource return 404 on every Netomi host.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on every Netomi host.
+- id: jwt-rfc7519
+  conforms: true
+  evidence: Authenticated chat sessions are established with a caller-supplied JWT
+    passed at launch and refreshed through a documented reauthorization flow.
+  source: https://github.com/msgai/netomi-chat-ios/blob/main/docs/events-and-auth.md
+- id: openapi
+  conforms: true
+  version: 3.1.0
+  evidence: >-
+    Live OpenAPI 3.1.0 document ("AgentDesk REST API", 56 paths, 67 operations, 103
+    schemas) served at https://api.netomi.com/v3/api-docs, with Swagger UI at
+    https://api.netomi.com/swagger-ui.html and the Springdoc config at
+    /v3/api-docs/swagger-config. NOT linked from any Netomi documentation — found only
+    by probing Springdoc default paths after /openapi.json, /openapi.yaml,
+    /swagger.json, /v1/openapi.json, /api-docs and /docs all returned 404. Saved
+    verbatim to openapi/netomi-agentdesk-openapi.json.
+  quality:
+    operation_summaries: 0
+    operation_descriptions: 0
+    declared_response_codes: ['200']
+    examples: 0
+    security_schemes: 0
+    servers: http://api.netomi.com (Springdoc generated-server-url artefact; the host
+      serves HTTPS)
+    note: Auto-generated and unenriched — the contract exists but carries almost no
+      human-authored content.
+- id: asyncapi
+  conforms: false
+  evidence: No AsyncAPI document published; event surface is documented in prose only.
+- id: graphql
+  conforms: false
+  evidence: POST https://api.netomi.com/graphql returns the platform 404 envelope
+    (INVALID_INPUT_ERROR); no GraphQL surface on any Netomi host.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: 'api.netomi.com returns a vendor envelope {exceptionCode, statusCode,
+    statusMessage} as application/json, not application/problem+json. The OpenAPI
+    declares only 200 responses across all 67 operations; failures are signalled in
+    the body via a 104-value exceptionCode enum (see errors/netomi-error-codes.yml).'
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on api.netomi.com, netomi.com and
+    www.netomi.com.
+- id: rfc8615-well-known
+  conforms: false
+  evidence: No /.well-known/ discovery document published (see
+    well-known/netomi-well-known.yml).
+- id: a2a-agent-card
+  conforms: false
+  evidence: /.well-known/agent-card.json and /.well-known/agent.json return 404 on
+    every Netomi-controlled host. Netomi's architecture page names A2A as a supported
+    model/agent-coordination capability, but no Agent Card is served.
+- id: mcp
+  conforms: null
+  claimed: true
+  evidence: Netomi's architecture page lists MCP among its supported interaction modes
+    ("Chat Email Telephony Social Search MCP API and more...") and among model
+    integrations ("Netomi Private Models 3rd Party BYOM A2A MCP"), and the AgentDesk
+    OpenAPI error enum carries MCP_ERROR, MCP_VALIDATION_ERROR and MCP_SERVER_NOT_FOUND
+    — evidence the platform connects OUT to MCP servers. No hosted MCP endpoint is
+    exposed — mcp.netomi.com does not resolve and https://api.netomi.com/mcp returns
+    the platform 404 envelope. See mcp/netomi-mcp.yml (candidate only, no MCPServer
+    pointer).
+  source: https://www.netomi.com/architecture
+- id: hsts
+  conforms: partial
+  evidence: www.netomi.com and status.netomi.com send HSTS with max-age 31536000;
+    api.netomi.com sends no HSTS header.
+  source: security/netomi-domain-security.yml
+- id: dmarc
+  conforms: true
+  evidence: netomi.com publishes DMARC with policy `reject`, plus SPF.
+- id: dnssec
+  conforms: false
+  evidence: netomi.com is not DNSSEC-signed and publishes no CAA records.
+compliance:
+  published: true
+  page: https://www.netomi.com/governance
+  claims:
+  - {name: SOC 2 Type II, claimed: true}
+  - {name: ISO 27001, claimed: true}
+  - {name: PCI DSS, claimed: true}
+  - {name: HIPAA, claimed: true}
+  - {name: GDPR, claimed: true}
+  - {name: CCPA, claimed: true}
+  - {name: PDPA, claimed: true}
+  verification: self-asserted on the Netomi governance page; no trust portal, audit
+    report request flow, or subprocessor list found.
+  data_residency:
+    regions: [US, EU, SG]
+    evidence: Regional production environments selectable at SDK initialization and
+      mirrored by the Statuspage component groups.
+governance_controls:
+  note: Product-level AI governance Netomi advertises on its architecture and
+    governance pages (marketing claims, not verifiable standards conformance).
+  claims: [duty-of-care guardrails, topic and policy guardrails, prompt security,
+    response validation, human-in-the-loop, AI observability, chain-of-thought
+    inspection, model evaluation]

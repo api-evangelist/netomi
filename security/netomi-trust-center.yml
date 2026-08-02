@@ -1,0 +1,44 @@
+generated: '2026-08-01'
+method: searched
+probe: true
+source: https://www.netomi.com/governance
+url: https://www.netomi.com/governance
+name: Netomi Governance & Security
+note: |
+  0-working/probe-security-programs.py first matched https://www.netomi.com/platform-overview
+  (netomi.com/security redirects there) and extracted only SOC 2 + GDPR. Upgraded by
+  search: the actual compliance page is /governance, which names the full certification
+  set. Netomi operates no dedicated trust portal — trust.netomi.com and
+  security.netomi.com do not resolve — so this page is the whole public posture.
+certifications:
+- SOC 2 Type II
+- ISO 27001
+- PCI DSS
+- HIPAA
+- GDPR
+- CCPA
+- PDPA
+data_residency:
+  regions: [US, EU, SG]
+  source: regional production environments (USProd / EUProd / SGProd) and the matching
+    Statuspage component groups
+related:
+  privacy_policy: https://www.netomi.com/privacy-policy
+  terms_of_use: https://www.netomi.com/terms-of-use
+  msa: https://www.netomi.com/msa
+  status_page: https://status.netomi.com
+absent:
+  trust_portal: false
+  subprocessor_list: false
+  audit_report_request: false
+  security_txt: false
+  bug_bounty: false
+  note: 'Probed and not found: trust.netomi.com (NXDOMAIN), security.netomi.com
+    (NXDOMAIN), /.well-known/security.txt (404 on every host), and no
+    responsible-disclosure or bug-bounty page on any Netomi property or on HackerOne,
+    Bugcrowd or Intigriti.'
+evidence:
+- source: https://www.netomi.com/governance
+  keywords: [soc 2 type ii, iso 27001, pci dss, hipaa, gdpr, ccpa, pdpa]
+- source: https://www.netomi.com/platform-overview
+  keywords: [soc 2, gdpr]

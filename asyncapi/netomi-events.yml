@@ -1,0 +1,150 @@
+generated: '2026-08-01'
+method: searched
+source: openapi/netomi-agentdesk-openapi.json + https://github.com/msgai/netomi-chat-ios/blob/main/docs/events-and-auth.md
+spec_type: null
+asyncapi_published: false
+note: |
+  Netomi publishes no AsyncAPI document — /asyncapi.yaml, /asyncapi.json and the
+  GitHub org were all checked and none exists. It does have a large, real event
+  surface in three parts, captured below: (1) sixteen INBOUND channel webhook
+  endpoints enumerated in the live AgentDesk OpenAPI at
+  https://api.netomi.com/v3/api-docs, (2) a webhook-event trigger and history API, and
+  (3) a bidirectional client event bus in the first-party Mobile Chat SDKs. Nothing
+  here is fabricated; every endpoint below is a verified operationId in the harvested
+  spec. There is still no public catalogue of OUTBOUND platform webhooks (payload
+  schemas, signing, retries) — that surface, if it exists, lives behind the gated
+  Agentic Studio documentation.
+webhooks:
+  inbound:
+    description: Netomi exposes a per-partner inbound webhook endpoint that a helpdesk
+      platform calls to hand conversation events to the Netomi AI agent. The Gladly
+      integration is the publicly documented instance.
+    endpoints:
+    - partner: Gladly
+      url: https://api.netomi.com/v1/gladly/webhook
+      direction: partner -> netomi
+      events: [conversation open, conversation close, conversation status change,
+        contact update]
+      configured_in: Gladly admin — create a webhook named for the Netomi instance and
+        point it at the URL above
+      source: https://help.gladly.com/docs/set-up-netomi-integration
+    pattern: /v1/{partner}/webhook
+    pattern_confidence: high
+    pattern_note: Confirmed against the harvested OpenAPI — sixteen partner webhook
+      endpoints follow this shape. Enumerated below with verified operationIds.
+    catalog:
+    - {partner: gladly, path: /v1/gladly/webhook, methods: [GET, POST],
+       operations: [ping, conversationEngineAsync_7]}
+    - {partner: zendesk, path: /v1/zendesk/webhook, methods: [POST],
+       operations: [conversationEngineAsync_2]}
+    - {partner: zendesk-chat, path: /v1/zendesk-chat/response, methods: [POST],
+       operations: [getStructuredResponse],
+       lifecycle_ops: [activate, deActivate, reActivate, checkStatusAll, pollResponse,
+         publishToSocialOutbound]}
+    - {partner: zoho, path: /v1/zoho/webhook, methods: [GET, POST],
+       operations: [subscribe, conversationEngineAsync_1],
+       scoped_path: '/v1/zoho/webhook/{botRefId}'}
+    - {partner: salesforce, path: /v1/salesforce/webhook, methods: [POST],
+       operations: [conversationEngineAsync_5, getResponse_6, postResponse_1]}
+    - {partner: freshdesk, path: /v1/freshdesk/webhook, methods: [POST],
+       operations: [conversationEngineAsync_8]}
+    - {partner: helpshift, path: /v1/helpshift/webhook, methods: [POST],
+       operations: [conversationEngineAsync_6, helpShiftQuickReply]}
+    - {partner: sprinklr, path: /v1/sprinklr/webhook, methods: [POST],
+       operations: [conversationEngineAsync_4, postResponse]}
+    - {partner: sunshine-conversations, path: /v1/sunshine-conversations/webhook,
+       methods: [POST], operations: [conversationEngineAsync_3]}
+    - {partner: facebook, path: /v1/facebook/webhook, methods: [GET, POST],
+       operations: [subscribe_2, messagesPost_3],
+       verification_params: ['hub.mode', 'hub.challenge']}
+    - {partner: twitter, path: '/v1/twitter/webhook/{appId}', methods: [GET, POST],
+       operations: [subscribe_1, messagesPost_2], verification_params: [crc_token]}
+    - {partner: google-assistant, path: /v1/google/assistant/webhook, methods: [POST],
+       operations: [googleAssistantPost]}
+    - {partner: firebase, path: /v1/firebase/messages, methods: [GET, POST],
+       operations: [getResponse_2, conversationEngineAsync_9]}
+    - {partner: agentdesk, path: /v1/agentdesk/webhook, methods: [POST],
+       operations: [conversationEngineAsync_11, submitForm, getResponse_7, postResponse_2]}
+    - {partner: singtel, path: /v1/facebook/webhook/singtelRoamingActivation/updateTolerancePriorityCost,
+       methods: [POST], operations: [updateTolerancePriorityCost]}
+    - {partner: generic, path: /v1/webhook, methods: [POST],
+       operations: [messagesPost, messagesPost_1, event, message]}
+    verification_note: The Facebook (hub.mode / hub.challenge) and Twitter (crc_token)
+      subscription handshakes are declared as query parameters, matching those
+      platforms' standard webhook verification. No signature-verification scheme is
+      declared for Netomi's own inbound endpoints.
+  outbound:
+    published: false
+    trigger_api:
+      operation: triggerWebHookEvent
+      http: POST /v2/webhook/event
+      body: 'WebHookEventRequest {linkId, payload}'
+      note: Netomi exposes an API to TRIGGER a webhook event on a link, but publishes
+        no catalogue of the resulting outbound event types, no payload schemas, no
+        signing scheme and no retry policy.
+    history:
+      operations: [getConversationHistory, getConversationHistory_1]
+      http: 'GET /v2/webhook/history/{conversationId}, GET /v1/webhook/history/{conversationId}'
+      params: [numberOfDays, numberOfMessages, timestamp]
+    retry_schema: RetryHistory
+    retry_note: A RetryHistory component schema exists in the spec, implying delivery
+      retry, but no retry policy is documented.
+sdk_event_bus:
+  transport: in-process (native SDK callback bridge)
+  platforms: [ios, android, react-native]
+  sdk_to_app:
+    api: getEventUpdatesFromSDK
+    envelope:
+      eventType: string (NCWPublicEvent raw value)
+      eventData: object
+      note: For customEvent the real event name is nested inside eventData under the
+        same eventType key, not on the outer envelope.
+    events:
+    - name: chatSdkInitialised
+      description: SDK finished initialising.
+    - name: chatOpened
+      description: The chat UI was presented to the user.
+    - name: reauthorizationRequest
+      description: The session's JWT needs refreshing; the host app must re-authenticate
+        and answer with reauthorizationSuccess or reauthorizationFailure.
+    - name: reauthorizationResponse
+      description: Acknowledgement that a reauthorization answer was received.
+    - name: error
+      description: Runtime SDK failure. Detail is carried under the error_details key
+        inside eventData.
+    - name: customEvent
+      description: Bot-driven custom event raised from a Netomi bot flow (documented
+        example, CALLBACK_EVENT).
+  app_to_sdk:
+    api: sendEventToSdk(type:eventName:jwt:data:)
+    events:
+    - name: reauthorizationSuccess
+      jwt: required
+      payload_example: {conversation_id: '12345'}
+      description: Reauthorization completed; supply a fresh JWT.
+    - name: reauthorizationFailure
+      jwt: optional
+      payload_example: {reason: user_cancelled}
+      description: Reauthorization failed.
+    - name: custom
+      jwt: optional
+      requires: non-empty eventName
+      reserved_names: [reauthorization_success, reauthorization_failure, custom]
+      payload_example: {status: submitted, custom_attributes: {formId: feedback_form}}
+      description: Vendor or app-specific event. Payload must be JSON-serializable.
+push_notifications:
+  supported: true
+  transports: [FCM, APNs]
+  api: setPushToken(_:) — call after initialize(...) and on every token refresh
+  source: https://github.com/msgai/netomi-chat-ios/blob/main/docs/push-notifications.md
+status_feeds:
+  atom: https://status.netomi.com/history.atom
+  rss: https://status.netomi.com/history.rss
+  json: https://status.netomi.com/api/v2/summary.json
+  note: Incident/maintenance event stream for the platform, served by Atlassian
+    Statuspage.
+gaps:
+- No AsyncAPI document published.
+- No outbound webhook catalogue, payload schemas, signature verification or retry
+  semantics published.
+- No message schemas for the SDK event bus beyond the documented key names.

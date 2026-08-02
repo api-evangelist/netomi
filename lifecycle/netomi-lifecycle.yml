@@ -1,0 +1,89 @@
+generated: '2026-08-01'
+method: searched
+source: https://status.netomi.com + https://github.com/msgai/netomi-chat-ios/blob/main/docs/installation.md
+versioning:
+  scheme: semver-per-sdk
+  note: Netomi versions its client SDKs with semantic versioning and independent
+    version trains per platform. The Platform API itself carries a URI-path version
+    segment (`/v1/...`, observed in the documented Gladly webhook endpoint
+    https://api.netomi.com/v1/gladly/webhook), but no public API versioning policy is
+    published.
+  current:
+    ios_sdk: 1.29.2
+    android_sdk: 1.26.0
+    react_native_wrapper: 1.7.0
+    platform_api_path: v1
+  cadence: Weekly-to-fortnightly SDK releases observed across 2026 — iOS 1.24.3 on
+    2026-06-02 through 1.29.2 on 2026-07-28.
+deprecation:
+  policy_url: https://github.com/msgai/netomi-chat-ios/blob/main/docs/installation.md#cocoapods-sunset-timeline
+  sunset_header: unknown
+  published_dates: true
+  items:
+  - subject: NetomiChatSDK CocoaPod (base pod and /Analytics subspec)
+    status: deprecated
+    ends: '2026-10-01'
+    replacement: Swift Package Manager product `Netomi` from
+      https://github.com/msgai/netomi-chat-ios.git
+    migration_guide: https://github.com/msgai/netomi-chat-ios/blob/main/docs/installation.md#migrating-from-cocoapods-to-swift-package-manager
+    note: Already-published pod versions remain installable after the cutoff; Netomi
+      simply stops publishing new ones. Netomi documents its own date separately from
+      CocoaPods.org's Trunk read-only window (2026-11-01 to 2026-11-07) and permanent
+      read-only date (2026-12-02), and tells integrators to treat 2026-10-01 as the
+      binding deadline.
+  - subject: 'Maven coordinate com.netomi.chat:-android'
+    status: deprecated
+    replacement: com.netomi.chat:chat-widget-android
+    source: https://github.com/msgai/netomi-chat-android-app/blob/main/docs/installation.md
+  - subject: Firebase Cloud Messaging legacy push API
+    status: deprecated-upstream
+    note: Both SDK push-notification guides document migrating off the deprecated FCM
+      API.
+  - subject: Manual framework integration (iOS)
+    status: unsupported
+    note: Explicitly not supported because the SDK depends on managed third-party
+      packages.
+status_page:
+  url: https://status.netomi.com
+  platform: Atlassian Statuspage
+  page_id: vg2h9zsmytpm
+  api: https://status.netomi.com/api/v2/summary.json
+  feeds:
+    atom: https://status.netomi.com/history.atom
+    rss: https://status.netomi.com/history.rss
+  component_groups:
+  - name: US Production
+    components: [Netomi Chat Interface, Netomi Integration Recipes, Agentic Studio,
+      Topic Prediction, Generative AI Prediction, Telephony, US Cloud, US Cloud2]
+  - name: EU Production
+    components: [Netomi Chat Interface, Netomi Integration Recipes, Agentic Studio,
+      Topic Prediction, Generative AI Prediction, EU Cloud]
+  - name: SG Production
+    components: [Netomi Chat Interface, Netomi Integration Recipes, Agentic Studio,
+      Topic Prediction, Generative AI Prediction, SG Cloud]
+  observed:
+    fetched: '2026-08-01'
+    overall: All Systems Operational
+    incidents_open: 0
+    scheduled_maintenances: 0
+sla:
+  url: null
+  uptime_target: null
+  note: No public SLA document. Statuspage advertises 99.98-100.0% uptime over the
+    trailing 90 days for the monitored components; that is reported performance, not
+    a contractual target. Commercial terms live in the MSA at
+    https://www.netomi.com/msa.
+regions:
+  production: [US, EU, SG]
+  note: Region is selected at SDK initialization via the environment enum and mirrored
+    by the Statuspage component groups.
+support_windows:
+  ios_minimum: iOS 16
+  android_minimum: API 26 (Android 8.0)
+  react_native_minimum: '0.85'
+deprecated_operations: []
+gaps:
+- No published API deprecation or sunset policy for the Platform API itself (only for
+  SDK distribution channels).
+- No RFC 8594 Sunset/Deprecation header behaviour documented.
+- No public SLA or uptime commitment.

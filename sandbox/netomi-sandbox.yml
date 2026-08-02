@@ -1,0 +1,70 @@
+generated: '2026-08-01'
+method: searched
+source: https://github.com/msgai/netomi-chat-ios/blob/main/docs/usage.md
+note: |
+  Netomi publishes no self-serve sandbox, no test API keys and no magic test values —
+  there is nothing to capture of that kind and none was invented. What IS publicly
+  documented is a first-class environment selector in the SDK that separates
+  production from non-production backends, plus the debug tooling Netomi tells
+  integrators to use while testing. Credentials for any environment (botRefId) are
+  provisioned by Netomi per enterprise account.
+self_serve: false
+test_credentials_published: false
+environments:
+  selector: SDK initialization parameter (`env` on iOS, `environment` on Android)
+  values:
+  - {name: USProd, kind: production, region: US}
+  - {name: EUProd, kind: production, region: EU}
+  - {name: SGProd, kind: production, region: SG}
+  - {name: QA, kind: non-production}
+  - {name: QAInternal, kind: non-production, note: Netomi-internal}
+  - {name: Development, kind: non-production}
+  dynamic:
+    flag: 'isDynamicEnv: true'
+    note: Used only when the bot is configured for dynamic SDK configuration; changing
+      botRefId, env or isDynamicEnv resets SDK state and re-initializes.
+  example: |
+    NetomiChat.shared.initialize(
+        botRefId: "YOUR_BOT_REF_ID",
+        env: .QA,
+        isDynamicEnv: true
+    )
+test_tooling:
+- name: SDK logging
+  api: setupLogging(level:)
+  levels: [none, error, info]
+  guidance: Use .info during development; keep .none in production builds.
+- name: Launch error handler
+  api: launch(jwt:errorHandler:)
+  description: Invoked only when the chat UI cannot be shown; receives NCWErrorData
+    with a status code and message.
+- name: Async launch confirmation
+  api: launchAsync / launchWithQueryAsync
+  description: Returns false when the chat could not be presented, for test assertions.
+- name: Error event stream
+  api: getEventUpdatesFromSDK -> .error
+  description: Error text under the error_details key of eventData.
+- name: Prefilled query launch
+  api: launchWithQuery(_:jwt:)
+  description: Opens the chat with the first user message already populated — the
+    documented way to exercise a specific bot flow.
+sample_apps:
+- platform: ios
+  url: https://github.com/msgai/netomi-chat-ios
+  path: /Example (NetomiSampleApp.xcworkspace)
+  setup: replace YOUR_BOT_REF_ID and env in HomeViewController.swift
+- platform: android
+  url: https://github.com/msgai/netomi-chat-android-app
+  setup: replace YOUR_BOT_REF_ID and environment, run on API 26+
+- platform: react-native
+  url: https://github.com/msgai/Chat-widget-sample-app-react-native
+console:
+  url: https://studio.netomi.com
+  name: Agentic Studio
+  self_serve: false
+  description: Netomi's hosted console to build, test, deploy, monitor and improve AI
+    agents with no-code controls. Access requires an enterprise account.
+gaps:
+- No public sandbox signup, no test botRefId, no published test values or fixtures.
+- No documented test/live key prefixes (the SDK has no API key concept — the tenant is
+  identified by botRefId).

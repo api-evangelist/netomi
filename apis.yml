@@ -1,23 +1,185 @@
 aid: netomi
 name: Netomi
-description: 'Netomi is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Netomi (founded 2016 as msg.ai) is an enterprise agentic AI platform
+  for customer experience. Its "Agentic OS for CX" orchestrates a network of AI agents
+  across chat, email, telephony, social, search, MCP and API channels, layering a governance
+  tier (topic and policy guardrails, prompt security, response validation) over a task-planning
+  orchestration agent and specialised knowledge-retrieval, action, personalisation and
+  sentiment agents, with RAG/Graph-RAG retrieval, reinforcement-learning feedback and
+  AI observability. Netomi ships first-party mobile Chat SDKs for iOS (Swift Package
+  Manager, plus the deprecated NetomiChatSDK CocoaPod), Android (com.netomi.chat:chat-widget-android
+  on Maven Central) and React Native (@netomi.com/netomi-chat-react-native on npm),
+  all backed by the api.netomi.com service with optional JWT-authenticated sessions,
+  guest sessions, custom API headers and a bidirectional SDK event bus. The platform
+  runs in US, EU and Singapore production regions and publishes SOC 2 Type II, ISO 27001,
+  PCI DSS, HIPAA, GDPR, CCPA and PDPA compliance posture. The Agentic Studio console
+  and the developer documentation portal are gated behind an enterprise account, but a
+  live, unlinked OpenAPI 3.1.0 contract for the AgentDesk REST API — 56 paths, 67
+  operations, 103 schemas, covering the conversation engine, NLU prediction, query
+  analysis, conversation history, per-bot rate-limit configuration, visitor
+  authorization and sixteen inbound channel webhooks (Zendesk, Zoho, Salesforce,
+  Freshdesk, Gladly, Helpshift, Sprinklr, Sunshine Conversations, Facebook, Twitter,
+  Google Assistant, Firebase) — is served publicly at
+  https://api.netomi.com/v3/api-docs with Swagger UI at
+  https://api.netomi.com/swagger-ui.html.'
+image: https://www.netomi.com/apple-touch-icon.png
 url: https://raw.githubusercontent.com/api-evangelist/netomi/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-01'
 modified: '2026-08-01'
 tags:
 - Company
-apis: []
+- Artificial Intelligence
+- Agentic AI
+- Customer Experience
+- Customer Service
+- Customer Support
+- Conversational AI
+- Chatbots
+- Chat
+- Voice
+- Telephony
+- SDKs
+- Mobile
+apis:
+- name: Netomi Platform API
+  description: The Netomi backend service that fronts the Agentic OS for CX. It backs
+    the first-party mobile Chat SDKs (session establishment, message exchange, rich
+    media, file attachments, forms, live agent handoff, push notification registration)
+    and exposes per-partner inbound webhook endpoints used by helpdesk integrations
+    such as Gladly at /v1/{partner}/webhook. Sessions are either guest (anonymous,
+    SDK-managed) or JWT-authenticated with a reauthorization flow. Access is provisioned
+    per enterprise account with a bot reference ID and a region environment. A live
+    OpenAPI 3.1.0 description (AgentDesk REST API — 56 paths, 67 operations, 103
+    schemas) is served at /v3/api-docs with Swagger UI at /swagger-ui.html, though it
+    is not linked from any Netomi documentation and declares no securitySchemes,
+    summaries, descriptions, examples or non-200 responses.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - artificial-intelligence
+  - customer-service
+  - chat
+  - conversational-ai
+  - webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-agentdesk-openapi.json
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: Overlay
+    url: overlays/netomi-agentdesk-overlay.yaml
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- name: Netomi Status API
+  description: Public machine-readable status feed for the Netomi platform, served by
+    Atlassian Statuspage at status.netomi.com. Exposes the standard Statuspage v2 JSON
+    surface (summary, status, components, incidents, scheduled maintenances) plus Atom
+    and RSS incident-history feeds, covering the US Production, EU Production and SG
+    Production component groups (Netomi Chat Interface, Netomi Integration Recipes,
+    Agentic Studio, Topic Prediction, Generative AI Prediction, Telephony, and the
+    US Cloud / US Cloud2 / EU Cloud / SG Cloud infrastructure components).
+  humanURL: https://status.netomi.com
+  baseURL: https://status.netomi.com/api/v2
+  tags:
+  - status
+  - monitoring
+  - uptime
+  properties:
+  - type: StatusPage
+    url: https://status.netomi.com
+  - type: Lifecycle
+    url: lifecycle/netomi-lifecycle.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/netomi-agentic-access.yml
+- type: TrustCenter
+  url: security/netomi-trust-center.yml
 - type: Website
-  url: https://forgeglobal.com/netomi_stock/
+  url: https://www.netomi.com/
+- type: Documentation
+  url: https://github.com/msgai/netomi-chat-ios
+- type: GettingStarted
+  url: https://github.com/msgai/netomi-chat-ios#-quick-start
+- type: DeveloperPortal
+  url: https://docs.netomi.com/
+- type: Support
+  url: https://support.netomi.com/hc/en-us
+- type: GitHubOrganization
+  url: https://github.com/msgai
+- type: Login
+  url: https://studio.netomi.com
+- type: SignUp
+  url: https://www.netomi.com/request-demo
+- type: TermsOfService
+  url: https://www.netomi.com/terms-of-use
+- type: PrivacyPolicy
+  url: https://www.netomi.com/privacy-policy
+- type: Compliance
+  url: https://www.netomi.com/governance
+- type: StatusPage
+  url: https://status.netomi.com
+- type: SDKs
+  url: packages/netomi-packages.yml
+- type: Packages
+  url: packages/netomi-packages.yml
+- type: Components
+  url: components/netomi-components.yml
+- type: Authentication
+  url: authentication/netomi-authentication.yml
+- type: Conventions
+  url: conventions/netomi-conventions.yml
+- type: ErrorCatalog
+  url: errors/netomi-error-codes.yml
+- type: Lifecycle
+  url: lifecycle/netomi-lifecycle.yml
+- type: Deprecation
+  url: https://github.com/msgai/netomi-chat-ios/blob/main/docs/installation.md#cocoapods-sunset-timeline
+- type: ChangeLog
+  url: changelog/netomi-changelog.yml
+- type: Sandbox
+  url: sandbox/netomi-sandbox.yml
+- type: Conformance
+  url: conformance/netomi-conformance.yml
+- type: Webhooks
+  url: asyncapi/netomi-events.yml
+- type: DomainSecurity
+  url: security/netomi-domain-security.yml
+- type: WellKnown
+  url: well-known/netomi-well-known.yml
+- type: LLMsTxt
+  url: llms/netomi-llms.txt
+- type: OpenAPI
+  url: openapi/netomi-agentdesk-openapi.json
+- type: APIReference
+  url: https://api.netomi.com/swagger-ui.html
+- type: Overlay
+  url: overlays/netomi-agentdesk-overlay.yaml
+- type: DataModel
+  url: data-model/netomi-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-08-01'
+  status: enriched
+  artifacts_added: 21
+  pass: local-v1

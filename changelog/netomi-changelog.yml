@@ -1,0 +1,105 @@
+generated: '2026-08-01'
+method: searched
+source: https://github.com/msgai/netomi-chat-ios/releases + https://github.com/msgai/netomi-chat-android-app/releases
+note: |
+  Netomi publishes no product changelog on netomi.com and its docs portal is
+  login-gated, so there is no narrative release-notes page to capture. What IS public
+  and dated is the SDK release train on GitHub and the registry publish history. The
+  GitHub release bodies carry no notes (each is literally "Release vX.Y.Z"), so only
+  version + date are recorded — highlights are deliberately left empty rather than
+  invented.
+scheme: semver
+channels:
+- name: iOS Chat SDK
+  url: https://github.com/msgai/netomi-chat-ios/releases
+  current: 1.29.2
+- name: Android Chat SDK
+  url: https://github.com/msgai/netomi-chat-android-app/releases
+  current: 1.26.0
+- name: React Native wrapper
+  url: https://www.npmjs.com/package/@netomi.com/netomi-chat-react-native?activeTab=versions
+  current: 1.7.0
+- name: Platform incident history
+  url: https://status.netomi.com/history
+  feeds: [https://status.netomi.com/history.atom, https://status.netomi.com/history.rss]
+entries:
+- channel: ios
+  version: 1.29.2
+  date: '2026-07-28'
+  breaking: false
+- channel: ios
+  version: 1.29.1
+  date: '2026-07-21'
+  breaking: false
+- channel: ios
+  version: 1.29.0
+  date: '2026-07-14'
+  breaking: false
+- channel: ios
+  version: 1.28.0
+  date: '2026-06-30'
+  breaking: false
+- channel: ios
+  version: 1.27.0
+  date: '2026-06-23'
+  breaking: false
+- channel: ios
+  version: 1.26.0
+  date: '2026-06-16'
+  breaking: false
+- channel: ios
+  version: 1.25.0
+  date: '2026-06-15'
+  breaking: false
+- channel: ios
+  version: 1.24.5
+  date: '2026-06-09'
+  breaking: false
+- channel: android
+  version: 1.26.0
+  date: '2026-07-28'
+  breaking: false
+- channel: android
+  version: 1.25.3
+  date: '2026-07-14'
+  breaking: false
+- channel: android
+  version: 1.25.2
+  date: '2026-06-30'
+  breaking: false
+- channel: android
+  version: 1.25.1
+  date: '2026-06-23'
+  breaking: false
+- channel: android
+  version: 1.24.0
+  date: '2026-06-09'
+  breaking: false
+- channel: react-native
+  version: 1.7.0
+  date: '2026-06-30'
+  breaking: false
+- channel: react-native
+  version: 1.6.0
+  date: '2026-06-09'
+  breaking: false
+- channel: react-native
+  version: 1.5.0
+  date: '2025-10-28'
+  breaking: false
+announced_changes:
+- date: '2026-10-01'
+  channel: ios
+  type: deprecation
+  summary: Netomi stops publishing new NetomiChatSDK CocoaPods versions (base pod and
+    /Analytics subspec). Swift Package Manager becomes the only supported install path
+    for new releases.
+  source: https://github.com/msgai/netomi-chat-ios/blob/main/docs/installation.md#cocoapods-sunset-timeline
+- channel: android
+  type: deprecation
+  summary: 'Maven coordinate com.netomi.chat:-android deprecated in favour of
+    com.netomi.chat:chat-widget-android.'
+  source: https://github.com/msgai/netomi-chat-android-app/blob/main/docs/installation.md
+gaps:
+- GitHub release bodies contain no notes; no per-version highlights are published.
+- No platform/API changelog, only SDK release tags.

@@ -1,0 +1,124 @@
+generated: '2026-08-01'
+method: searched
+source: https://github.com/msgai/netomi-chat-ios/blob/main/docs/events-and-auth.md
+docs:
+- https://github.com/msgai/netomi-chat-ios/blob/main/docs/events-and-auth.md
+- https://github.com/msgai/netomi-chat-android-app/blob/main/docs/events-and-auth.md
+- https://github.com/msgai/netomi-chat-ios/blob/main/docs/security-and-privacy.md
+note: |
+  Netomi's live AgentDesk OpenAPI 3.1.0 (https://api.netomi.com/v3/api-docs) declares
+  ZERO securitySchemes across all 67 operations, so
+  0-working/derive-authentication.py produced no profile from it — the contract is
+  silent about credentials. This profile is therefore searched from the first-party
+  Mobile Chat SDK documentation and supplemented with the credential-shaped surfaces
+  that ARE visible in the spec (the visitor authorization request body and the two
+  named headers on the platform status operation). The server-to-server / Agentic
+  Studio credential model remains undocumented publicly (docs.netomi.com is
+  login-gated).
+summary:
+  types: [bearer-jwt, tenant-identifier]
+  api_key_in: []
+  oauth2_flows: []
+  oauth2: false
+  spec_declared_security_schemes: 0
+  openid_connect: false
+  mutual_tls: false
+  public_spec: true
+  public_spec_source: https://api.netomi.com/v3/api-docs
+schemes:
+- name: botRefId
+  type: tenantIdentifier
+  in: sdk-initialization
+  required: true
+  description: The Netomi bot reference ID issued per enterprise account. Passed to
+    NetomiChat.shared.initialize(botRefId:env:) on iOS and NCWChatSdk.initialize(...,
+    newBotRefId = ...) on Android. It selects the tenant/bot, not the user; it is not
+    a secret credential on its own.
+  source: SDK docs (installation.md, usage.md)
+- name: environment
+  type: regionSelector
+  in: sdk-initialization
+  required: true
+  values: [USProd, EUProd, SGProd, QA, QAInternal, Development]
+  description: Selects the Netomi regional backend the SDK talks to. iOS enum
+    NCWEnvironment (parameter `env`); Android NCWEnvironment. The flag isDynamicEnv
+    is set true only when the bot is configured for dynamic SDK configuration.
+  source: https://github.com/msgai/netomi-chat-ios/blob/main/docs/usage.md
+- name: jwt
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  required: conditional
+  description: A JSON Web Token supplied by the integrating application when the bot
+    is configured for authenticated sessions. Passed at launch — launch(jwt:),
+    launchWithQuery(_:jwt:), launchAsync(jwt:) — and again on reauthorization. When
+    a bot does not require authentication the SDK runs an anonymous guest session and
+    a supplied JWT is safely ignored. There is no separate login endpoint.
+  guidance: Netomi documents JWTs as short-lived credentials that must be generated
+    server-side, scoped to the user, and refreshed via the reauthorization flow rather
+    than embedded as long-lived tokens in the app.
+  source: https://github.com/msgai/netomi-chat-ios/blob/main/docs/events-and-auth.md
+- name: custom API headers
+  type: apiKey
+  in: header
+  required: false
+  description: Arbitrary HTTP headers attached to every SDK API request via
+    updateApiHeaderConfiguration(headers:). Documented for app version, device id,
+    platform, user segment, experiment variant and locale (X-App-Version, X-Device-ID,
+    X-Platform, X-User-Type, X-Experiment-Variant, X-Locale in the published example).
+    Netomi explicitly warns against placing long-lived secrets here.
+  source: https://github.com/msgai/netomi-chat-ios/blob/main/docs/advanced.md
+sessions:
+  models:
+  - name: guest
+    default: true
+    description: Anonymous, SDK-managed session. No JWT required.
+  - name: authenticated
+    description: Identity established by the JWT for a bot configured to require one.
+  reauthorization:
+    flow: The SDK emits a `reauthorizationRequest` event; the host app re-authenticates
+      the user and answers with sendEventToSdk(type:.reauthorizationSuccess, jwt:) —
+      a fresh JWT is REQUIRED on success — or .reauthorizationFailure.
+    logout: clearChatSession() ends the active conversation, dismisses the chat UI and
+      clears stored session state before launching as a different user.
+  identity_metadata:
+    api: setCustomParameter([String:String]) / sendCustomParameter(name:value:)
+    note: Custom parameters are metadata forwarded to the AI backend for personalisation.
+      Netomi documents them explicitly as NOT credentials and NOT an authentication
+      mechanism.
+spec_observed:
+  note: Credential-bearing surfaces visible in openapi/netomi-agentdesk-openapi.json
+    even though no securityScheme is declared.
+  surfaces:
+  - name: ExternalAuthenticationRequest
+    used_by: messagesPost_4 (POST /v1/authorize/visitors)
+    fields: [authToken, clientId, authCode, visitorKey, timestamp, expiryTime]
+    description: Exchange an externally issued token or auth code for an authorized
+      Netomi visitor. This is the server-side counterpart of the SDK's JWT session.
+  - name: X-Hub-Signature
+    in: header
+    required: true
+    used_by: statusAPI (GET /v1/platform/status)
+    description: HMAC-style request signature header. Only operation in the spec that
+      declares it; the signing algorithm and secret provisioning are not documented.
+  - name: X-Client-Id
+    in: header
+    required: true
+    used_by: statusAPI (GET /v1/platform/status)
+    description: Client identifier paired with X-Hub-Signature.
+  - name: secretId
+    in: path
+    used_by: healthCheck (GET /ceaas/v1/health/{secretId})
+    description: Opaque secret embedded in the health-check path.
+  - name: oAuthRedirect
+    used_by: oAuthRedirect (GET /v1/oauth/redirect)
+    description: An OAuth redirect handler exists for outbound integrations, but no
+      OAuth authorization server, token endpoint, scopes or flows are declared for the
+      Netomi API itself. No scopes/ artifact was emitted.
+gaps:
+- The public OpenAPI declares no securitySchemes at all, so there is nothing
+  machine-readable for a client to negotiate against.
+- No OAuth 2.0 or OpenID Connect surface published; /.well-known/openid-configuration
+  and /.well-known/oauth-authorization-server return 404 on every Netomi host.
+- No public documentation of the server-to-server Platform API credential model
+  (docs.netomi.com is login-gated).

@@ -1,0 +1,149 @@
+generated: '2026-08-01'
+method: derived
+source: openapi/netomi-agentdesk-openapi.json#/components/schemas/ServiceResponse
+also_probed: https://api.netomi.com/ (live 404 envelope, 2026-08-01)
+format: vendor-envelope
+rfc9457: false
+note: |
+  Netomi's error registry is not published as documentation — it is embedded as an
+  enum on the ServiceResponse schema of the live AgentDesk OpenAPI at
+  https://api.netomi.com/v3/api-docs. All 104 values below are taken verbatim from
+  that enum (including the misspellings ILLEGEAL_TOKEN_HEADER, ILLEGAL_LINK_ID and
+  NO_TWO_PERMISSION_ENITITY_EXCEPTION). The envelope was independently confirmed on
+  live unauthenticated requests. Groupings and the `retry` hint are API Evangelist
+  classifications by name; Netomi publishes no meanings, HTTP mappings or remediation,
+  so none were invented.
+envelope:
+  schema: ServiceResponse
+  content_type: application/json
+  fields:
+  - {name: statusCode, type: string, note: 'coarse outcome; observed value: FAILED'}
+  - {name: statusMessage, type: string, note: human-readable detail}
+  - {name: exceptionCode, type: string, note: the error code; enumerated below}
+  http_status_mapping: undeclared
+  warning: >-
+    The OpenAPI declares ONLY 200 responses for all 67 operations. Failures are
+    signalled in the body via exceptionCode, not reliably by HTTP status. Clients must
+    branch on exceptionCode.
+  observed:
+  - {request: 'GET https://api.netomi.com/', http_status: 404, exceptionCode: INVALID_INPUT_ERROR,
+     statusCode: FAILED, statusMessage: "No static resource  for request '/'."}
+alternate_shapes:
+- schema: BaseError
+  fields: [errorCode, errorMessage]
+- schema: Error
+  fields: [status, code, message, type]
+  type_enum: [CONVERSATION_REQUEST, CONVERSATION_RESPONSE, ERROR, AUDIT_ERROR,
+    CONVERSATION_STATE, INTEGRATION_REQUEST, INTEGRATION_RESPONSE, CONVERSATION,
+    ASSET_TRACKING, CLIENT_REQUEST, HUMAN_HANDOFF_RESPONSE, HUMAN_HANDOFF_REQUEST]
+  note: Carried inside Message payloads rather than as the top-level envelope.
+count: 104
+groups:
+- group: authn_authz
+  retry: false
+  codes: [AUTHENTICATION_FAILED_ERROR, AUTHORIZATION_FAILED_ERROR, UN_AUTHORISED_ERROR,
+    UN_AUTHORISED_ACCESS, UNAUTHORIZED_API_REQUEST, BAD_CREDENTIAL, ACCESS_TOKEN_EXPIRED,
+    ILLEGEAL_TOKEN_HEADER, NULL_TOKEN_CREATED, NO_SECURITY_CONTEXT_HOLDER, INVALID_ROLE,
+    INSUFFICIENT_PERMISSION, ILLEGAL_PERMISSION_ENTITY_ADDITION,
+    NO_TWO_PERMISSION_ENITITY_EXCEPTION, ACCESS_LOCKED, ATTEMPTS_EXCEEDED,
+    USER_ACCOUNT_TEMPORARY_BLOCKED, CLIENT_API_CREDENTIAL_MISSING_ERROR,
+    CLIENT_API_CREDENTIAL_DOES_NOT_EXIST_ERROR, LOGIN_SUCCESS]
+- group: user_account
+  retry: false
+  codes: [USER_DOES_NOT_EXIST, USER_NOT_FOUND, USER_NOT_ACTIVATED, SIGN_UP_LINK_EXPIRED,
+    RESET_PASSWORD_LINK_EXPIRED]
+- group: input_validation
+  retry: false
+  codes: [INVALID_INPUT_ERROR, API_EMPTY_PAYLOAD_ERROR, INPUT_DATA_CORRUPTED_ERROR,
+    REQUEST_PAYLOAD_MAX_SIZE_EXCEED_ERROR, UN_SUPPORTED_OPERATION_ERROR,
+    ILLEGAL_ACCESS_ERROR, ILLEGAL_LINK_ID, INVALID_JOB_CLASS_NAME_ERROR]
+- group: not_found
+  retry: false
+  codes: [DATA_NOT_FOUND, RESOURCE_NOT_FOUND_ERROR, WORKFLOW_NOT_FOUND,
+    EXPERIMENT_NOT_FOUND, TARGET_BUCKET_NOT_FOUND, TARGET_BUCKET_RESPONSE_NOT_FOUND,
+    DEFAULT_TEMPLATE_DOES_NOT_EXIST_EXCEPTION, MCP_SERVER_NOT_FOUND]
+- group: configuration
+  retry: false
+  codes: [INVALID_CONF, INVALID_CONFIGURATION, INVALID_BOT_DETAILS,
+    LANGUAGE_NOT_CONFIGURED, NO_LOCALE_CONFIGURED, GO_LIVE_PRECONDITION_FAILED,
+    SUB_WORKFLOW_DELETE_PRECONDITION_FAILED, INTENT_IN_USE,
+    ALREADY_EXISTS_ENTITY_EXCEPTION, MAX_MANIFEST_LIMIT_REACHED,
+    MANIFEST_DELETE_VALIDATION_FAILED]
+- group: conversation_engine
+  retry: false
+  codes: [CONVERSATION_NULL, CONTEXT_RESPONSE_EMPTY, STANDARD_RESPONSE_EMPTY,
+    INSUFFICIENT_ATTRIBUTE, MESSAGE_SWALLOWED, INVALID_ORCHESTRATOR_STATE_REACHED,
+    MVEL_EXPRESSION_INVALID, MVEL_EXPRESSION_PROPERTY_MISSING]
+- group: mcp
+  retry: false
+  codes: [MCP_ERROR, MCP_VALIDATION_ERROR, MCP_SERVER_NOT_FOUND]
+  note: Evidence that the Netomi platform connects OUT to MCP servers; Netomi exposes
+    none of its own.
+- group: rate_limiting
+  retry: true
+  backoff: required
+  codes: [THROTTLE_ERROR, RATE_LIMIT_EXCEED_ERROR]
+- group: transport
+  retry: true
+  codes: [CONNECTION_TIME_OUT_ERROR, CONNECTION_REFUSED_ERROR, CONNECTION_RESET_ERROR,
+    CONNECTION_FAILED, DOWN_STREAM_SERVICE_ERROR, HTTPS_SECURE_GATEWAY_ERROR,
+    DRUID_QUERY_TIME_OUT_ERROR]
+- group: datastore
+  retry: conditional
+  codes: [DB_FETCH_ERROR, DB_INSERT_ERROR, CASSANDRA_DB_ERROR, MYSQL_DB_ERROR,
+    KAFKA_BROKER_ERROR, DRUID_TRANQUILITY_SERVER_ERROR, DRUID_QUERY_BROKER_ERROR,
+    DELETE_FAILED]
+- group: serialization_crypto
+  retry: false
+  codes: [DESERIALIZATION_FAILED_ERROR, SERIALIZATION_FAILED_ERROR,
+    READING_FILE_FAILED_ERROR, COMPRESS_STRING_ERROR, DE_COMPRESS_STRING_ERROR,
+    ENCRYPTION_FAILED_ERROR, ENCRYPTION_EXCEPTION, DECRYPTION_EXCEPTION,
+    OBJECT_DEEP_COPY_CLONE_FAILED_ERROR, INSTANTIATION_FAILED_ERROR]
+- group: payments
+  retry: false
+  codes: [INVALID_PAYMENT_MODE_ERROR, INVALID_PAYMENT_CARD_ERROR, LINK_CANNOT_CREATED]
+- group: third_party
+  retry: conditional
+  codes: [FACEBOOK_API_EXCEPTION, GOOGLE_TRANSLATION_API_EXCEPTION,
+    AWS_LAMBDA_API_EXCEPTION, TRANSLATION_FAILED]
+- group: data_science_clustering
+  retry: false
+  codes: [CLUSTERING_FILE_REJECTED_EXCEPTION, CLUSTERING_DATA_INSERTION_INTO_DB_EXCEPTION,
+    DATA_SCIENCE_CLUSTERING_FAILED_EXCEPTION,
+    CLUSTERING_UTTERANCE_DATA_INSERTION_FAILED_EXCEPTION,
+    CLUSTERING_UTTERANCE_INFO_INSERTION_FAILED_EXCEPTION, EXISTING_CLUSTERS_DELETION_EXCEPTION]
+- group: scheduling
+  retry: conditional
+  codes: [JOB_SCHEDULER_ERROR]
+- group: server
+  retry: conditional
+  codes: [INTERNAL_SERVER_ERROR]
+platform_status_errors:
+  schema: PlatformStatusResponse
+  status_enum: [MAINTENANCE, FULLY_OPERATIONAL, INCIDENT, OUTAGE, INOPERATIVE]
+  operation: statusAPI (GET /v1/platform/status)
+sdk_errors:
+  note: Client-side error surface of the iOS/Android Chat SDKs — SDK events and typed
+    errors, not HTTP codes.
+  event: {name: error, channel: getEventUpdatesFromSDK, payload_key: error_details}
+  types:
+  - {name: NCWErrorData, surface: 'launch(errorHandler:)', note: delivered only when
+      the chat UI cannot be shown}
+  - {name: NetomiEventError, surface: sendEventToSdk, note: 'thrown for a missing JWT
+      on reauthorizationSuccess, a missing or reserved custom eventName, or a
+      non-JSON-serializable payload'}
+  documented_failures:
+  - {symptom: chat will not launch / launchAsync returns false, cause: not initialized,
+     invalid botRefId or env, or bot config could not be fetched}
+  - {symptom: no bot messages arrive, cause: real-time connection or session not
+      established}
+  - {symptom: reauthorization loops, cause: missing or expired JWT on
+      reauthorizationSuccess}
+  - {symptom: push notifications never arrive, cause: token not handed to the SDK or
+      bot not configured for push}
+  source: https://github.com/msgai/netomi-chat-ios/blob/main/docs/troubleshooting.md
+gaps:
+- Not RFC 9457 — no type URI, no title/detail split, no instance, not
+  application/problem+json.
+- No HTTP status mapping declared for any error; the spec documents 200 only.
+- No published meanings, causes or remediation for any of the 104 codes.

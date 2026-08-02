@@ -1,0 +1,93 @@
+generated: '2026-08-01'
+method: searched
+source: npm registry, CocoaPods Trunk, Maven Central, github.com/msgai
+summary: |
+  Netomi publishes first-party client libraries only for its Mobile Chat SDK — the
+  embeddable AI chat interface. There is no public server-side SDK (no Python, Java,
+  Go, Ruby, PHP or .NET package) because the Netomi Platform API is provisioned per
+  enterprise account and its reference is gated behind docs.netomi.com. All four
+  distributions below were verified live in their registries on 2026-08-01.
+packages:
+- language: swift
+  platform: ios
+  registry: swift-package-manager
+  name: netomi-chat-ios
+  product: Netomi
+  url: https://github.com/msgai/netomi-chat-ios
+  install: https://github.com/msgai/netomi-chat-ios.git @ 1.29.2
+  version: 1.29.2
+  official: true
+  recommended: true
+  notes: Recommended long-term integration path for iOS. Optional second product
+    `NetomiAnalytics` opts in to Mixpanel analytics. Requires iOS 16+, Xcode 26+.
+- language: swift
+  platform: ios
+  registry: cocoapods
+  name: NetomiChatSDK
+  url: https://cocoapods.org/pods/NetomiChatSDK
+  install: pod 'NetomiChatSDK', '1.29.2'
+  version: 1.29.2
+  first_published: '2025-03-08'
+  version_count: 68
+  official: true
+  deprecated: true
+  deprecation:
+    ends: '2026-10-01'
+    note: Netomi stops publishing new NetomiChatSDK podspec versions (base pod and
+      the /Analytics subspec) after 2026-10-01; already-published versions remain
+      installable. Migrate to Swift Package Manager.
+    policy: https://github.com/msgai/netomi-chat-ios/blob/main/docs/installation.md#cocoapods-sunset-timeline
+- language: kotlin
+  platform: android
+  registry: maven-central
+  name: com.netomi.chat:chat-widget-android
+  url: https://central.sonatype.com/artifact/com.netomi.chat/chat-widget-android
+  install: implementation("com.netomi.chat:chat-widget-android:1.26.0")
+  version: 1.26.0
+  packaging: aar
+  official: true
+  recommended: true
+  notes: Requires minSdkVersion 26, Gradle 8.6+.
+- language: kotlin
+  platform: android
+  registry: maven-central
+  name: com.netomi.chat:-android
+  url: https://central.sonatype.com/artifact/com.netomi.chat/-android
+  install: implementation("com.netomi.chat:-android:1.1.12")
+  version: 1.1.12
+  official: true
+  deprecated: true
+  deprecation:
+    note: Legacy coordinate, explicitly deprecated in the Android SDK installation
+      guide in favour of com.netomi.chat:chat-widget-android.
+- language: javascript
+  platform: react-native
+  registry: npm
+  name: '@netomi.com/netomi-chat-react-native'
+  url: https://www.npmjs.com/package/@netomi.com/netomi-chat-react-native
+  install: npm install @netomi.com/netomi-chat-react-native
+  version: 1.7.0
+  released: '2026-06-30'
+  version_count: 18
+  license: MIT
+  repository: https://github.com/msgai/Chat-widget-sample-app-react-native
+  official: true
+  notes: React Native wrapper bridging the native iOS and Android Chat SDKs. Ships
+    both a CocoaPods podspec and a Package.swift so the iOS side can resolve either
+    way (NETOMI_IOS_SDK_SOURCE=spm). Requires React Native 0.85+, Node 20.19.4+.
+managed_dependencies:
+  note: Third-party dependencies the iOS SDK manages for you — do not add them manually.
+  dependencies:
+  - {name: Microsoft Cognitive Services Speech SDK, version: 1.49.1}
+  - {name: Mixpanel Swift, version: '>=6.4.0 <7.0.0', optional: true, product: NetomiAnalytics}
+  - {name: AWS IoT Device SDK for Swift, embedded: true, note: statically embedded
+      with hidden symbols}
+  - {name: Lottie, embedded: true, note: statically embedded with hidden symbols}
+not_found:
+  note: Probed and confirmed absent on 2026-08-01 — recorded because absence is data.
+  registries: [pypi, rubygems, packagist, crates.io, nuget, pkg.go.dev]
+x-evidence:
+- {url: 'https://registry.npmjs.org/@netomi.com/netomi-chat-react-native', http_status: 200}
+- {url: 'https://trunk.cocoapods.org/api/v1/pods/NetomiChatSDK', http_status: 200}
+- {url: 'https://central.sonatype.com/solrsearch/select?q=netomi', http_status: 200}
+- {url: 'https://api.github.com/repos/msgai/netomi-chat-ios', http_status: 200}

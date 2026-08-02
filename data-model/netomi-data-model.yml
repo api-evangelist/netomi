@@ -1,0 +1,113 @@
+generated: '2026-08-01'
+method: derived
+source: openapi/netomi-agentdesk-openapi.json
+note: |
+  Entity graph derived mechanically from the $ref edges in the 103 component schemas
+  of the live AgentDesk REST API OpenAPI 3.1.0 document. The spec is Springdoc-generated
+  and carries no schema descriptions, so entity roles below are inferred from schema
+  names and $ref direction only — no domain semantics were invented.
+entities:
+- name: ConversationResponse
+  role: aggregate-root
+  description: The response envelope returned by the conversation engine. The widest
+    fan-out node in the schema graph.
+  relationships:
+  - {type: has_many, target: Message, via: messages}
+  - {type: has_one, target: Session, via: session}
+  - {type: has_one, target: Visitor, via: visitor}
+  - {type: has_one, target: Intent, via: intent}
+  - {type: has_one, target: AgentInfo, via: agentInfo}
+  - {type: has_one, target: BotMetaInfo, via: botMetaInfo}
+  - {type: has_one, target: AgentDeskChannelMetaInfo, via: channelMetaInfo}
+  - {type: has_many, target: ContextualAttributeServiceObject, via: contextualAttributes}
+  - {type: has_many, target: CustomResponseField, via: customResponseFields}
+  - {type: has_many, target: ServiceLatencyLog, via: latency}
+- name: Message
+  role: core-entity
+  description: A single conversation turn. Polymorphic across 38 payload types — the
+    richest node in the model.
+  payload_families:
+    text: [Text, SemanticMessage, FillerText]
+    media: [Image, Video, Audio, GenericFileAttachment, GenericAttachment, MessageInfoAttachment]
+    structured: [Card, ImageCard, Carousel, ListTemplate, GroupList, Receipt, Location,
+      PostbackButton, PostbackItem, PostbackReferral]
+    email: [Email, EmailTemplate]
+    airline: [AirlineBoardingPassTemplatePayload, AirlineCheckinTemplatePayload,
+      AirlineItineraryTemplatePayload, AirlineUpdateTemplatePayload]
+    google_assistant: [GoogleAssistantBasicCard, GoogleAssistantText,
+      GoogleAssistantMicAttachment, GoogleAssistantSuggestionChip]
+    agent_desk: [AgentDeskForm, AgentDeskResponse]
+    nlu: [NLUCard]
+    next_best_action: [NBAAttachment]
+    other: [EventTemplatePayload, MultiSource, OneTimeNotificationRequest, Attribute,
+      Error]
+- name: Attachment
+  role: shared-value-object
+  inbound_references: 32
+  description: The most-referenced schema in the document; nearly every rich payload
+    embeds it.
+  relationships:
+  - {type: has_many, target: Attribute, via: attributes}
+  - {type: has_many, target: QuickReply, via: quickReplies}
+- name: Visitor
+  role: actor
+  relationships:
+  - {type: has_many, target: Attribute, via: attributes}
+- name: Session
+  role: leaf
+- name: Intent
+  role: leaf
+  siblings: [NLUIntent, MetaIntent, NLUEntity, NLUEntityValue, MetaEntity]
+- name: AgentInfo
+  role: actor
+  description: Human agent identity used on live-agent handoff.
+- name: BotMetaInfo
+  role: leaf
+  description: Bot/tenant metadata attached to a conversation response.
+- name: AgentDeskResponse
+  role: integration-entity
+  relationships:
+  - {type: has_one, target: Attachment, via: attachment}
+- name: WebHookEventRequest
+  role: request-envelope
+  fields: [linkId, payload]
+- name: ServiceResponse
+  role: response-envelope
+  fields: [statusCode, statusMessage, exceptionCode]
+  note: The universal API envelope; its exceptionCode enum is the platform error
+    registry (see errors/netomi-error-codes.yml).
+- name: ExternalAuthenticationRequest
+  role: auth-request
+  fields: [authToken, clientId, authCode, visitorKey, timestamp, expiryTime]
+  used_by: POST /v1/authorize/visitors (messagesPost_4)
+- name: RateLimitConfigRequestDto
+  role: config
+  fields: [minuteLimit, hourLimit, dayLimit, weekLimit, monthLimit, yearLimit]
+  used_by: /v1/rate-limit (fetchRateConfig, saveRateConfig, updatedRateConfig,
+    deleteRateConfig)
+- name: PlatformStatusResponse
+  role: status
+  status_enum: [MAINTENANCE, FULLY_OPERATIONAL, INCIDENT, OUTAGE, INOPERATIVE]
+  used_by: GET /v1/platform/status (statusAPI)
+- name: FlightInfo
+  role: domain-cluster
+  inbound_references: 4
+  description: Airline/travel vertical cluster — FlightAirport, FlightSchedule,
+    PassengerInfo, PassengerSegmentInfo, BoardingPass, PriceInfo, ProductInfo.
+identifiers:
+  note: Identifier fields observed as operation parameters rather than declared
+    id-prefixed types.
+  fields:
+  - {name: botRefId, scope: tenant/bot, occurrences: 6}
+  - {name: botId, scope: bot, occurrences: 5}
+  - {name: requestId, scope: request correlation, occurrences: 8}
+  - {name: conversationId, scope: conversation, occurrences: 3}
+  - {name: appId, scope: channel app (Twitter), occurrences: 2}
+  - {name: visitorKey, scope: end user, source: ExternalAuthenticationRequest}
+  - {name: linkId, scope: webhook event link, source: WebHookEventRequest}
+  - {name: secretId, scope: ceaas health check}
+counts:
+  schemas: 103
+  operations: 67
+  paths: 56
+render: null

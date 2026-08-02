@@ -1,0 +1,64 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Netomi AgentDesk REST API
+  version: 1.0.0
+extends: openapi/netomi-agentdesk-openapi.json
+x-generated: '2026-08-01'
+x-method: generated
+x-source: openapi/netomi-agentdesk-openapi.json
+x-note: >-
+  The upstream document is Springdoc-generated and served live from
+  https://api.netomi.com/v3/api-docs. It declares no securitySchemes, no operation
+  summaries or descriptions, only 200 responses, and an http:// server URL. This
+  overlay records API Evangelist's observations without mutating the harvested spec.
+  Nothing here asserts behaviour Netomi has not published — every action is either a
+  provenance annotation or a correction of a demonstrably wrong value (the http server
+  URL; api.netomi.com serves HTTPS with a valid certificate and rejects nothing on
+  https).
+actions:
+- target: $.info
+  update:
+    x-apievangelist-harvested: '2026-08-01'
+    x-apievangelist-source: https://api.netomi.com/v3/api-docs
+    x-apievangelist-discovery: >-
+      Found on the Springdoc default path /v3/api-docs at the API host root after
+      /openapi.json, /openapi.yaml, /swagger.json, /v1/openapi.json, /api-docs and
+      /docs all returned 404. Swagger UI is live at
+      https://api.netomi.com/swagger-ui.html.
+    x-apievangelist-generator: springdoc-openapi (inferred from /v3/api-docs +
+      /v3/api-docs/swagger-config)
+- target: $.servers
+  update:
+  - url: https://api.netomi.com
+    description: Production API host (HTTPS). The upstream document advertises
+      http://api.netomi.com, which is the Springdoc "generated server url" behind a
+      TLS-terminating proxy, not a usable plaintext endpoint.
+- target: $.info
+  update:
+    x-apievangelist-gaps:
+    - no securitySchemes declared, though /v1/platform/status requires X-Hub-Signature
+      and X-Client-Id and /v1/authorize/visitors takes an ExternalAuthenticationRequest
+    - zero operation summaries and zero operation descriptions across all 67 operations
+    - only 200 responses declared; no 4xx or 5xx documented, although the
+      ServiceResponse envelope enumerates 104 exceptionCode values
+    - no request or response examples anywhere in the document
+    - operationIds are Springdoc autonumbered collisions (conversationEngineAsync_1
+      through _12, getResponse_1 through _7, postResponse_1 through _3) rather than
+      intent-revealing names
+    - tags are Spring controller class names (rest-api-controller,
+      zen-desk-chat-rest-controller) rather than product capabilities
+    - 61 of 67 operations declare a required header parameter literally named
+      "headers", a Springdoc artefact of a Map<String,String> @RequestHeader binding
+- target: $.components.schemas.ServiceResponse
+  update:
+    x-apievangelist-note: >-
+      This is the universal platform response envelope. Its exceptionCode enum is the
+      de facto Netomi error registry (104 values) and is catalogued in
+      errors/netomi-error-codes.yml. The same envelope was observed verbatim on live
+      unauthenticated 404s from https://api.netomi.com.
+- target: $.components.schemas.RateLimitConfigRequestDto
+  update:
+    x-apievangelist-note: >-
+      Per-bot rate-limit configuration windows (minute, hour, day, week, month, year).
+      Netomi publishes the configuration surface but not any default or maximum limit
+      values, so no rate-limits artifact was emitted.

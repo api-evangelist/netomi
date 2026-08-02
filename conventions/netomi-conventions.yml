@@ -1,0 +1,134 @@
+generated: '2026-08-01'
+method: searched
+source: openapi/netomi-agentdesk-openapi.json + https://github.com/msgai/netomi-chat-ios/tree/main/docs
+note: |
+  Cross-cutting request/response semantics for the Netomi platform. Derived from the
+  live AgentDesk OpenAPI 3.1.0 (https://api.netomi.com/v3/api-docs) and searched from
+  the first-party Mobile Chat SDK documentation, plus live probes of api.netomi.com.
+  Fields Netomi does not document are recorded as null rather than guessed.
+authentication:
+  style: bearer-jwt (optional) + tenant bot reference id
+  detail: authentication/netomi-authentication.yml
+idempotency:
+  supported: false
+  header: null
+  note: Netomi documents no idempotency key, no retry-safety contract and no
+    de-duplication window for the Platform API or its webhook endpoints. The SDK
+    documents client-side call-safety instead — initialize(...) safely ignores
+    duplicate calls with the same botRefId/env/isDynamicEnv, and repeated launch()
+    calls are handled internally — but that is SDK state coordination, not request
+    idempotency.
+pagination:
+  style: bounded-window
+  note: No cursor or offset pagination anywhere in the spec. The only bounded read is
+    conversation history, which takes numberOfDays, numberOfMessages and timestamp as
+    optional query parameters on getConversationHistory
+    (GET /v2/webhook/history/{conversationId}). No page tokens, no link headers, no
+    total counts.
+field_expansion:
+  supported: null
+metadata:
+  supported: true
+  mechanism: custom parameters
+  apis:
+  - setCustomParameter([String:String]) — set many at once
+  - sendCustomParameter(name:value:) — set one
+  semantics: Arbitrary string key/value attributes attached to a guest or authenticated
+    session and forwarded to the AI backend for personalisation. Documented examples
+    include user_id, user_name, membership_level, app_version, user_role.
+  constraints: Explicitly not credentials; Netomi warns against passing secrets or PII
+    through custom parameters.
+  source: https://github.com/msgai/netomi-chat-ios/blob/main/docs/advanced.md
+request_tracing:
+  request_id_header: null
+  request_id_param: requestId
+  style: caller-supplied correlation id as a QUERY parameter, not a header
+  note: The asynchronous conversation engine correlates a submit with its collect via
+    requestId — required on getResponse (GET /v2/messages) and present on 8 operations
+    in the spec. There is no server-issued trace or correlation HEADER. On the mobile
+    SDKs the nearest handle is the client-supplied X-Device-ID custom header.
+custom_headers:
+  supported: true
+  api: updateApiHeaderConfiguration(headers:)
+  scope: attached to every SDK API call
+  documented_examples: [X-App-Version, X-Device-ID, X-Platform, X-User-Type,
+    X-Experiment-Variant, X-Locale]
+  constraints: Netomi documents that long-lived secrets must not be placed here.
+versioning:
+  request_style: uri-path
+  observed: /v1/ prefix on the documented inbound webhook endpoint
+  sdk: semantic versioning per platform (see lifecycle/netomi-lifecycle.yml)
+region_routing:
+  style: client-selected environment at SDK initialization
+  values: [USProd, EUProd, SGProd, QA, QAInternal, Development]
+  dynamic: 'isDynamicEnv: true when the bot is configured for dynamic SDK configuration'
+error_envelope:
+  content_type: application/json
+  shape: '{exceptionCode, statusCode, statusMessage}'
+  rfc9457: false
+  detail: errors/netomi-error-codes.yml
+rate_limiting:
+  signalled: in-body
+  headers: null
+  error_codes: [THROTTLE_ERROR, RATE_LIMIT_EXCEED_ERROR]
+  configurable: true
+  config_api:
+    path: /v1/rate-limit
+    operations: [fetchRateConfig, saveRateConfig, updatedRateConfig, deleteRateConfig]
+    windows: [minuteLimit, hourLimit, dayLimit, weekLimit, monthLimit, yearLimit]
+    scope: per bot (botRefId / botId)
+  published_values: false
+  note: Limits are configured per bot through a CRUD API rather than published as
+    documented quotas, and no X-RateLimit-* response headers are declared. A client
+    must read its own limits with fetchRateConfig. No rate-limits artifact was emitted
+    because Netomi publishes no actual limit values.
+event_model:
+  bidirectional: true
+  sdk_to_app: getEventUpdatesFromSDK closure/listener
+  app_to_sdk: sendEventToSdk(type:eventName:jwt:data:)
+  detail: asyncapi/netomi-events.yml
+session_semantics:
+  launch: fire-and-forget by default; launchAsync/launchWithQueryAsync return a Bool
+    confirming whether the UI was presented
+  visibility: hideChat / resumeChat are synchronous, main-thread APIs
+  reset: clearChatSession() ends the conversation, dismisses the UI and clears stored
+    session state
+  ordering: theming and initial-menu overrides must be applied BEFORE launch(); they
+    do not update an already visible session
+logging:
+  levels: [none, error, info]
+  default: none
+  guidance: keep at none in production
+cross_links:
+  authentication: authentication/netomi-authentication.yml
+  errors: errors/netomi-error-codes.yml
+  lifecycle: lifecycle/netomi-lifecycle.yml
+  events: asyncapi/netomi-events.yml
+  sandbox: sandbox/netomi-sandbox.yml
+async_model:
+  style: submit-then-poll
+  note: The conversation engine is asynchronous. POST /v2/messages
+    (conversationEngineAsync) submits an utterance; GET /v2/messages?requestId=...
+    (getResponse) collects the answer. The same shape repeats for the bulk
+    test-utterance harness (submitRequest then pollScript) and for several channel
+    integrations (salesforce, sprinklr, zendesk-chat, agentdesk all expose a
+    .../poll operation).
+spec_surface:
+  document: openapi/netomi-agentdesk-openapi.json
+  title: AgentDesk REST API
+  openapi: 3.1.0
+  paths: 56
+  operations: 67
+  schemas: 103
+  discovered_at: https://api.netomi.com/v3/api-docs
+  swagger_ui: https://api.netomi.com/swagger-ui.html
+  security_schemes_declared: 0
+  quirks:
+  - 61 of 67 operations declare a required header parameter literally named "headers"
+    — a Springdoc rendering of a Map<String,String> @RequestHeader binding, not a real
+    header called "headers".
+  - Only two named headers appear anywhere in the spec, both on GET /v1/platform/status
+    — X-Hub-Signature and X-Client-Id.
+  - operationIds are Springdoc autonumbered (conversationEngineAsync_1 .. _12,
+    getResponse_1 .. _7, postResponse_1 .. _3).
+  - Tags are Spring controller class names, not product capabilities.

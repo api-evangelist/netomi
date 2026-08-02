@@ -1,0 +1,82 @@
+generated: '2026-08-01'
+method: searched
+source: https://github.com/msgai/netomi-chat-ios/tree/main/docs + https://github.com/msgai/netomi-chat-android-app/tree/main/docs
+note: |
+  Netomi's client-side surface is an embeddable AI chat interface rather than a set of
+  discrete UI element libraries. It ships as a native drop-in component per platform,
+  configured mostly from the Netomi Dashboard with an in-code override API. Captured
+  from the first-party SDK documentation; the loader libraries themselves are
+  catalogued in packages/netomi-packages.yml.
+families:
+- name: Netomi Chat Interface
+  kind: embedded-chat-surface
+  description: Fully managed AI chat experience embedded in a host mobile app. Renders
+    rich media responses, file attachments, forms, quick replies and a live-agent
+    handoff, with voice input/output.
+  platforms:
+  - platform: ios
+    entrypoint: NetomiChat.shared
+    package: packages/netomi-packages.yml#swift-package-manager
+    ui_frameworks: [UIKit, SwiftUI]
+  - platform: android
+    entrypoint: NCWChatSdk
+    package: packages/netomi-packages.yml#maven-central
+  - platform: react-native
+    entrypoint: '@netomi.com/netomi-chat-react-native'
+    package: packages/netomi-packages.yml#npm
+  lifecycle_api: [initialize, launch, launchWithQuery, launchAsync,
+    launchWithQueryAsync, hideChat, resumeChat, clearChatSession, isInitialized]
+  features:
+  - rich media responses
+  - file attachments
+  - forms
+  - live agent handoff
+  - push notifications (FCM / APNs)
+  - voice input and output
+  - configurable open animation (NCWAnimationConfig — animationType, duration)
+- name: Chat theming and configuration
+  kind: styling-api
+  description: In-code overrides for the Dashboard-configured look and feel. All
+    override calls must be made BEFORE launch(); they do not restyle a visible session.
+    overrideThemeMode is the one exception and applies immediately.
+  configuration_objects:
+  - {api: updateBotConfiguration, type: NCWBotConfiguration}
+  - {api: updateUserConfiguration, type: NCWUserConfiguration}
+  - {api: updateHeaderConfiguration, type: NCWHeaderConfiguration}
+  - {api: updateFooterConfiguration, type: NCWFooterConfiguration}
+  - {api: updateChatWindowConfiguration, type: NCWChatWindowConfiguration}
+  - {api: updateBubbleConfiguration, type: NCWBubbleConfiguration}
+  - {api: updateAlertsConfiguration, type: NCWAlertsConfiguration}
+  - {api: updateTermsConfiguration, type: NCWTermsConfiguration}
+  - {api: updateOtherConfiguration, type: NCWOtherConfiguration}
+  theming:
+    modes: [light, dark, auto]
+    dashboard_shape: '{lightTheme, darkTheme, themeMode}'
+    runtime_override: overrideThemeMode(_:) — immediate, and nil restores the
+      Dashboard-configured mode
+    buckets: two override buckets only — a default bucket (unscoped, theme(.light)
+      and theme(.auto) all write here) and a dark-only bucket (theme(.dark))
+    caveat: '.auto cannot track the device when the host app locks
+      UIUserInterfaceStyle in Info.plist'
+- name: Initial menu
+  kind: prebuilt-ui-block
+  description: Optional runtime override of the server-configured opening menu shown
+    in the chat.
+  api: setInitialMenu(NCWInitialMenuConfiguration) / clearInitialMenu()
+  shape:
+    header: text shown above the menu items
+    menuItems: 'list of NCWInitialMenuItem { name, label }'
+  documented_examples: [track_order / Track Order, refund_order / Refund Order]
+  note: Applied at launch only; pass nil or clearInitialMenu() to fall back to the
+    server configuration.
+- name: Agentic Studio
+  kind: hosted-console
+  url: https://studio.netomi.com
+  description: Netomi's hosted build/test/deploy/monitor console for AI agents, with
+    no-code controls. Account-gated; listed here as the first-party hosted surface,
+    not an embeddable component.
+web_widget:
+  published: false
+  note: Netomi markets a web chat widget, but no public embed snippet, loader script
+    host or JavaScript element library was found on any Netomi property. Only the
+    native mobile SDKs and the React Native wrapper are publicly distributed.

@@ -1,0 +1,54 @@
+generated: '2026-08-01'
+method: probed
+source: live GET of /.well-known/* on every apis.yml host and every API baseURL host
+result: no /.well-known/ discovery document is published on any Netomi-controlled
+  host. api.netomi.com and www.netomi.com returned 404 for every path. docs.netomi.com
+  returned HTTP 200 for every path probed, but the body is the login-gated
+  single-page-app shell (text/html, identical bytes for every path) — a catch-all,
+  not a discovery document — so it is recorded as a rejected false positive and no
+  raw file was saved. Recorded because absence is valid, evidenced data.
+hosts:
+- host: https://api.netomi.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://www.netomi.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://netomi.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://docs.netomi.com
+  note: SPA catch-all — every path returns 200 text/html with the same login shell.
+    All eight results rejected as false positives.
+  documents:
+  - {path: /.well-known/security.txt, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/openid-configuration, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/oauth-authorization-server, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/oauth-protected-resource, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/api-catalog, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/ai-plugin.json, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/agent-card.json, status: 200, content_type: text/html, accepted: false}
+  - {path: /.well-known/agent.json, status: 200, content_type: text/html, accepted: false}
+security_txt: null
+agent_card: null
