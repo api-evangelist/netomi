@@ -1,0 +1,1709 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AgentDesk REST API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "rate-limiter-config-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "fetchRateConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v1/rate-limit",
+            "params": [
+              {
+                "name": "botRefId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "botId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "saveRateConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/rate-limit",
+            "params": [
+              {
+                "name": "botRefId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "botId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updatedRateConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://api.netomi.com/v1/rate-limit",
+            "params": [
+              {
+                "name": "botRefId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "botId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteRateConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://api.netomi.com/v1/rate-limit",
+            "params": [
+              {
+                "name": "botRefId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "botId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "webhook-event-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "triggerWebHookEvent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v2/webhook/event",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "test-utterance-script-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "submitRequest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v2/test-utterances/bulk",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "pollScript",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v2/test-utterances/bulk/poll",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "query-analyzer-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "submitRequest_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v2/query-analyzer",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "pub-sub-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getResponse",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v2/messages",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "conversationEngineAsync",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v2/messages",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "zoho-webhook-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "subscribe",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v1/zoho/webhook",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "conversationEngineAsync_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/zoho/webhook",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "subscribeWithBotRefId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v1/zoho/webhook/:botRefId",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "conversationEngineAsyncWithBotRefId",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/zoho/webhook/:botRefId",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "botRefId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "zendesk-webhook-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "conversationEngineAsync_2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/zendesk/webhook",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "zen-desk-chat-rest-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getStructuredResponse",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/zendesk-chat/response",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "publishToSocialOutbound",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/zendesk-chat/publish-social",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getResponse_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/zendesk-chat/poll",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "reActivate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v1/zendesk-chat/re-activate",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "deActivate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v1/zendesk-chat/de-activate",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "checkStatusAll",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v1/zendesk-chat/check-status/:botRefId",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "botRefId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "checkStatusAll_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v1/zendesk-chat/check-status-all",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "activate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v1/zendesk-chat/activate",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "generic-webhook-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/webhook/generic_agent_desk_response",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/webhook/events",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "messagesPost",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/webhook/",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "messagesPost_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/webhook",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getConversationHistory_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v1/webhook/history/:conversationId",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "numberOfDays",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "numberOfMessages",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "twitter-webhook-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "subscribe_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v1/twitter/webhook/:appId",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "crc_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "messagesPost_2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/twitter/webhook/:appId",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "sunshine-conversations-webhook-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "conversationEngineAsync_3",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/sunshine-conversations/webhook",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "sprinklr-webhook-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "conversationEngineAsync_4",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/sprinklr/webhook",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "postResponse",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/sprinklr/webhook/poll",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "salesforce-webhook-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "conversationEngineAsync_5",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/salesforce/webhook",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "postResponse_1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/salesforce/webhook/messages/poll",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getResponse_6",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v1/salesforce/webhook/messages",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "nluapi-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "postRequest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/nlu/predict",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "pollResponse",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/nlu/poll",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "helpshift-webhook-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "conversationEngineAsync_6",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/helpshift/webhook",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "helpShiftQuickReply",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v1/helpshift/quick-reply",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "google-assistant-webhook-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "googleAssistantPost",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/google/assistant/webhook",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "gladly-webhook-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ping",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v1/gladly/webhook"
+          }
+        },
+        {
+          "info": {
+            "name": "conversationEngineAsync_7",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/gladly/webhook",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "freshdesk-webhook-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "conversationEngineAsync_8",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/freshdesk/webhook",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "firebase-rest-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getResponse_2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v1/firebase/messages",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "conversationEngineAsync_9",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/firebase/messages",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "facebook-webhook-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "subscribe_2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v1/facebook/webhook",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "hub.mode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "hub.challenge",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "messagesPost_3",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/facebook/webhook",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "singtel-roaming-activation-webhook-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "updateTolerancePriorityCost",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/facebook/webhook/singtelRoamingActivation/updateTolerancePriorityCost",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "rest-api-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getResponse_3",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v1/ceaas/messages",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "conversationEngineAsync_10",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/ceaas/messages",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "booking-confirmation-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "bookingConfirmation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/booking",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "visitor-authorize-webhook-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "messagesPost_4",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/authorize/visitors",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "agent-desk-webhook-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "conversationEngineAsync_11",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/agentdesk/webhook",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "postResponse_2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/agentdesk/webhook/messages/poll",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "submitForm",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/agentdesk/webhook/form/submit",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getResponse_7",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v1/agentdesk/webhook/messages",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "agent-desk-rest-api-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "conversationEngineAsync_12",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/agentdesk/batch",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "postResponse_3",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://api.netomi.com/v1/agentdesk/batch/poll",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "rest-api-controller-v-3",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getResponse_4",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v3/ceaas/messages",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "getHistoricalConversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v1/ceaas/historical/messages",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "botId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "timeInterval",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "originTime",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "generic-webhook-controller-v-2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getConversationHistory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v2/webhook/history/:conversationId",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "numberOfDays",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "numberOfMessages",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "timestamp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "conversationId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "rest-api-controller-v-2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "getResponse_5",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v2/ceaas/messages",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "asset-tracker-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v1/track",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "allRequestParams",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "platform-status-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "statusAPI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v1/platform/status",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              },
+              {
+                "name": "X-Hub-Signature",
+                "value": ""
+              },
+              {
+                "name": "X-Client-Id",
+                "value": ""
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "oauth-token-redirect-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "oAuthRedirect",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/v1/oauth/redirect",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "allRequestParams",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "health-check-controller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "healthCheck",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.netomi.com/ceaas/v1/health/:secretId",
+            "headers": [
+              {
+                "name": "headers",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "secretId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -2,40 +2,53 @@ generated: '2026-08-01'
 method: derived
 status: candidate
 source: openapi/netomi-agentdesk-openapi.json
-note: |
-  Netomi publishes NO hosted MCP server. mcp.netomi.com does not resolve,
+note: 'Netomi publishes NO hosted MCP server. mcp.netomi.com does not resolve,
+
   https://api.netomi.com/mcp returns the platform 404 envelope, and no MCP endpoint
+
   URL appears in any public Netomi document. The tools below are a CANDIDATE mapping
+
   derived from real operationIds in the live AgentDesk OpenAPI — they are a proposal,
+
   not something Netomi serves. No MCPServer pointer is wired in apis.yml, because
+
   there is no server to point at.
 
+
   Netomi does consume MCP: its architecture page lists MCP among supported interaction
+
   modes and model integrations, and the platform error registry carries MCP_ERROR,
+
   MCP_VALIDATION_ERROR and MCP_SERVER_NOT_FOUND — evidence the platform connects
+
   outward to MCP servers rather than exposing one.
+
+  '
 server:
   name: netomi
   published: false
   url: null
   transport: null
 evidence_of_mcp_usage:
-- {source: https://www.netomi.com/architecture, claim: 'MCP listed among interaction
-    modes and among model integrations (Netomi Private Models, 3rd Party BYOM, A2A, MCP)'}
-- {source: openapi/netomi-agentdesk-openapi.json#/components/schemas/ServiceResponse,
-   claim: 'exceptionCode enum contains MCP_ERROR, MCP_VALIDATION_ERROR, MCP_SERVER_NOT_FOUND'}
+- source: https://www.netomi.com/architecture
+  claim: MCP listed among interaction modes and among model integrations (Netomi Private Models, 3rd Party
+    BYOM, A2A, MCP)
+- source: openapi/netomi-agentdesk-openapi.json#/components/schemas/ServiceResponse
+  claim: exceptionCode enum contains MCP_ERROR, MCP_VALIDATION_ERROR, MCP_SERVER_NOT_FOUND
 probes:
-- {url: 'https://mcp.netomi.com/', result: NXDOMAIN}
-- {url: 'https://api.netomi.com/mcp', http_status: 404, body: platform ServiceResponse
-    envelope, INVALID_INPUT_ERROR}
+- url: https://mcp.netomi.com/
+  result: NXDOMAIN
+- url: https://api.netomi.com/mcp
+  http_status: 404
+  body: platform ServiceResponse envelope
+  INVALID_INPUT_ERROR: null
 tools:
 - name: send_message_to_agent
   description: Submit a customer message to the Netomi conversation engine asynchronously.
   source_operation: openapi/netomi-agentdesk-openapi.json#conversationEngineAsync
   http: POST /v2/messages
 - name: get_agent_response
-  description: Retrieve the conversation engine's response for a previously submitted
-    requestId.
+  description: Retrieve the conversation engine's response for a previously submitted requestId.
   source_operation: openapi/netomi-agentdesk-openapi.json#getResponse
   http: GET /v2/messages
 - name: get_structured_response
@@ -43,13 +56,11 @@ tools:
   source_operation: openapi/netomi-agentdesk-openapi.json#getStructuredResponse
   http: GET /v3/ceaas/messages
 - name: get_conversation_history
-  description: Fetch prior turns for a conversation, bounded by day count, message
-    count or timestamp.
+  description: Fetch prior turns for a conversation, bounded by day count, message count or timestamp.
   source_operation: openapi/netomi-agentdesk-openapi.json#getConversationHistory
   http: GET /v2/webhook/history/{conversationId}
 - name: predict_intent
-  description: Run the NLU model over an utterance and return intent and entity
-    predictions.
+  description: Run the NLU model over an utterance and return intent and entity predictions.
   source_operation: openapi/netomi-agentdesk-openapi.json#postRequest
   http: POST /v1/nlu/predict
 - name: analyze_query
@@ -57,13 +68,11 @@ tools:
   source_operation: openapi/netomi-agentdesk-openapi.json#submitRequest_1
   http: POST /v2/query-analyzer
 - name: run_test_utterances
-  description: Submit a bulk batch of test utterances against a bot and poll for
-    results.
+  description: Submit a bulk batch of test utterances against a bot and poll for results.
   source_operation: openapi/netomi-agentdesk-openapi.json#submitRequest
   http: POST /v2/test-utterances/bulk
 - name: authorize_visitor
-  description: Exchange an external auth token or auth code for an authorized Netomi
-    visitor session.
+  description: Exchange an external auth token or auth code for an authorized Netomi visitor session.
   source_operation: openapi/netomi-agentdesk-openapi.json#messagesPost_4
   http: POST /v1/authorize/visitors
 - name: get_platform_status
@@ -87,7 +96,13 @@ tools:
   source_operation: openapi/netomi-agentdesk-openapi.json#assets
   http: GET /v1/track
 excluded:
-  reason: The remaining 54 operations are inbound channel webhooks (Facebook, Twitter,
-    Zendesk, Zoho, Salesforce, Sprinklr, Freshdesk, Helpshift, Gladly, Sunshine
-    Conversations, Google Assistant, Firebase, SingTel) and health checks. They are
-    called BY those platforms, not by an agent, so they are not sensible MCP tools.
+  reason: The remaining 54 operations are inbound channel webhooks (Facebook, Twitter, Zendesk, Zoho,
+    Salesforce, Sprinklr, Freshdesk, Helpshift, Gladly, Sunshine Conversations, Google Assistant, Firebase,
+    SingTel) and health checks. They are called BY those platforms, not by an agent, so they are not sensible
+    MCP tools.
+deployment:
+  mode: none
+  verified: derived
+  tools: 13
+  checked: '2026-08-12'
+  source: catalog MCP census
