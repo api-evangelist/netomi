@@ -35,6 +35,20 @@ tags:
 - Agentic AI
 - Customer Experience
 - Customer Service
+- Customer-Support
+- Conversational AI
+- Chatbots
+- Chat
+- Voice
+- Telephony
+- SDK
+- Mobile
+tags_raw:
+- Company
+- Artificial Intelligence
+- Agentic AI
+- Customer Experience
+- Customer Service
 - Customer Support
 - Conversational AI
 - Chatbots
@@ -59,6 +73,12 @@ apis:
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
+  - Artificial Intelligence
+  - Customer Service
+  - Chat
+  - Conversational AI
+  - Webhook
+  tags_raw:
   - artificial-intelligence
   - customer-service
   - chat
@@ -96,6 +116,10 @@ apis:
   humanURL: https://status.netomi.com
   baseURL: https://status.netomi.com/api/v2
   tags:
+  - Status
+  - Monitoring
+  - Uptime
+  tags_raw:
   - status
   - monitoring
   - uptime
