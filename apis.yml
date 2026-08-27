@@ -58,61 +58,14 @@ tags_raw:
 - SDKs
 - Mobile
 apis:
-- name: Netomi Platform API
-  description: The Netomi backend service that fronts the Agentic OS for CX. It backs
-    the first-party mobile Chat SDKs (session establishment, message exchange, rich
-    media, file attachments, forms, live agent handoff, push notification registration)
-    and exposes per-partner inbound webhook endpoints used by helpdesk integrations
-    such as Gladly at /v1/{partner}/webhook. Sessions are either guest (anonymous,
-    SDK-managed) or JWT-authenticated with a reauthorization flow. Access is provisioned
-    per enterprise account with a bot reference ID and a region environment. A live
-    OpenAPI 3.1.0 description (AgentDesk REST API — 56 paths, 67 operations, 103
-    schemas) is served at /v3/api-docs with Swagger UI at /swagger-ui.html, though it
-    is not linked from any Netomi documentation and declares no securitySchemes,
-    summaries, descriptions, examples or non-200 responses.
-  humanURL: https://api.netomi.com/swagger-ui.html
-  baseURL: https://api.netomi.com
-  tags:
-  - Artificial Intelligence
-  - Customer Service
-  - Chat
-  - Conversational AI
-  - Webhook
-  tags_raw:
-  - artificial-intelligence
-  - customer-service
-  - chat
-  - conversational-ai
-  - webhooks
-  properties:
-  - type: OpenAPI
-    url: openapi/netomi-agentdesk-openapi.json
-  - type: APIReference
-    url: https://api.netomi.com/swagger-ui.html
-  - type: Overlay
-    url: overlays/netomi-agentdesk-overlay.yaml
-  - type: DataModel
-    url: data-model/netomi-data-model.yml
-  - type: Authentication
-    url: authentication/netomi-authentication.yml
-  - type: ErrorCatalog
-    url: errors/netomi-error-codes.yml
-  - type: Webhooks
-    url: asyncapi/netomi-events.yml
-  - type: Conventions
-    url: conventions/netomi-conventions.yml
-  - type: AgentSkill
-    url: skills/_index.yml
-  - type: Documentation
-    url: https://github.com/msgai/netomi-chat-ios
 - name: Netomi Status API
-  description: Public machine-readable status feed for the Netomi platform, served by
-    Atlassian Statuspage at status.netomi.com. Exposes the standard Statuspage v2 JSON
-    surface (summary, status, components, incidents, scheduled maintenances) plus Atom
-    and RSS incident-history feeds, covering the US Production, EU Production and SG
-    Production component groups (Netomi Chat Interface, Netomi Integration Recipes,
-    Agentic Studio, Topic Prediction, Generative AI Prediction, Telephony, and the
-    US Cloud / US Cloud2 / EU Cloud / SG Cloud infrastructure components).
+  description: >-
+    Public machine-readable status feed for the Netomi platform, served by Atlassian Statuspage at status.netomi.com.
+    Exposes the standard Statuspage v2 JSON surface (summary, status, components, incidents, scheduled
+    maintenances) plus Atom and RSS incident-history feeds, covering the US Production, EU Production
+    and SG Production component groups (Netomi Chat Interface, Netomi Integration Recipes, Agentic Studio,
+    Topic Prediction, Generative AI Prediction, Telephony, and the US Cloud / US Cloud2 / EU Cloud / SG
+    Cloud infrastructure components).
   humanURL: https://status.netomi.com
   baseURL: https://status.netomi.com/api/v2
   tags:
@@ -128,6 +81,828 @@ apis:
     url: https://status.netomi.com
   - type: Lifecycle
     url: lifecycle/netomi-lifecycle.yml
+- aid: netomi:netomi-agent-desk-rest-api-controller-api
+  name: Netomi Agent Desk Rest API Controller API
+  description: >-
+    The agent-desk-rest-api-controller API from Netomi — 2 operation(s) for agent-desk-rest-api-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - agent-desk-rest-api-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-agent-desk-rest-api-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-agent-desk-webhook-controller-api
+  name: Netomi Agent Desk Webhook Controller API
+  description: >-
+    The agent-desk-webhook-controller API from Netomi — 4 operation(s) for agent-desk-webhook-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - agent-desk-webhook-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-agent-desk-webhook-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-asset-tracker-controller-api
+  name: Netomi Asset Tracker Controller API
+  description: >-
+    The asset-tracker-controller API from Netomi — 1 operation(s) for asset-tracker-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - asset-tracker-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-asset-tracker-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-booking-confirmation-controller-api
+  name: Netomi Booking Confirmation Controller API
+  description: >-
+    The booking-confirmation-controller API from Netomi — 1 operation(s) for booking-confirmation-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - booking-confirmation-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-booking-confirmation-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-facebook-webhook-controller-api
+  name: Netomi Facebook Webhook Controller API
+  description: >-
+    The facebook-webhook-controller API from Netomi — 1 operation(s) for facebook-webhook-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - facebook-webhook-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-facebook-webhook-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-firebase-rest-controller-api
+  name: Netomi Firebase Rest Controller API
+  description: >-
+    The firebase-rest-controller API from Netomi — 1 operation(s) for firebase-rest-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - firebase-rest-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-firebase-rest-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-freshdesk-webhook-controller-api
+  name: Netomi Freshdesk Webhook Controller API
+  description: >-
+    The freshdesk-webhook-controller API from Netomi — 1 operation(s) for freshdesk-webhook-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - freshdesk-webhook-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-freshdesk-webhook-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-generic-webhook-controller-api
+  name: Netomi Generic Webhook Controller API
+  description: >-
+    The generic-webhook-controller API from Netomi — 5 operation(s) for generic-webhook-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - generic-webhook-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-generic-webhook-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-generic-webhook-controller-v-2-api
+  name: Netomi Generic Webhook Controller V 2 API
+  description: >-
+    The generic-webhook-controller-v-2 API from Netomi — 1 operation(s) for generic-webhook-controller-v-2.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - generic-webhook-controller-v-2
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-generic-webhook-controller-v-2-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-gladly-webhook-controller-api
+  name: Netomi Gladly Webhook Controller API
+  description: >-
+    The gladly-webhook-controller API from Netomi — 1 operation(s) for gladly-webhook-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - gladly-webhook-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-gladly-webhook-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-google-assistant-webhook-controller-api
+  name: Netomi Google Assistant Webhook Controller API
+  description: >-
+    The google-assistant-webhook-controller API from Netomi — 1 operation(s) for google-assistant-webhook-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - google-assistant-webhook-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-google-assistant-webhook-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-health-check-controller-api
+  name: Netomi Health Check Controller API
+  description: >-
+    The health-check-controller API from Netomi — 1 operation(s) for health-check-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - health-check-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-health-check-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-helpshift-webhook-controller-api
+  name: Netomi Helpshift Webhook Controller API
+  description: >-
+    The helpshift-webhook-controller API from Netomi — 2 operation(s) for helpshift-webhook-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - helpshift-webhook-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-helpshift-webhook-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-nluapi-controller-api
+  name: Netomi Nluapi Controller API
+  description: The nluapi-controller API from Netomi — 2 operation(s) for nluapi-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - nluapi-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-nluapi-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-oauth-token-redirect-controller-api
+  name: Netomi OAUTH Token Redirect Controller API
+  description: >-
+    The oauth-token-redirect-controller API from Netomi — 1 operation(s) for oauth-token-redirect-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - oauth-token-redirect-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-oauth-token-redirect-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-platform-status-controller-api
+  name: Netomi Platform Status Controller API
+  description: >-
+    The platform-status-controller API from Netomi — 1 operation(s) for platform-status-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - platform-status-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-platform-status-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-pub-sub-controller-api
+  name: Netomi Pub Sub Controller API
+  description: The pub-sub-controller API from Netomi — 1 operation(s) for pub-sub-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - pub-sub-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-pub-sub-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-query-analyzer-controller-api
+  name: Netomi Query Analyzer Controller API
+  description: >-
+    The query-analyzer-controller API from Netomi — 1 operation(s) for query-analyzer-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - query-analyzer-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-query-analyzer-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-rate-limiter-config-controller-api
+  name: Netomi Rate Limiter Config Controller API
+  description: >-
+    The rate-limiter-config-controller API from Netomi — 1 operation(s) for rate-limiter-config-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - rate-limiter-config-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-rate-limiter-config-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-rest-api-controller-api
+  name: Netomi Rest API Controller API
+  description: The rest-api-controller API from Netomi — 1 operation(s) for rest-api-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - rest-api-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-rest-api-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-rest-api-controller-v-2-api
+  name: Netomi Rest API Controller V 2 API
+  description: >-
+    The rest-api-controller-v-2 API from Netomi — 1 operation(s) for rest-api-controller-v-2.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - rest-api-controller-v-2
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-rest-api-controller-v-2-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-rest-api-controller-v-3-api
+  name: Netomi Rest API Controller V 3 API
+  description: >-
+    The rest-api-controller-v-3 API from Netomi — 2 operation(s) for rest-api-controller-v-3.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - rest-api-controller-v-3
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-rest-api-controller-v-3-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-salesforce-webhook-controller-api
+  name: Netomi Salesforce Webhook Controller API
+  description: >-
+    The salesforce-webhook-controller API from Netomi — 3 operation(s) for salesforce-webhook-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - salesforce-webhook-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-salesforce-webhook-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-singtel-roaming-activation-webhook-controller-api
+  name: Netomi Singtel Roaming Activation Webhook Controller API
+  description: >-
+    The singtel-roaming-activation-webhook-controller API from Netomi — 1 operation(s) for singtel-roaming-activation-webhook-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - singtel-roaming-activation-webhook-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-singtel-roaming-activation-webhook-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-sprinklr-webhook-controller-api
+  name: Netomi Sprinklr Webhook Controller API
+  description: >-
+    The sprinklr-webhook-controller API from Netomi — 2 operation(s) for sprinklr-webhook-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - sprinklr-webhook-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-sprinklr-webhook-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-sunshine-conversations-webhook-controller-api
+  name: Netomi Sunshine Conversations Webhook Controller API
+  description: >-
+    The sunshine-conversations-webhook-controller API from Netomi — 1 operation(s) for sunshine-conversations-webhook-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - sunshine-conversations-webhook-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-sunshine-conversations-webhook-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-test-utterance-script-controller-api
+  name: Netomi Test Utterance Script Controller API
+  description: >-
+    The test-utterance-script-controller API from Netomi — 2 operation(s) for test-utterance-script-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - test-utterance-script-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-test-utterance-script-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-twitter-webhook-controller-api
+  name: Netomi Twitter Webhook Controller API
+  description: >-
+    The twitter-webhook-controller API from Netomi — 1 operation(s) for twitter-webhook-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - twitter-webhook-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-twitter-webhook-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-visitor-authorize-webhook-controller-api
+  name: Netomi Visitor Authorize Webhook Controller API
+  description: >-
+    The visitor-authorize-webhook-controller API from Netomi — 1 operation(s) for visitor-authorize-webhook-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - visitor-authorize-webhook-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-visitor-authorize-webhook-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-webhook-event-controller-api
+  name: Netomi Webhook Event Controller API
+  description: >-
+    The webhook-event-controller API from Netomi — 1 operation(s) for webhook-event-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - webhook-event-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-webhook-event-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-zen-desk-chat-rest-controller-api
+  name: Netomi Zen Desk Chat Rest Controller API
+  description: >-
+    The zen-desk-chat-rest-controller API from Netomi — 8 operation(s) for zen-desk-chat-rest-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - zen-desk-chat-rest-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-zen-desk-chat-rest-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-zendesk-webhook-controller-api
+  name: Netomi Zendesk Webhook Controller API
+  description: >-
+    The zendesk-webhook-controller API from Netomi — 1 operation(s) for zendesk-webhook-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - zendesk-webhook-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-zendesk-webhook-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
+- aid: netomi:netomi-zoho-webhook-controller-api
+  name: Netomi Zoho Webhook Controller API
+  description: >-
+    The zoho-webhook-controller API from Netomi — 2 operation(s) for zoho-webhook-controller.
+  humanURL: https://api.netomi.com/swagger-ui.html
+  baseURL: https://api.netomi.com
+  tags:
+  - zoho-webhook-controller
+  properties:
+  - type: OpenAPI
+    url: openapi/netomi-zoho-webhook-controller-api-openapi.yml
+  - type: APIReference
+    url: https://api.netomi.com/swagger-ui.html
+  - type: DataModel
+    url: data-model/netomi-data-model.yml
+  - type: Authentication
+    url: authentication/netomi-authentication.yml
+  - type: ErrorCatalog
+    url: errors/netomi-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/netomi-events.yml
+  - type: Conventions
+    url: conventions/netomi-conventions.yml
+  - type: Documentation
+    url: https://github.com/msgai/netomi-chat-ios
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
