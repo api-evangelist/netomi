@@ -22,6 +22,17 @@ description: 'Netomi (founded 2016 as msg.ai) is an enterprise agentic AI platfo
   Google Assistant, Firebase) — is served publicly at
   https://api.netomi.com/v3/api-docs with Swagger UI at
   https://api.netomi.com/swagger-ui.html.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://www.netomi.com/apple-touch-icon.png
 url: https://raw.githubusercontent.com/api-evangelist/netomi/refs/heads/main/apis.yml
 x-type: company
