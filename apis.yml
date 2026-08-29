@@ -920,6 +920,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/netomi-capability-edges.yml
+  name: Netomi Business Capability Map
 - type: MCPServer
   url: mcp/netomi-mcp.yml
 - type: AgenticAccess
