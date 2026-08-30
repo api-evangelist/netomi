@@ -1,0 +1,412 @@
+openapi: 3.2.0
+info:
+  title: AgentDesk REST Agent Desk Rest API Controller API
+  description: AgentDesk Rest API
+  termsOfService: Terms of service
+  contact:
+    name: Netomi Support Team
+    url: https://netomi.com
+    email: support@netomi.com
+  version: '1.0'
+servers:
+- url: http://api.netomi.com
+  description: Generated server url
+tags:
+- name: agent-desk-rest-api-controller
+paths:
+  /v1/agentdesk/batch:
+    post:
+      tags:
+      - agent-desk-rest-api-controller
+      operationId: conversationEngineAsync_12
+      parameters:
+      - name: headers
+        in: header
+        required: true
+        schema:
+          $ref: '#/components/schemas/HttpHeaders'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceResponse'
+  /v1/agentdesk/batch/poll:
+    post:
+      tags:
+      - agent-desk-rest-api-controller
+      operationId: postResponse_3
+      parameters:
+      - name: headers
+        in: header
+        required: true
+        schema:
+          $ref: '#/components/schemas/HttpHeaders'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+components:
+  schemas:
+    ContentDisposition:
+      type: object
+      properties:
+        type:
+          type: string
+        name:
+          type: string
+        filename:
+          type: string
+        charset:
+          type: string
+        formData:
+          type: boolean
+        attachment:
+          type: boolean
+        inline:
+          type: boolean
+    HttpHeaders:
+      type: object
+      properties:
+        acceptCharset:
+          type: array
+          items:
+            type: string
+        acceptLanguage:
+          type: array
+          items:
+            type: object
+            properties:
+              range:
+                type: string
+              weight:
+                type: number
+                format: double
+        acceptPatch:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaType'
+        acceptLanguageAsLocales:
+          type: array
+          items:
+            type: string
+        accessControlAllowHeaders:
+          type: array
+          items:
+            type: string
+        accessControlAllowMethods:
+          type: array
+          items:
+            $ref: '#/components/schemas/HttpMethod'
+        accessControlAllowOrigin:
+          type: string
+        accessControlMaxAge:
+          type: integer
+          format: int64
+        contentDisposition:
+          $ref: '#/components/schemas/ContentDisposition'
+        accessControlAllowCredentials:
+          type: boolean
+        accessControlExposeHeaders:
+          type: array
+          items:
+            type: string
+        accessControlRequestHeaders:
+          type: array
+          items:
+            type: string
+        accessControlRequestMethod:
+          $ref: '#/components/schemas/HttpMethod'
+        bearerAuth:
+          type: string
+          writeOnly: true
+        cacheControl:
+          type: string
+        connection:
+          type: array
+          items:
+            type: string
+        contentLanguage:
+          type: string
+        ifNoneMatch:
+          type: array
+          items:
+            type: string
+        ifUnmodifiedSince:
+          type: integer
+          format: int64
+        basicAuth:
+          type: string
+          writeOnly: true
+        accept:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaType'
+        allow:
+          type: array
+          items:
+            $ref: '#/components/schemas/HttpMethod'
+          uniqueItems: true
+        etag:
+          type: string
+        expires:
+          type: integer
+          format: int64
+        ifMatch:
+          type: array
+          items:
+            type: string
+        origin:
+          type: string
+        pragma:
+          type: string
+        range:
+          type: array
+          items:
+            $ref: '#/components/schemas/HttpRange'
+        upgrade:
+          type: string
+        vary:
+          type: array
+          items:
+            type: string
+        contentLength:
+          type: integer
+          format: int64
+        contentType:
+          $ref: '#/components/schemas/MediaType'
+        location:
+          type: string
+          format: uri
+        host:
+          type: object
+          properties:
+            hostString:
+              type: string
+            address:
+              type: object
+              properties:
+                hostAddress:
+                  type: string
+                address:
+                  type: string
+                  format: byte
+                hostName:
+                  type: string
+                linkLocalAddress:
+                  type: boolean
+                multicastAddress:
+                  type: boolean
+                anyLocalAddress:
+                  type: boolean
+                loopbackAddress:
+                  type: boolean
+                siteLocalAddress:
+                  type: boolean
+                mcglobal:
+                  type: boolean
+                mcnodeLocal:
+                  type: boolean
+                mclinkLocal:
+                  type: boolean
+                mcsiteLocal:
+                  type: boolean
+                mcorgLocal:
+                  type: boolean
+                canonicalHostName:
+                  type: string
+            port:
+              type: integer
+              format: int32
+            unresolved:
+              type: boolean
+            hostName:
+              type: string
+        ifModifiedSince:
+          type: integer
+          format: int64
+        empty:
+          type: boolean
+        all:
+          type: object
+          additionalProperties:
+            type: string
+          writeOnly: true
+        lastModified:
+          type: integer
+          format: int64
+        date:
+          type: integer
+          format: int64
+    HttpRange: {}
+    ServiceResponse:
+      type: object
+      properties:
+        statusCode:
+          type: string
+        statusMessage:
+          type: string
+        exceptionCode:
+          type: string
+          enum:
+          - DATA_NOT_FOUND
+          - INVALID_PAYMENT_MODE_ERROR
+          - LINK_CANNOT_CREATED
+          - OBJECT_DEEP_COPY_CLONE_FAILED_ERROR
+          - API_EMPTY_PAYLOAD_ERROR
+          - LANGUAGE_NOT_CONFIGURED
+          - CLIENT_API_CREDENTIAL_MISSING_ERROR
+          - CLIENT_API_CREDENTIAL_DOES_NOT_EXIST_ERROR
+          - INVALID_PAYMENT_CARD_ERROR
+          - INVALID_JOB_CLASS_NAME_ERROR
+          - JOB_SCHEDULER_ERROR
+          - DB_FETCH_ERROR
+          - DB_INSERT_ERROR
+          - DOWN_STREAM_SERVICE_ERROR
+          - ILLEGAL_LINK_ID
+          - DESERIALIZATION_FAILED_ERROR
+          - SERIALIZATION_FAILED_ERROR
+          - READING_FILE_FAILED_ERROR
+          - INVALID_INPUT_ERROR
+          - UN_SUPPORTED_OPERATION_ERROR
+          - CONNECTION_TIME_OUT_ERROR
+          - DRUID_QUERY_TIME_OUT_ERROR
+          - AUTHENTICATION_FAILED_ERROR
+          - AUTHORIZATION_FAILED_ERROR
+          - HTTPS_SECURE_GATEWAY_ERROR
+          - CONNECTION_REFUSED_ERROR
+          - RESOURCE_NOT_FOUND_ERROR
+          - ENCRYPTION_FAILED_ERROR
+          - INPUT_DATA_CORRUPTED_ERROR
+          - CONNECTION_RESET_ERROR
+          - THROTTLE_ERROR
+          - RATE_LIMIT_EXCEED_ERROR
+          - UN_AUTHORISED_ERROR
+          - CASSANDRA_DB_ERROR
+          - MYSQL_DB_ERROR
+          - KAFKA_BROKER_ERROR
+          - DRUID_TRANQUILITY_SERVER_ERROR
+          - INSTANTIATION_FAILED_ERROR
+          - ILLEGAL_ACCESS_ERROR
+          - DRUID_QUERY_BROKER_ERROR
+          - UN_AUTHORISED_ACCESS
+          - BAD_CREDENTIAL
+          - ACCESS_TOKEN_EXPIRED
+          - USER_DOES_NOT_EXIST
+          - SIGN_UP_LINK_EXPIRED
+          - RESET_PASSWORD_LINK_EXPIRED
+          - USER_ACCOUNT_TEMPORARY_BLOCKED
+          - LOGIN_SUCCESS
+          - ILLEGAL_PERMISSION_ENTITY_ADDITION
+          - NO_TWO_PERMISSION_ENITITY_EXCEPTION
+          - ILLEGEAL_TOKEN_HEADER
+          - NO_SECURITY_CONTEXT_HOLDER
+          - UNAUTHORIZED_API_REQUEST
+          - INVALID_ROLE
+          - INSUFFICIENT_PERMISSION
+          - MVEL_EXPRESSION_INVALID
+          - MVEL_EXPRESSION_PROPERTY_MISSING
+          - STANDARD_RESPONSE_EMPTY
+          - TARGET_BUCKET_NOT_FOUND
+          - TARGET_BUCKET_RESPONSE_NOT_FOUND
+          - INSUFFICIENT_ATTRIBUTE
+          - CONTEXT_RESPONSE_EMPTY
+          - CONVERSATION_NULL
+          - NULL_TOKEN_CREATED
+          - USER_NOT_FOUND
+          - WORKFLOW_NOT_FOUND
+          - USER_NOT_ACTIVATED
+          - INVALID_BOT_DETAILS
+          - INVALID_CONF
+          - INVALID_CONFIGURATION
+          - COMPRESS_STRING_ERROR
+          - DE_COMPRESS_STRING_ERROR
+          - EXPERIMENT_NOT_FOUND
+          - NO_LOCALE_CONFIGURED
+          - ACCESS_LOCKED
+          - ATTEMPTS_EXCEEDED
+          - MESSAGE_SWALLOWED
+          - INTERNAL_SERVER_ERROR
+          - FACEBOOK_API_EXCEPTION
+          - ALREADY_EXISTS_ENTITY_EXCEPTION
+          - CLUSTERING_FILE_REJECTED_EXCEPTION
+          - CLUSTERING_DATA_INSERTION_INTO_DB_EXCEPTION
+          - DATA_SCIENCE_CLUSTERING_FAILED_EXCEPTION
+          - CLUSTERING_UTTERANCE_DATA_INSERTION_FAILED_EXCEPTION
+          - CLUSTERING_UTTERANCE_INFO_INSERTION_FAILED_EXCEPTION
+          - EXISTING_CLUSTERS_DELETION_EXCEPTION
+          - REQUEST_PAYLOAD_MAX_SIZE_EXCEED_ERROR
+          - GO_LIVE_PRECONDITION_FAILED
+          - DEFAULT_TEMPLATE_DOES_NOT_EXIST_EXCEPTION
+          - SUB_WORKFLOW_DELETE_PRECONDITION_FAILED
+          - INTENT_IN_USE
+          - DECRYPTION_EXCEPTION
+          - ENCRYPTION_EXCEPTION
+          - CONNECTION_FAILED
+          - DELETE_FAILED
+          - GOOGLE_TRANSLATION_API_EXCEPTION
+          - AWS_LAMBDA_API_EXCEPTION
+          - TRANSLATION_FAILED
+          - INVALID_ORCHESTRATOR_STATE_REACHED
+          - MCP_ERROR
+          - MCP_VALIDATION_ERROR
+          - MCP_SERVER_NOT_FOUND
+          - MAX_MANIFEST_LIMIT_REACHED
+          - MANIFEST_DELETE_VALIDATION_FAILED
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/BaseError'
+        taskStatus:
+          type: array
+          items: {}
+        payload: {}
+    MediaType:
+      type: object
+      properties:
+        type:
+          type: string
+        subtype:
+          type: string
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+        qualityValue:
+          type: number
+          format: double
+        wildcardType:
+          type: boolean
+        wildcardSubtype:
+          type: boolean
+        subtypeSuffix:
+          type: string
+        concrete:
+          type: boolean
+        charset:
+          type: string
+    HttpMethod: {}
+    BaseError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorMessage:
+          type: string

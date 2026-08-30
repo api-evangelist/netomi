@@ -1,0 +1,269 @@
+openapi: 3.2.0
+info:
+  title: AgentDesk REST Rate Limiter Config Controller API
+  description: AgentDesk Rest API
+  termsOfService: Terms of service
+  contact:
+    name: Netomi Support Team
+    url: https://netomi.com
+    email: support@netomi.com
+  version: '1.0'
+servers:
+- url: http://api.netomi.com
+  description: Generated server url
+tags:
+- name: rate-limiter-config-controller
+paths:
+  /v1/rate-limit:
+    get:
+      tags:
+      - rate-limiter-config-controller
+      operationId: fetchRateConfig
+      parameters:
+      - name: botRefId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: botId
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ServiceResponse'
+    put:
+      tags:
+      - rate-limiter-config-controller
+      operationId: updatedRateConfig
+      parameters:
+      - name: botRefId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: botId
+        in: query
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RateLimitConfigRequestDto'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ServiceResponse'
+    post:
+      tags:
+      - rate-limiter-config-controller
+      operationId: saveRateConfig
+      parameters:
+      - name: botRefId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: botId
+        in: query
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RateLimitConfigRequestDto'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ServiceResponse'
+    delete:
+      tags:
+      - rate-limiter-config-controller
+      operationId: deleteRateConfig
+      parameters:
+      - name: botRefId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: botId
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ServiceResponse'
+components:
+  schemas:
+    ServiceResponse:
+      type: object
+      properties:
+        statusCode:
+          type: string
+        statusMessage:
+          type: string
+        exceptionCode:
+          type: string
+          enum:
+          - DATA_NOT_FOUND
+          - INVALID_PAYMENT_MODE_ERROR
+          - LINK_CANNOT_CREATED
+          - OBJECT_DEEP_COPY_CLONE_FAILED_ERROR
+          - API_EMPTY_PAYLOAD_ERROR
+          - LANGUAGE_NOT_CONFIGURED
+          - CLIENT_API_CREDENTIAL_MISSING_ERROR
+          - CLIENT_API_CREDENTIAL_DOES_NOT_EXIST_ERROR
+          - INVALID_PAYMENT_CARD_ERROR
+          - INVALID_JOB_CLASS_NAME_ERROR
+          - JOB_SCHEDULER_ERROR
+          - DB_FETCH_ERROR
+          - DB_INSERT_ERROR
+          - DOWN_STREAM_SERVICE_ERROR
+          - ILLEGAL_LINK_ID
+          - DESERIALIZATION_FAILED_ERROR
+          - SERIALIZATION_FAILED_ERROR
+          - READING_FILE_FAILED_ERROR
+          - INVALID_INPUT_ERROR
+          - UN_SUPPORTED_OPERATION_ERROR
+          - CONNECTION_TIME_OUT_ERROR
+          - DRUID_QUERY_TIME_OUT_ERROR
+          - AUTHENTICATION_FAILED_ERROR
+          - AUTHORIZATION_FAILED_ERROR
+          - HTTPS_SECURE_GATEWAY_ERROR
+          - CONNECTION_REFUSED_ERROR
+          - RESOURCE_NOT_FOUND_ERROR
+          - ENCRYPTION_FAILED_ERROR
+          - INPUT_DATA_CORRUPTED_ERROR
+          - CONNECTION_RESET_ERROR
+          - THROTTLE_ERROR
+          - RATE_LIMIT_EXCEED_ERROR
+          - UN_AUTHORISED_ERROR
+          - CASSANDRA_DB_ERROR
+          - MYSQL_DB_ERROR
+          - KAFKA_BROKER_ERROR
+          - DRUID_TRANQUILITY_SERVER_ERROR
+          - INSTANTIATION_FAILED_ERROR
+          - ILLEGAL_ACCESS_ERROR
+          - DRUID_QUERY_BROKER_ERROR
+          - UN_AUTHORISED_ACCESS
+          - BAD_CREDENTIAL
+          - ACCESS_TOKEN_EXPIRED
+          - USER_DOES_NOT_EXIST
+          - SIGN_UP_LINK_EXPIRED
+          - RESET_PASSWORD_LINK_EXPIRED
+          - USER_ACCOUNT_TEMPORARY_BLOCKED
+          - LOGIN_SUCCESS
+          - ILLEGAL_PERMISSION_ENTITY_ADDITION
+          - NO_TWO_PERMISSION_ENITITY_EXCEPTION
+          - ILLEGEAL_TOKEN_HEADER
+          - NO_SECURITY_CONTEXT_HOLDER
+          - UNAUTHORIZED_API_REQUEST
+          - INVALID_ROLE
+          - INSUFFICIENT_PERMISSION
+          - MVEL_EXPRESSION_INVALID
+          - MVEL_EXPRESSION_PROPERTY_MISSING
+          - STANDARD_RESPONSE_EMPTY
+          - TARGET_BUCKET_NOT_FOUND
+          - TARGET_BUCKET_RESPONSE_NOT_FOUND
+          - INSUFFICIENT_ATTRIBUTE
+          - CONTEXT_RESPONSE_EMPTY
+          - CONVERSATION_NULL
+          - NULL_TOKEN_CREATED
+          - USER_NOT_FOUND
+          - WORKFLOW_NOT_FOUND
+          - USER_NOT_ACTIVATED
+          - INVALID_BOT_DETAILS
+          - INVALID_CONF
+          - INVALID_CONFIGURATION
+          - COMPRESS_STRING_ERROR
+          - DE_COMPRESS_STRING_ERROR
+          - EXPERIMENT_NOT_FOUND
+          - NO_LOCALE_CONFIGURED
+          - ACCESS_LOCKED
+          - ATTEMPTS_EXCEEDED
+          - MESSAGE_SWALLOWED
+          - INTERNAL_SERVER_ERROR
+          - FACEBOOK_API_EXCEPTION
+          - ALREADY_EXISTS_ENTITY_EXCEPTION
+          - CLUSTERING_FILE_REJECTED_EXCEPTION
+          - CLUSTERING_DATA_INSERTION_INTO_DB_EXCEPTION
+          - DATA_SCIENCE_CLUSTERING_FAILED_EXCEPTION
+          - CLUSTERING_UTTERANCE_DATA_INSERTION_FAILED_EXCEPTION
+          - CLUSTERING_UTTERANCE_INFO_INSERTION_FAILED_EXCEPTION
+          - EXISTING_CLUSTERS_DELETION_EXCEPTION
+          - REQUEST_PAYLOAD_MAX_SIZE_EXCEED_ERROR
+          - GO_LIVE_PRECONDITION_FAILED
+          - DEFAULT_TEMPLATE_DOES_NOT_EXIST_EXCEPTION
+          - SUB_WORKFLOW_DELETE_PRECONDITION_FAILED
+          - INTENT_IN_USE
+          - DECRYPTION_EXCEPTION
+          - ENCRYPTION_EXCEPTION
+          - CONNECTION_FAILED
+          - DELETE_FAILED
+          - GOOGLE_TRANSLATION_API_EXCEPTION
+          - AWS_LAMBDA_API_EXCEPTION
+          - TRANSLATION_FAILED
+          - INVALID_ORCHESTRATOR_STATE_REACHED
+          - MCP_ERROR
+          - MCP_VALIDATION_ERROR
+          - MCP_SERVER_NOT_FOUND
+          - MAX_MANIFEST_LIMIT_REACHED
+          - MANIFEST_DELETE_VALIDATION_FAILED
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/BaseError'
+        taskStatus:
+          type: array
+          items: {}
+        payload: {}
+    RateLimitConfigRequestDto:
+      type: object
+      properties:
+        minuteLimit:
+          type: integer
+          format: int64
+        hourLimit:
+          type: integer
+          format: int64
+        dayLimit:
+          type: integer
+          format: int64
+        weekLimit:
+          type: integer
+          format: int64
+        monthLimit:
+          type: integer
+          format: int64
+        yearLimit:
+          type: integer
+          format: int64
+    BaseError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorMessage:
+          type: string

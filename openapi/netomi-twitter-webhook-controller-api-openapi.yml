@@ -1,0 +1,290 @@
+openapi: 3.2.0
+info:
+  title: AgentDesk REST Twitter Webhook Controller API
+  description: AgentDesk Rest API
+  termsOfService: Terms of service
+  contact:
+    name: Netomi Support Team
+    url: https://netomi.com
+    email: support@netomi.com
+  version: '1.0'
+servers:
+- url: http://api.netomi.com
+  description: Generated server url
+tags:
+- name: twitter-webhook-controller
+paths:
+  /v1/twitter/webhook/{appId}:
+    get:
+      tags:
+      - twitter-webhook-controller
+      operationId: subscribe_1
+      parameters:
+      - name: crc_token
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: appId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: headers
+        in: header
+        required: true
+        schema:
+          $ref: '#/components/schemas/HttpHeaders'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+    post:
+      tags:
+      - twitter-webhook-controller
+      operationId: messagesPost_2
+      parameters:
+      - name: appId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: headers
+        in: header
+        required: true
+        schema:
+          $ref: '#/components/schemas/HttpHeaders'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    ContentDisposition:
+      type: object
+      properties:
+        type:
+          type: string
+        name:
+          type: string
+        filename:
+          type: string
+        charset:
+          type: string
+        formData:
+          type: boolean
+        attachment:
+          type: boolean
+        inline:
+          type: boolean
+    HttpHeaders:
+      type: object
+      properties:
+        acceptCharset:
+          type: array
+          items:
+            type: string
+        acceptLanguage:
+          type: array
+          items:
+            type: object
+            properties:
+              range:
+                type: string
+              weight:
+                type: number
+                format: double
+        acceptPatch:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaType'
+        acceptLanguageAsLocales:
+          type: array
+          items:
+            type: string
+        accessControlAllowHeaders:
+          type: array
+          items:
+            type: string
+        accessControlAllowMethods:
+          type: array
+          items:
+            $ref: '#/components/schemas/HttpMethod'
+        accessControlAllowOrigin:
+          type: string
+        accessControlMaxAge:
+          type: integer
+          format: int64
+        contentDisposition:
+          $ref: '#/components/schemas/ContentDisposition'
+        accessControlAllowCredentials:
+          type: boolean
+        accessControlExposeHeaders:
+          type: array
+          items:
+            type: string
+        accessControlRequestHeaders:
+          type: array
+          items:
+            type: string
+        accessControlRequestMethod:
+          $ref: '#/components/schemas/HttpMethod'
+        bearerAuth:
+          type: string
+          writeOnly: true
+        cacheControl:
+          type: string
+        connection:
+          type: array
+          items:
+            type: string
+        contentLanguage:
+          type: string
+        ifNoneMatch:
+          type: array
+          items:
+            type: string
+        ifUnmodifiedSince:
+          type: integer
+          format: int64
+        basicAuth:
+          type: string
+          writeOnly: true
+        accept:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaType'
+        allow:
+          type: array
+          items:
+            $ref: '#/components/schemas/HttpMethod'
+          uniqueItems: true
+        etag:
+          type: string
+        expires:
+          type: integer
+          format: int64
+        ifMatch:
+          type: array
+          items:
+            type: string
+        origin:
+          type: string
+        pragma:
+          type: string
+        range:
+          type: array
+          items:
+            $ref: '#/components/schemas/HttpRange'
+        upgrade:
+          type: string
+        vary:
+          type: array
+          items:
+            type: string
+        contentLength:
+          type: integer
+          format: int64
+        contentType:
+          $ref: '#/components/schemas/MediaType'
+        location:
+          type: string
+          format: uri
+        host:
+          type: object
+          properties:
+            hostString:
+              type: string
+            address:
+              type: object
+              properties:
+                hostAddress:
+                  type: string
+                address:
+                  type: string
+                  format: byte
+                hostName:
+                  type: string
+                linkLocalAddress:
+                  type: boolean
+                multicastAddress:
+                  type: boolean
+                anyLocalAddress:
+                  type: boolean
+                loopbackAddress:
+                  type: boolean
+                siteLocalAddress:
+                  type: boolean
+                mcglobal:
+                  type: boolean
+                mcnodeLocal:
+                  type: boolean
+                mclinkLocal:
+                  type: boolean
+                mcsiteLocal:
+                  type: boolean
+                mcorgLocal:
+                  type: boolean
+                canonicalHostName:
+                  type: string
+            port:
+              type: integer
+              format: int32
+            unresolved:
+              type: boolean
+            hostName:
+              type: string
+        ifModifiedSince:
+          type: integer
+          format: int64
+        empty:
+          type: boolean
+        all:
+          type: object
+          additionalProperties:
+            type: string
+          writeOnly: true
+        lastModified:
+          type: integer
+          format: int64
+        date:
+          type: integer
+          format: int64
+    HttpRange: {}
+    MediaType:
+      type: object
+      properties:
+        type:
+          type: string
+        subtype:
+          type: string
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+        qualityValue:
+          type: number
+          format: double
+        wildcardType:
+          type: boolean
+        wildcardSubtype:
+          type: boolean
+        subtypeSuffix:
+          type: string
+        concrete:
+          type: boolean
+        charset:
+          type: string
+    HttpMethod: {}
