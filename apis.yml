@@ -1,27 +1,21 @@
 aid: netomi
 name: Netomi
-description: 'Netomi (founded 2016 as msg.ai) is an enterprise agentic AI platform
-  for customer experience. Its "Agentic OS for CX" orchestrates a network of AI agents
-  across chat, email, telephony, social, search, MCP and API channels, layering a governance
-  tier (topic and policy guardrails, prompt security, response validation) over a task-planning
-  orchestration agent and specialised knowledge-retrieval, action, personalisation and
-  sentiment agents, with RAG/Graph-RAG retrieval, reinforcement-learning feedback and
-  AI observability. Netomi ships first-party mobile Chat SDKs for iOS (Swift Package
-  Manager, plus the deprecated NetomiChatSDK CocoaPod), Android (com.netomi.chat:chat-widget-android
-  on Maven Central) and React Native (@netomi.com/netomi-chat-react-native on npm),
-  all backed by the api.netomi.com service with optional JWT-authenticated sessions,
-  guest sessions, custom API headers and a bidirectional SDK event bus. The platform
-  runs in US, EU and Singapore production regions and publishes SOC 2 Type II, ISO 27001,
-  PCI DSS, HIPAA, GDPR, CCPA and PDPA compliance posture. The Agentic Studio console
-  and the developer documentation portal are gated behind an enterprise account, but a
-  live, unlinked OpenAPI 3.1.0 contract for the AgentDesk REST API — 56 paths, 67
-  operations, 103 schemas, covering the conversation engine, NLU prediction, query
-  analysis, conversation history, per-bot rate-limit configuration, visitor
-  authorization and sixteen inbound channel webhooks (Zendesk, Zoho, Salesforce,
-  Freshdesk, Gladly, Helpshift, Sprinklr, Sunshine Conversations, Facebook, Twitter,
-  Google Assistant, Firebase) — is served publicly at
-  https://api.netomi.com/v3/api-docs with Swagger UI at
-  https://api.netomi.com/swagger-ui.html.'
+description: Netomi (founded 2016 as msg.ai) is an enterprise agentic AI platform for customer experience.
+  Its "Agentic OS for CX" orchestrates a network of AI agents across chat, email, telephony, social, search,
+  MCP and API channels, layering a governance tier (topic and policy guardrails, prompt security, response
+  validation) over a task-planning orchestration agent and specialised knowledge-retrieval, action, personalisation
+  and sentiment agents, with RAG/Graph-RAG retrieval, reinforcement-learning feedback and AI observability.
+  Netomi ships first-party mobile Chat SDKs for iOS (Swift Package Manager, plus the deprecated NetomiChatSDK
+  CocoaPod), Android (com.netomi.chat:chat-widget-android on Maven Central) and React Native (@netomi.com/netomi-chat-react-native
+  on npm), all backed by the api.netomi.com service with optional JWT-authenticated sessions, guest sessions,
+  custom API headers and a bidirectional SDK event bus. The platform runs in US, EU and Singapore production
+  regions and publishes SOC 2 Type II, ISO 27001, PCI DSS, HIPAA, GDPR, CCPA and PDPA compliance posture.
+  The Agentic Studio console and the developer documentation portal are gated behind an enterprise account,
+  but a live, unlinked OpenAPI 3.1.0 contract for the AgentDesk REST API — 56 paths, 67 operations, 103
+  schemas, covering the conversation engine, NLU prediction, query analysis, conversation history, per-bot
+  rate-limit configuration, visitor authorization and sixteen inbound channel webhooks (Zendesk, Zoho,
+  Salesforce, Freshdesk, Gladly, Helpshift, Sprinklr, Sunshine Conversations, Facebook, Twitter, Google
+  Assistant, Firebase) — is served publicly at https://api.netomi.com/v3/api-docs with Swagger UI at https://api.netomi.com/swagger-ui.html.
 deliveryModel:
   model: saas
   open_source: false
@@ -53,7 +47,7 @@ x-type: company
 x-source: harvest:secondary-market
 specificationVersion: '0.23'
 created: '2026-08-01'
-modified: '2026-08-01'
+modified: '2026-09-16'
 tags:
 - Company
 - Artificial Intelligence
@@ -84,13 +78,12 @@ tags_raw:
 - Mobile
 apis:
 - name: Netomi Status API
-  description: >-
-    Public machine-readable status feed for the Netomi platform, served by Atlassian Statuspage at status.netomi.com.
-    Exposes the standard Statuspage v2 JSON surface (summary, status, components, incidents, scheduled
-    maintenances) plus Atom and RSS incident-history feeds, covering the US Production, EU Production
-    and SG Production component groups (Netomi Chat Interface, Netomi Integration Recipes, Agentic Studio,
-    Topic Prediction, Generative AI Prediction, Telephony, and the US Cloud / US Cloud2 / EU Cloud / SG
-    Cloud infrastructure components).
+  description: Public machine-readable status feed for the Netomi platform, served by Atlassian Statuspage
+    at status.netomi.com. Exposes the standard Statuspage v2 JSON surface (summary, status, components,
+    incidents, scheduled maintenances) plus Atom and RSS incident-history feeds, covering the US Production,
+    EU Production and SG Production component groups (Netomi Chat Interface, Netomi Integration Recipes,
+    Agentic Studio, Topic Prediction, Generative AI Prediction, Telephony, and the US Cloud / US Cloud2
+    / EU Cloud / SG Cloud infrastructure components).
   humanURL: https://status.netomi.com
   baseURL: https://status.netomi.com/api/v2
   tags:
@@ -108,8 +101,7 @@ apis:
     url: lifecycle/netomi-lifecycle.yml
 - aid: netomi:netomi-agent-desk-rest-api-controller-api
   name: Netomi Agent Desk Rest API Controller API
-  description: >-
-    The agent-desk-rest-api-controller API from Netomi — 2 operation(s) for agent-desk-rest-api-controller.
+  description: The agent-desk-rest-api-controller API from Netomi — 2 operation(s) for agent-desk-rest-api-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -133,8 +125,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-agent-desk-webhook-controller-api
   name: Netomi Agent Desk Webhook Controller API
-  description: >-
-    The agent-desk-webhook-controller API from Netomi — 4 operation(s) for agent-desk-webhook-controller.
+  description: The agent-desk-webhook-controller API from Netomi — 4 operation(s) for agent-desk-webhook-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -158,8 +149,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-asset-tracker-controller-api
   name: Netomi Asset Tracker Controller API
-  description: >-
-    The asset-tracker-controller API from Netomi — 1 operation(s) for asset-tracker-controller.
+  description: The asset-tracker-controller API from Netomi — 1 operation(s) for asset-tracker-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -183,8 +173,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-booking-confirmation-controller-api
   name: Netomi Booking Confirmation Controller API
-  description: >-
-    The booking-confirmation-controller API from Netomi — 1 operation(s) for booking-confirmation-controller.
+  description: The booking-confirmation-controller API from Netomi — 1 operation(s) for booking-confirmation-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -208,8 +197,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-facebook-webhook-controller-api
   name: Netomi Facebook Webhook Controller API
-  description: >-
-    The facebook-webhook-controller API from Netomi — 1 operation(s) for facebook-webhook-controller.
+  description: The facebook-webhook-controller API from Netomi — 1 operation(s) for facebook-webhook-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -233,8 +221,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-firebase-rest-controller-api
   name: Netomi Firebase Rest Controller API
-  description: >-
-    The firebase-rest-controller API from Netomi — 1 operation(s) for firebase-rest-controller.
+  description: The firebase-rest-controller API from Netomi — 1 operation(s) for firebase-rest-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -258,8 +245,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-freshdesk-webhook-controller-api
   name: Netomi Freshdesk Webhook Controller API
-  description: >-
-    The freshdesk-webhook-controller API from Netomi — 1 operation(s) for freshdesk-webhook-controller.
+  description: The freshdesk-webhook-controller API from Netomi — 1 operation(s) for freshdesk-webhook-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -283,8 +269,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-generic-webhook-controller-api
   name: Netomi Generic Webhook Controller API
-  description: >-
-    The generic-webhook-controller API from Netomi — 5 operation(s) for generic-webhook-controller.
+  description: The generic-webhook-controller API from Netomi — 5 operation(s) for generic-webhook-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -308,8 +293,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-generic-webhook-controller-v-2-api
   name: Netomi Generic Webhook Controller V 2 API
-  description: >-
-    The generic-webhook-controller-v-2 API from Netomi — 1 operation(s) for generic-webhook-controller-v-2.
+  description: The generic-webhook-controller-v-2 API from Netomi — 1 operation(s) for generic-webhook-controller-v-2.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -333,8 +317,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-gladly-webhook-controller-api
   name: Netomi Gladly Webhook Controller API
-  description: >-
-    The gladly-webhook-controller API from Netomi — 1 operation(s) for gladly-webhook-controller.
+  description: The gladly-webhook-controller API from Netomi — 1 operation(s) for gladly-webhook-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -358,8 +341,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-google-assistant-webhook-controller-api
   name: Netomi Google Assistant Webhook Controller API
-  description: >-
-    The google-assistant-webhook-controller API from Netomi — 1 operation(s) for google-assistant-webhook-controller.
+  description: The google-assistant-webhook-controller API from Netomi — 1 operation(s) for google-assistant-webhook-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -383,8 +365,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-health-check-controller-api
   name: Netomi Health Check Controller API
-  description: >-
-    The health-check-controller API from Netomi — 1 operation(s) for health-check-controller.
+  description: The health-check-controller API from Netomi — 1 operation(s) for health-check-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -408,8 +389,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-helpshift-webhook-controller-api
   name: Netomi Helpshift Webhook Controller API
-  description: >-
-    The helpshift-webhook-controller API from Netomi — 2 operation(s) for helpshift-webhook-controller.
+  description: The helpshift-webhook-controller API from Netomi — 2 operation(s) for helpshift-webhook-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -457,8 +437,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-oauth-token-redirect-controller-api
   name: Netomi OAUTH Token Redirect Controller API
-  description: >-
-    The oauth-token-redirect-controller API from Netomi — 1 operation(s) for oauth-token-redirect-controller.
+  description: The oauth-token-redirect-controller API from Netomi — 1 operation(s) for oauth-token-redirect-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -482,8 +461,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-platform-status-controller-api
   name: Netomi Platform Status Controller API
-  description: >-
-    The platform-status-controller API from Netomi — 1 operation(s) for platform-status-controller.
+  description: The platform-status-controller API from Netomi — 1 operation(s) for platform-status-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -531,8 +509,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-query-analyzer-controller-api
   name: Netomi Query Analyzer Controller API
-  description: >-
-    The query-analyzer-controller API from Netomi — 1 operation(s) for query-analyzer-controller.
+  description: The query-analyzer-controller API from Netomi — 1 operation(s) for query-analyzer-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -556,8 +533,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-rate-limiter-config-controller-api
   name: Netomi Rate Limiter Config Controller API
-  description: >-
-    The rate-limiter-config-controller API from Netomi — 1 operation(s) for rate-limiter-config-controller.
+  description: The rate-limiter-config-controller API from Netomi — 1 operation(s) for rate-limiter-config-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -605,8 +581,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-rest-api-controller-v-2-api
   name: Netomi Rest API Controller V 2 API
-  description: >-
-    The rest-api-controller-v-2 API from Netomi — 1 operation(s) for rest-api-controller-v-2.
+  description: The rest-api-controller-v-2 API from Netomi — 1 operation(s) for rest-api-controller-v-2.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -630,8 +605,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-rest-api-controller-v-3-api
   name: Netomi Rest API Controller V 3 API
-  description: >-
-    The rest-api-controller-v-3 API from Netomi — 2 operation(s) for rest-api-controller-v-3.
+  description: The rest-api-controller-v-3 API from Netomi — 2 operation(s) for rest-api-controller-v-3.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -655,8 +629,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-salesforce-webhook-controller-api
   name: Netomi Salesforce Webhook Controller API
-  description: >-
-    The salesforce-webhook-controller API from Netomi — 3 operation(s) for salesforce-webhook-controller.
+  description: The salesforce-webhook-controller API from Netomi — 3 operation(s) for salesforce-webhook-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -680,8 +653,8 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-singtel-roaming-activation-webhook-controller-api
   name: Netomi Singtel Roaming Activation Webhook Controller API
-  description: >-
-    The singtel-roaming-activation-webhook-controller API from Netomi — 1 operation(s) for singtel-roaming-activation-webhook-controller.
+  description: The singtel-roaming-activation-webhook-controller API from Netomi — 1 operation(s) for
+    singtel-roaming-activation-webhook-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -705,8 +678,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-sprinklr-webhook-controller-api
   name: Netomi Sprinklr Webhook Controller API
-  description: >-
-    The sprinklr-webhook-controller API from Netomi — 2 operation(s) for sprinklr-webhook-controller.
+  description: The sprinklr-webhook-controller API from Netomi — 2 operation(s) for sprinklr-webhook-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -730,8 +702,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-sunshine-conversations-webhook-controller-api
   name: Netomi Sunshine Conversations Webhook Controller API
-  description: >-
-    The sunshine-conversations-webhook-controller API from Netomi — 1 operation(s) for sunshine-conversations-webhook-controller.
+  description: The sunshine-conversations-webhook-controller API from Netomi — 1 operation(s) for sunshine-conversations-webhook-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -755,8 +726,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-test-utterance-script-controller-api
   name: Netomi Test Utterance Script Controller API
-  description: >-
-    The test-utterance-script-controller API from Netomi — 2 operation(s) for test-utterance-script-controller.
+  description: The test-utterance-script-controller API from Netomi — 2 operation(s) for test-utterance-script-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -780,8 +750,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-twitter-webhook-controller-api
   name: Netomi Twitter Webhook Controller API
-  description: >-
-    The twitter-webhook-controller API from Netomi — 1 operation(s) for twitter-webhook-controller.
+  description: The twitter-webhook-controller API from Netomi — 1 operation(s) for twitter-webhook-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -805,8 +774,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-visitor-authorize-webhook-controller-api
   name: Netomi Visitor Authorize Webhook Controller API
-  description: >-
-    The visitor-authorize-webhook-controller API from Netomi — 1 operation(s) for visitor-authorize-webhook-controller.
+  description: The visitor-authorize-webhook-controller API from Netomi — 1 operation(s) for visitor-authorize-webhook-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -830,8 +798,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-webhook-event-controller-api
   name: Netomi Webhook Event Controller API
-  description: >-
-    The webhook-event-controller API from Netomi — 1 operation(s) for webhook-event-controller.
+  description: The webhook-event-controller API from Netomi — 1 operation(s) for webhook-event-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -855,8 +822,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-zen-desk-chat-rest-controller-api
   name: Netomi Zen Desk Chat Rest Controller API
-  description: >-
-    The zen-desk-chat-rest-controller API from Netomi — 8 operation(s) for zen-desk-chat-rest-controller.
+  description: The zen-desk-chat-rest-controller API from Netomi — 8 operation(s) for zen-desk-chat-rest-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -880,8 +846,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-zendesk-webhook-controller-api
   name: Netomi Zendesk Webhook Controller API
-  description: >-
-    The zendesk-webhook-controller API from Netomi — 1 operation(s) for zendesk-webhook-controller.
+  description: The zendesk-webhook-controller API from Netomi — 1 operation(s) for zendesk-webhook-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -905,8 +870,7 @@ apis:
     url: https://github.com/msgai/netomi-chat-ios
 - aid: netomi:netomi-zoho-webhook-controller-api
   name: Netomi Zoho Webhook Controller API
-  description: >-
-    The zoho-webhook-controller API from Netomi — 2 operation(s) for zoho-webhook-controller.
+  description: The zoho-webhook-controller API from Netomi — 2 operation(s) for zoho-webhook-controller.
   humanURL: https://api.netomi.com/swagger-ui.html
   baseURL: https://api.netomi.com
   tags:
@@ -939,7 +903,10 @@ common:
   name: Netomi Business Capability Map
 - type: X-MCPServerCandidate
   url: mcp/netomi-mcp.yml
-  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate
+    — a tool list derived from the published API contracts, not an existing server. The scorer already
+    read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type
+    surfaces with a server that does not exist.'
 - type: AgenticAccess
   url: agentic-access/netomi-agentic-access.yml
 - type: TrustCenter
@@ -999,7 +966,7 @@ common:
 - type: LLMsTxt
   url: llms/netomi-llms.txt
 - type: OpenAPI
-  url: openapi/netomi-agentdesk-openapi.json
+  url: openapi/_original/netomi-agentdesk-openapi.json
 - type: APIReference
   url: https://api.netomi.com/swagger-ui.html
 - type: Overlay
