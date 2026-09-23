@@ -40,25 +40,10 @@ paths:
                 items:
                   type: object
                   additionalProperties: {}
+      summary: Get response 5
+      x-summary-source: derived
 components:
   schemas:
-    ContentDisposition:
-      type: object
-      properties:
-        type:
-          type: string
-        name:
-          type: string
-        filename:
-          type: string
-        charset:
-          type: string
-        formData:
-          type: boolean
-        attachment:
-          type: boolean
-        inline:
-          type: boolean
     HttpHeaders:
       type: object
       properties:
@@ -232,7 +217,23 @@ components:
         date:
           type: integer
           format: int64
-    HttpRange: {}
+    ContentDisposition:
+      type: object
+      properties:
+        type:
+          type: string
+        name:
+          type: string
+        filename:
+          type: string
+        charset:
+          type: string
+        formData:
+          type: boolean
+        attachment:
+          type: boolean
+        inline:
+          type: boolean
     MediaType:
       type: object
       properties:
@@ -258,3 +259,4 @@ components:
         charset:
           type: string
     HttpMethod: {}
+    HttpRange: {}

@@ -32,6 +32,8 @@ paths:
             application/json:
               schema:
                 type: string
+      summary: Booking confirmation
+      x-summary-source: derived
 components:
   schemas:
     BookingConfirmationRequest:

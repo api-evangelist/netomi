@@ -38,41 +38,10 @@ paths:
             application/json:
               schema:
                 type: object
+      summary: Messages post 4
+      x-summary-source: derived
 components:
   schemas:
-    ExternalAuthenticationRequest:
-      type: object
-      properties:
-        authToken:
-          type: string
-        clientId:
-          type: string
-        authCode:
-          type: string
-        visitorKey:
-          type: string
-        timestamp:
-          type: string
-        expiryTime:
-          type: integer
-          format: int64
-    ContentDisposition:
-      type: object
-      properties:
-        type:
-          type: string
-        name:
-          type: string
-        filename:
-          type: string
-        charset:
-          type: string
-        formData:
-          type: boolean
-        attachment:
-          type: boolean
-        inline:
-          type: boolean
     HttpHeaders:
       type: object
       properties:
@@ -246,7 +215,23 @@ components:
         date:
           type: integer
           format: int64
-    HttpRange: {}
+    ContentDisposition:
+      type: object
+      properties:
+        type:
+          type: string
+        name:
+          type: string
+        filename:
+          type: string
+        charset:
+          type: string
+        formData:
+          type: boolean
+        attachment:
+          type: boolean
+        inline:
+          type: boolean
     MediaType:
       type: object
       properties:
@@ -271,4 +256,21 @@ components:
           type: boolean
         charset:
           type: string
+    ExternalAuthenticationRequest:
+      type: object
+      properties:
+        authToken:
+          type: string
+        clientId:
+          type: string
+        authCode:
+          type: string
+        visitorKey:
+          type: string
+        timestamp:
+          type: string
+        expiryTime:
+          type: integer
+          format: int64
     HttpMethod: {}
+    HttpRange: {}

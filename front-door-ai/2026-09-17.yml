@@ -1,0 +1,27 @@
+# Front Door AI Index — netomi — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: netomi
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.netomi.com
+  final_host: www.netomi.com
+  ownership: own
+  owner: netomi
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 6
+  host_score: 6
+  density: 59.41
+  words: 101
+  tiers:
+    agentic: 2
+    core: 3
+    model: 1
+  ambiguous: 0
+  top_terms:
+    AI: 3
+    agentic: 2
+    OpenAI: 1
