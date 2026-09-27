@@ -217,6 +217,7 @@ components:
         date:
           type: integer
           format: int64
+    HttpMethod: {}
     ContentDisposition:
       type: object
       properties:
@@ -258,5 +259,4 @@ components:
           type: boolean
         charset:
           type: string
-    HttpMethod: {}
     HttpRange: {}

@@ -51,10 +51,10 @@ modified: '2026-09-16'
 tags:
 - Company
 - Artificial Intelligence
-- Agentic AI
+- AI Agents
 - Customer Experience
 - Customer Service
-- Customer-Support
+- Customer Support
 - Conversational AI
 - Chatbots
 - Chat
@@ -76,6 +76,7 @@ tags_raw:
 - Telephony
 - SDKs
 - Mobile
+- Customer-Support
 apis:
 - name: Netomi Status API
   description: Public machine-readable status feed for the Netomi platform, served by Atlassian Statuspage
