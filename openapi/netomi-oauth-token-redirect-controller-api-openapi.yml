@@ -42,6 +42,8 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    HttpRange: {}
+    HttpMethod: {}
     HttpHeaders:
       type: object
       properties:
@@ -215,7 +217,6 @@ components:
         date:
           type: integer
           format: int64
-    HttpMethod: {}
     ContentDisposition:
       type: object
       properties:
@@ -257,4 +258,3 @@ components:
           type: boolean
         charset:
           type: string
-    HttpRange: {}

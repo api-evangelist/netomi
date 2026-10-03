@@ -46,52 +46,8 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ContentDisposition:
-      type: object
-      properties:
-        type:
-          type: string
-        name:
-          type: string
-        filename:
-          type: string
-        charset:
-          type: string
-        formData:
-          type: boolean
-        attachment:
-          type: boolean
-        inline:
-          type: boolean
-    PlatformStatusResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - MAINTENANCE
-          - FULLY_OPERATIONAL
-          - INCIDENT
-          - OUTAGE
-          - INOPERATIVE
-        message:
-          type: string
-        errorCode:
-          type: string
-          enum:
-          - FACEBOOK_API_ERROR
-          - TWITTER_API_ERROR
-          - LINE_API_ERROR
-          - KIK_API_ERROR
-          - SALES_FORCE_API_ERROR
-          - DEPLOYMENT_ERROR
-          - INTERNAL_SERVER_ERROR
-          - CLIENT_API_ERROR
-          - THIRD_PARTY_ADAPTER_ERROR
-          - ZEN_DESK_API_ERROR
-        lastActivityTimestamp:
-          type: integer
-          format: int64
+    HttpRange: {}
+    HttpMethod: {}
     HttpHeaders:
       type: object
       properties:
@@ -265,7 +221,52 @@ components:
         date:
           type: integer
           format: int64
-    HttpMethod: {}
+    PlatformStatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - MAINTENANCE
+          - FULLY_OPERATIONAL
+          - INCIDENT
+          - OUTAGE
+          - INOPERATIVE
+        message:
+          type: string
+        errorCode:
+          type: string
+          enum:
+          - FACEBOOK_API_ERROR
+          - TWITTER_API_ERROR
+          - LINE_API_ERROR
+          - KIK_API_ERROR
+          - SALES_FORCE_API_ERROR
+          - DEPLOYMENT_ERROR
+          - INTERNAL_SERVER_ERROR
+          - CLIENT_API_ERROR
+          - THIRD_PARTY_ADAPTER_ERROR
+          - ZEN_DESK_API_ERROR
+        lastActivityTimestamp:
+          type: integer
+          format: int64
+    ContentDisposition:
+      type: object
+      properties:
+        type:
+          type: string
+        name:
+          type: string
+        filename:
+          type: string
+        charset:
+          type: string
+        formData:
+          type: boolean
+        attachment:
+          type: boolean
+        inline:
+          type: boolean
     MediaType:
       type: object
       properties:
@@ -290,4 +291,3 @@ components:
           type: boolean
         charset:
           type: string
-    HttpRange: {}
