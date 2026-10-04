@@ -125,6 +125,27 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    RateLimitConfigRequestDto:
+      type: object
+      properties:
+        minuteLimit:
+          type: integer
+          format: int64
+        hourLimit:
+          type: integer
+          format: int64
+        dayLimit:
+          type: integer
+          format: int64
+        weekLimit:
+          type: integer
+          format: int64
+        monthLimit:
+          type: integer
+          format: int64
+        yearLimit:
+          type: integer
+          format: int64
     ServiceResponse:
       type: object
       properties:
@@ -247,27 +268,6 @@ components:
           type: array
           items: {}
         payload: {}
-    RateLimitConfigRequestDto:
-      type: object
-      properties:
-        minuteLimit:
-          type: integer
-          format: int64
-        hourLimit:
-          type: integer
-          format: int64
-        dayLimit:
-          type: integer
-          format: int64
-        weekLimit:
-          type: integer
-          format: int64
-        monthLimit:
-          type: integer
-          format: int64
-        yearLimit:
-          type: integer
-          format: int64
     BaseError:
       type: object
       properties:

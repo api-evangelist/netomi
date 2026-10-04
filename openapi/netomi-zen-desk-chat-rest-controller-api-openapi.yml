@@ -199,568 +199,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    FlightInfo:
-      type: object
-      properties:
-        connectionId:
-          type: string
-        segmentId:
-          type: string
-        flightNumber:
-          type: string
-        aircraftType:
-          type: string
-        departureAirport:
-          $ref: '#/components/schemas/FlightAirport'
-        arrivalAirport:
-          $ref: '#/components/schemas/FlightAirport'
-        flightSchedule:
-          $ref: '#/components/schemas/FlightSchedule'
-        travelClass:
-          type: string
-    FlightSchedule:
-      type: object
-      properties:
-        boardingTime:
-          type: string
-          format: date-time
-        departureTime:
-          type: string
-          format: date-time
-        arrivalTime:
-          type: string
-          format: date-time
-    GenAiModerationInfo:
-      type: object
-      properties:
-        type:
-          type: string
-        moderationProperties:
-          $ref: '#/components/schemas/ModerationResponse'
-    ServiceResponse:
-      type: object
-      properties:
-        statusCode:
-          type: string
-        statusMessage:
-          type: string
-        exceptionCode:
-          type: string
-          enum:
-          - DATA_NOT_FOUND
-          - INVALID_PAYMENT_MODE_ERROR
-          - LINK_CANNOT_CREATED
-          - OBJECT_DEEP_COPY_CLONE_FAILED_ERROR
-          - API_EMPTY_PAYLOAD_ERROR
-          - LANGUAGE_NOT_CONFIGURED
-          - CLIENT_API_CREDENTIAL_MISSING_ERROR
-          - CLIENT_API_CREDENTIAL_DOES_NOT_EXIST_ERROR
-          - INVALID_PAYMENT_CARD_ERROR
-          - INVALID_JOB_CLASS_NAME_ERROR
-          - JOB_SCHEDULER_ERROR
-          - DB_FETCH_ERROR
-          - DB_INSERT_ERROR
-          - DOWN_STREAM_SERVICE_ERROR
-          - ILLEGAL_LINK_ID
-          - DESERIALIZATION_FAILED_ERROR
-          - SERIALIZATION_FAILED_ERROR
-          - READING_FILE_FAILED_ERROR
-          - INVALID_INPUT_ERROR
-          - UN_SUPPORTED_OPERATION_ERROR
-          - CONNECTION_TIME_OUT_ERROR
-          - DRUID_QUERY_TIME_OUT_ERROR
-          - AUTHENTICATION_FAILED_ERROR
-          - AUTHORIZATION_FAILED_ERROR
-          - HTTPS_SECURE_GATEWAY_ERROR
-          - CONNECTION_REFUSED_ERROR
-          - RESOURCE_NOT_FOUND_ERROR
-          - ENCRYPTION_FAILED_ERROR
-          - INPUT_DATA_CORRUPTED_ERROR
-          - CONNECTION_RESET_ERROR
-          - THROTTLE_ERROR
-          - RATE_LIMIT_EXCEED_ERROR
-          - UN_AUTHORISED_ERROR
-          - CASSANDRA_DB_ERROR
-          - MYSQL_DB_ERROR
-          - KAFKA_BROKER_ERROR
-          - DRUID_TRANQUILITY_SERVER_ERROR
-          - INSTANTIATION_FAILED_ERROR
-          - ILLEGAL_ACCESS_ERROR
-          - DRUID_QUERY_BROKER_ERROR
-          - UN_AUTHORISED_ACCESS
-          - BAD_CREDENTIAL
-          - ACCESS_TOKEN_EXPIRED
-          - USER_DOES_NOT_EXIST
-          - SIGN_UP_LINK_EXPIRED
-          - RESET_PASSWORD_LINK_EXPIRED
-          - USER_ACCOUNT_TEMPORARY_BLOCKED
-          - LOGIN_SUCCESS
-          - ILLEGAL_PERMISSION_ENTITY_ADDITION
-          - NO_TWO_PERMISSION_ENITITY_EXCEPTION
-          - ILLEGEAL_TOKEN_HEADER
-          - NO_SECURITY_CONTEXT_HOLDER
-          - UNAUTHORIZED_API_REQUEST
-          - INVALID_ROLE
-          - INSUFFICIENT_PERMISSION
-          - MVEL_EXPRESSION_INVALID
-          - MVEL_EXPRESSION_PROPERTY_MISSING
-          - STANDARD_RESPONSE_EMPTY
-          - TARGET_BUCKET_NOT_FOUND
-          - TARGET_BUCKET_RESPONSE_NOT_FOUND
-          - INSUFFICIENT_ATTRIBUTE
-          - CONTEXT_RESPONSE_EMPTY
-          - CONVERSATION_NULL
-          - NULL_TOKEN_CREATED
-          - USER_NOT_FOUND
-          - WORKFLOW_NOT_FOUND
-          - USER_NOT_ACTIVATED
-          - INVALID_BOT_DETAILS
-          - INVALID_CONF
-          - INVALID_CONFIGURATION
-          - COMPRESS_STRING_ERROR
-          - DE_COMPRESS_STRING_ERROR
-          - EXPERIMENT_NOT_FOUND
-          - NO_LOCALE_CONFIGURED
-          - ACCESS_LOCKED
-          - ATTEMPTS_EXCEEDED
-          - MESSAGE_SWALLOWED
-          - INTERNAL_SERVER_ERROR
-          - FACEBOOK_API_EXCEPTION
-          - ALREADY_EXISTS_ENTITY_EXCEPTION
-          - CLUSTERING_FILE_REJECTED_EXCEPTION
-          - CLUSTERING_DATA_INSERTION_INTO_DB_EXCEPTION
-          - DATA_SCIENCE_CLUSTERING_FAILED_EXCEPTION
-          - CLUSTERING_UTTERANCE_DATA_INSERTION_FAILED_EXCEPTION
-          - CLUSTERING_UTTERANCE_INFO_INSERTION_FAILED_EXCEPTION
-          - EXISTING_CLUSTERS_DELETION_EXCEPTION
-          - REQUEST_PAYLOAD_MAX_SIZE_EXCEED_ERROR
-          - GO_LIVE_PRECONDITION_FAILED
-          - DEFAULT_TEMPLATE_DOES_NOT_EXIST_EXCEPTION
-          - SUB_WORKFLOW_DELETE_PRECONDITION_FAILED
-          - INTENT_IN_USE
-          - DECRYPTION_EXCEPTION
-          - ENCRYPTION_EXCEPTION
-          - CONNECTION_FAILED
-          - DELETE_FAILED
-          - GOOGLE_TRANSLATION_API_EXCEPTION
-          - AWS_LAMBDA_API_EXCEPTION
-          - TRANSLATION_FAILED
-          - INVALID_ORCHESTRATOR_STATE_REACHED
-          - MCP_ERROR
-          - MCP_VALIDATION_ERROR
-          - MCP_SERVER_NOT_FOUND
-          - MAX_MANIFEST_LIMIT_REACHED
-          - MANIFEST_DELETE_VALIDATION_FAILED
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/BaseError'
-        taskStatus:
-          type: array
-          items: {}
-        payload: {}
-    ConversationResponse:
-      type: object
-      properties:
-        propertyMap:
-          type: object
-          additionalProperties:
-            type: string
-        requestId:
-          type: string
-        botMetaInfo:
-          $ref: '#/components/schemas/BotMetaInfo'
-        visitor:
-          $ref: '#/components/schemas/Visitor'
-        locale:
-          type: string
-        channelId:
-          type: string
-        caseId:
-          type: string
-        session:
-          $ref: '#/components/schemas/Session'
-        conversationEnvironment:
-          type: string
-          enum:
-          - DEV
-          - QA
-          - UAT
-          - PROD
-          - STAGING
-          - SANDBOX
-          - LIVE
-          - SGUAT
-        channelType:
-          type: string
-          enum:
-          - EMAIL
-          - CHAT
-          - VOICE
-          - POST
-          - DEFAULT
-          - NLU_API
-        messageType:
-          type: string
-        abstractChannelMetaInfo:
-          oneOf:
-          - $ref: '#/components/schemas/AgentDeskChannelMetaInfo'
-        serviceLatencyMetrics:
-          $ref: '#/components/schemas/ServiceLatencyLog'
-        time:
-          type: string
-        intentId:
-          type: string
-        intent:
-          type: string
-        originalMessage:
-          type: string
-        skill:
-          type: string
-        skillId:
-          type: string
-        socialChannel:
-          type: string
-        requestTime:
-          type: integer
-          format: int64
-        displayName:
-          type: string
-        linkId:
-          type: string
-        status:
-          type: string
-        sendStatus:
-          type: string
-        reviewModeResponse:
-          type: string
-        tagIds:
-          type: array
-          items:
-            type: integer
-            format: int64
-        candidates:
-          type: array
-          items:
-            $ref: '#/components/schemas/Intent'
-        responses:
-          type: array
-          items:
-            $ref: '#/components/schemas/Message'
-        allRecognizedAttributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContextualAttributeServiceObject'
-        customFields:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomResponseField'
-        customPayload:
-          type: object
-          additionalProperties: {}
-        agentInfo:
-          $ref: '#/components/schemas/AgentInfo'
-        requestMessageId:
-          type: string
-        ownerType:
-          type: string
-        conversationId:
-          type: string
-        triggerType:
-          type: string
-        responseStatus:
-          type: string
-        testResponse:
-          type: boolean
-        responseAnalyserResponse:
-          type: boolean
-        type:
-          type: string
-          enum:
-          - CONVERSATION_REQUEST
-          - CONVERSATION_RESPONSE
-          - ERROR
-          - AUDIT_ERROR
-          - CONVERSATION_STATE
-          - INTEGRATION_REQUEST
-          - INTEGRATION_RESPONSE
-          - CONVERSATION
-          - ASSET_TRACKING
-          - CLIENT_REQUEST
-          - HUMAN_HANDOFF_RESPONSE
-          - HUMAN_HANDOFF_REQUEST
-    EmailTemplate:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          id:
-            type: integer
-            format: int64
-          name:
-            type: string
-          scope:
-            type: string
-            enum:
-            - GLOBAL_TEMPLATE
-            - BOT_TEMPLATE
-            - INSTANCE
-          salutation:
-            type: string
-          greetings:
-            type: string
-          feedback:
-            type: string
-          signOff:
-            type: string
-          toneId:
-            type: string
-          from:
-            type: string
-          replyTo:
-            type: string
-          to:
-            type: array
-            items:
-              type: string
-          cc:
-            type: array
-            items:
-              type: string
-          bcc:
-            type: array
-            items:
-              type: string
-          subject:
-            type: string
-          textHtml:
-            type: string
-          maskedHtml:
-            type: string
-          body:
-            type: string
-          attachmentUrls:
-            type: array
-            items:
-              type: string
-          priority:
-            type: integer
-            format: int32
-          eventType:
-            type: string
-          ticketOwnerType:
-            type: string
-          status:
-            type: string
-          ticketStatus:
-            type: string
-          referenceId:
-            type: string
-          sendStatus:
-            type: string
-          caseCategory:
-            type: string
-          isEdited:
-            type: boolean
-          isDeleted:
-            type: boolean
-          emailAttachmentId:
-            type: string
-          isVariationsEnabled:
-            type: boolean
-          variations:
-            type: array
-            items:
-              $ref: '#/components/schemas/Variation'
-    AirlineBoardingPassTemplatePayload:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          introMessage:
-            type: string
-          locale:
-            type: string
-          themeColor:
-            type: string
-          boardingPass:
-            type: array
-            items:
-              $ref: '#/components/schemas/BoardingPass'
-    SemanticMessage:
-      type: object
-      properties:
-        language:
-          type: string
-          enum:
-          - ENGLISH
-          - FRENCH
-          - ITALIAN
-        enrichedMessage:
-          type: string
-        tone:
-          type: string
-          enum:
-          - ANGRY
-          - HAPPY
-          - POLITE
-          - SAD
-          - DELIGHTFUL
-        sentiment:
-          type: string
-          enum:
-          - POSITIVE
-          - NEGATIVE
-          - NEUTRAL
-        metaIntent:
-          $ref: '#/components/schemas/MetaIntent'
-        intents:
-          type: array
-          items:
-            $ref: '#/components/schemas/Intent'
-        keywords:
-          type: array
-          items:
-            type: string
-          uniqueItems: true
-        isUtteranceAnAnswer:
-          type: boolean
-        entityConfusion:
-          type: boolean
-        entityConfusionType:
-          type: string
-          enum:
-          - INTER
-          - INTRA
-          - NONE
-        maskedUtterance:
-          type: string
-        nluInfo: {}
-        entities:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContextualAttributeServiceObject'
-        conversationContextHistory:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConversationContextHistory'
-    NBAServiceObject:
-      type: object
-      properties:
-        type:
-          type: string
-        description:
-          type: string
-        shortText:
-          type: string
-        longText:
-          type: string
-        pageURL:
-          type: string
-    Location:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          latitude:
-            type: string
-          longitude:
-            type: string
-    Visitor:
-      type: object
-      properties:
-        externalId:
-          type: string
-        token:
-          type: string
-        conversationId:
-          type: string
-        mobileNumber:
-          type: string
-        emailId:
-          type: string
-        name:
-          type: string
-        gender:
-          type: string
-          enum:
-          - MALE
-          - FEMALE
-          - UNKNOWN
-          - BOT
-        channel:
-          type: string
-          enum:
-          - MESSENGER
-          - SUNSHINE_CONVERSATIONS_LINE
-          - EMAIL
-          - TWITTER
-          - REST
-          - LINE
-          - WHATS_APP
-          - AGENTDESK
-          - FRESHDESK
-          - ZENDESK
-          - SALESFORCE
-          - WEB_PLUGIN
-          - PUB_SUB
-          - ANDROID
-          - IOS
-          - WINDOWS
-          - LITHIUM
-          - ALEXA
-          - GOOGLE_ASSISTANT
-          - ZENDESK_CHAT
-          - FACEBOOK_POST
-          - SPRINKLR_FACEBOOK
-          - SPRINKLR_WHATSAPP_BUSINESS
-          - KHOROS_FB_POST
-          - KHOROS_TWITTER_POST
-          - KHOROS_TWITTER_CHAT
-          - KHOROS_FACEBOOK_CHAT
-          - PUBNUB
-          - ZOHO_DESK
-          - NETOMI_WEB_WIDGET
-          - DEFAULT_CHANNEL
-          - NLU_API
-          - HELPSHIFT
-          - GLADLY_EMAIL
-          - GLADLY_WEB_CHAT
-          - CHAT_API
-          - EMAIL_API
-          - CHAT_CHANNEL
-          - EMAIL_CHANNEL
-          - VOICE_CHANNEL
-          - NETOMI_VOICE
-        location:
-          type: string
-        type:
-          type: string
-          enum:
-          - EXTERNAL
-          - INTERNAL
-          - TEST
-        conversationMode:
-          type: string
-          enum:
-          - BLOCKED_TEMPORARY
-          - BLOCKED_PERMANENTLY
-          - ACTIVE_HUMAN_ASSISTANCE
-          - ACTIVE_BOT
-        profilePictureUrl:
-          type: string
-        botReferenceId:
-          type: string
-        botId:
-          type: string
-        actor:
-          type: string
-        attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attribute'
-        authorId:
-          type: string
     Address:
       type: object
       properties:
@@ -776,211 +214,133 @@ components:
           type: string
         country:
           type: string
-    AirlineItineraryTemplatePayload:
+    Carousel:
       allOf:
       - $ref: '#/components/schemas/Attachment'
       - type: object
         properties:
-          introMessage:
-            type: string
-          locale:
-            type: string
-          themeColor:
-            type: string
-          pnrNumber:
-            type: string
-          passengerInfoList:
+          elements:
             type: array
             items:
-              $ref: '#/components/schemas/PassengerInfo'
-          flightInfoList:
-            type: array
-            items:
-              $ref: '#/components/schemas/FlightInfo'
-          passengerSegmentInfoList:
-            type: array
-            items:
-              $ref: '#/components/schemas/PassengerSegmentInfo'
-          priceInfoList:
-            type: array
-            items:
-              $ref: '#/components/schemas/PriceInfo'
-          basePrice:
-            type: number
-            format: double
-          tax:
-            type: number
-            format: double
-          totalPrice:
-            type: number
-            format: double
-          currency:
+              $ref: '#/components/schemas/GenericElement'
+          carouselImageAspectRatio:
             type: string
-    AgentInfo:
+            enum:
+            - SQUARE
+            - HORIZONTAL
+    NLUIntent:
       type: object
       properties:
-        agentId:
+        id:
           type: string
-        avatar:
+        name:
           type: string
-        displayName:
-          type: string
-        agentUserSessionId:
-          type: string
-    FlightAirport:
+        confidence:
+          type: number
+          format: double
+    Button:
       type: object
-      properties:
-        airportCode:
-          type: string
-        city:
-          type: string
-        terminal:
-          type: string
-        gate:
-          type: string
-    GenericFileAttachment:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          fileURL:
-            type: string
-          fileType:
-            type: string
-          fileSize:
-            type: string
-    AbstractChannelMetaInfo:
-      discriminator:
-        propertyName: type
       properties:
         type:
           type: string
-      required:
-      - type
-    Message:
-      type: object
-      properties:
-        originalMessage:
-          type: string
-        maskedOriginalMessage:
-          type: string
-        visitorMessageType:
-          type: string
           enum:
-          - TEXT
-          - LOCATION
-          - IMAGE
-          - VIDEO
-          - GIF
-          - EMOTICON
-          - CALL
-          - AUDIO
           - POST_BACK
-          - TYPING_ON
-          - REFERRAL
-          - FACEBOOK_HANDOVER
-          - ZENDESK_CHAT_HANDOVER
-          - SUNSHINE_CONVERSATIONS_HANDOVER
-          - KHOROS_HANDOVER
-          - EMAIL
-          - SMS
-          - OTHERS
-          - OPTIN
-          - HANDOVER
-          - GLADLY_HANDOVER
-          - ATTRIBUTE_UPDATE
-          - ONE_TIME_NOTIFICATION
-        callbackUrl:
+          - BUY
+          - CALL
+          - NESTED
+          - SHARE
+          - WEB
+          - DEEP_LINK
+        url:
           type: string
-        messageId:
+        title:
           type: string
-        type:
+        payload:
+          type: string
+        webview_height_ratio:
           type: string
           enum:
-          - VISITOR
-          - BOT
-          - INTERNAL_AGENT
-          - THIRD_PARTY_AGENT
-          - INTERNAL_EVENT
-          - AD_EVENT
-          - ASSET_EVENT
-        timestamp:
-          type: integer
-          format: int64
-        postBack:
-          oneOf:
-          - $ref: '#/components/schemas/PostbackButton'
-          - $ref: '#/components/schemas/PostbackItem'
-        referral:
-          $ref: '#/components/schemas/PostbackReferral'
-        attachments:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/AgentDeskForm'
-            - $ref: '#/components/schemas/AgentDeskResponse'
-            - $ref: '#/components/schemas/AirlineBoardingPassTemplatePayload'
-            - $ref: '#/components/schemas/AirlineCheckinTemplatePayload'
-            - $ref: '#/components/schemas/AirlineItineraryTemplatePayload'
-            - $ref: '#/components/schemas/AirlineUpdateTemplatePayload'
-            - $ref: '#/components/schemas/Audio'
-            - $ref: '#/components/schemas/Card'
-            - $ref: '#/components/schemas/Carousel'
-            - $ref: '#/components/schemas/Email'
-            - $ref: '#/components/schemas/EmailTemplate'
-            - $ref: '#/components/schemas/EventTemplatePayload'
-            - $ref: '#/components/schemas/FillerText'
-            - $ref: '#/components/schemas/GenericAttachment'
-            - $ref: '#/components/schemas/GenericFileAttachment'
-            - $ref: '#/components/schemas/GoogleAssistantBasicCard'
-            - $ref: '#/components/schemas/GoogleAssistantMicAttachment'
-            - $ref: '#/components/schemas/GoogleAssistantSuggestionChip'
-            - $ref: '#/components/schemas/GoogleAssistantText'
-            - $ref: '#/components/schemas/GroupList'
-            - $ref: '#/components/schemas/Image'
-            - $ref: '#/components/schemas/ImageCard'
-            - $ref: '#/components/schemas/ListTemplate'
-            - $ref: '#/components/schemas/Location'
-            - $ref: '#/components/schemas/MessageInfoAttachment'
-            - $ref: '#/components/schemas/MultiSource'
-            - $ref: '#/components/schemas/NBAAttachment'
-            - $ref: '#/components/schemas/NLUCard'
-            - $ref: '#/components/schemas/OneTimeNotificationRequest'
-            - $ref: '#/components/schemas/Receipt'
-            - $ref: '#/components/schemas/Text'
-            - $ref: '#/components/schemas/Video'
-        semanticMessages:
-          type: array
-          items:
-            $ref: '#/components/schemas/SemanticMessage'
-        properties:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attribute'
-        error:
-          $ref: '#/components/schemas/Error'
-        handoffControlType:
+          - compact
+          - tall
+          - full
+        messenger_extensions:
+          type: boolean
+        fallback_url:
           type: string
-          enum:
-          - IMPLICIT
-          - EXPLICIT
-    AirlineUpdateTemplatePayload:
+    AgentDeskForm:
       allOf:
       - $ref: '#/components/schemas/Attachment'
       - type: object
         properties:
-          introMessage:
+          status:
             type: string
-          updateType:
+            enum:
+            - PENDING
+            - REJECTED
+            - SUBMITTED
+    BaseError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+    Email:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          from:
             type: string
-          locale:
+          replyTo:
             type: string
-          themeColor:
+          to:
+            type: array
+            items:
+              type: string
+          cc:
+            type: array
+            items:
+              type: string
+          sentDate:
             type: string
-          pnrNumber:
+            format: date-time
+          subject:
             type: string
-          updateFlightInfo:
-            $ref: '#/components/schemas/FlightInfo'
+          body:
+            type: string
+          attachmentUrls:
+            type: array
+            items:
+              type: string
+          htmlBody:
+            type: string
+          threadId:
+            type: string
+          emailThread:
+            $ref: '#/components/schemas/Email'
+          eventType:
+            type: string
+          ticketOwnerType:
+            type: string
+          status:
+            type: string
+          sendStatus:
+            type: string
+          caseCategory:
+            type: string
+          user:
+            $ref: '#/components/schemas/User'
+          payload:
+            type: object
+            additionalProperties:
+              type: string
+          bcc:
+            type: array
+            items:
+              type: string
+          maskedHtml:
+            type: string
     Intent:
       type: object
       properties:
@@ -1087,761 +447,6 @@ components:
           type: string
         wmnli_threshold:
           type: string
-    MetaIntent:
-      type: object
-      properties:
-        tone:
-          $ref: '#/components/schemas/MetaEntity'
-        topic:
-          $ref: '#/components/schemas/MetaEntity'
-        returnType:
-          $ref: '#/components/schemas/MetaEntity'
-    MessageInfoAttachment:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          values:
-            type: object
-            additionalProperties:
-              type: array
-              items:
-                type: string
-    MediaType:
-      type: object
-      properties:
-        type:
-          type: string
-        subtype:
-          type: string
-        parameters:
-          type: object
-          additionalProperties:
-            type: string
-        qualityValue:
-          type: number
-          format: double
-        wildcardType:
-          type: boolean
-        wildcardSubtype:
-          type: boolean
-        subtypeSuffix:
-          type: string
-        concrete:
-          type: boolean
-        charset:
-          type: string
-    QuickReply:
-      type: object
-      properties:
-        description:
-          type: string
-        type:
-          type: string
-        style:
-          type: string
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/Option'
-    Summary:
-      type: object
-      properties:
-        subtotal:
-          type: number
-          format: double
-        shipping_cost:
-          type: number
-          format: double
-        total_tax:
-          type: number
-          format: double
-        total_cost:
-          type: number
-          format: double
-    FillerInfo:
-      type: object
-      properties:
-        text:
-          type: string
-    AgentDeskChannelMetaInfo:
-      allOf:
-      - $ref: '#/components/schemas/AbstractChannelMetaInfo'
-      - type: object
-        properties:
-          sendStatus:
-            type: string
-          caseCategory:
-            type: string
-          caseStatus:
-            type: string
-          ticketOwnerType:
-            type: string
-          eventType:
-            type: string
-          subject:
-            type: string
-          emailId:
-            type: string
-          phone:
-            type: string
-          firstName:
-            type: string
-          lastName:
-            type: string
-          acquisitionChannel:
-            type: string
-            enum:
-            - SMS
-            - EMAIL
-            - MESSENGER
-            writeOnly: true
-          visitorAcquisitionChannel:
-            type: string
-            enum:
-            - SMS
-            - EMAIL
-            - MESSENGER
-    GoogleAssistantMicAttachment:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          micStatus:
-            type: string
-    BoardingPass:
-      type: object
-      properties:
-        passengerName:
-          type: string
-        pnrNumber:
-          type: string
-        travelClass:
-          type: string
-        seat:
-          type: string
-        auxiliaryFields:
-          type: array
-          items:
-            $ref: '#/components/schemas/AirlineField'
-        secondaryFields:
-          type: array
-          items:
-            $ref: '#/components/schemas/AirlineField'
-        logoImageUrl:
-          type: string
-        headerImageUrl:
-          type: string
-        headerTextField:
-          type: string
-        qrCode:
-          type: string
-        barcodeImageUrl:
-          type: string
-        aboveBarCodeImageUrl:
-          type: string
-        flightInfo:
-          $ref: '#/components/schemas/FlightInfo'
-    Option:
-      type: object
-      properties:
-        label:
-          type: string
-        description:
-          type: string
-        metadata:
-          type: string
-        contentType:
-          type: string
-        url:
-          type: string
-        optionLambdaId:
-          type: string
-        variableIds:
-          type: array
-          items:
-            type: string
-    NLUCard:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          intents:
-            type: array
-            items:
-              $ref: '#/components/schemas/NLUIntent'
-          entities:
-            type: array
-            items:
-              $ref: '#/components/schemas/NLUEntity'
-    BaseError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        errorMessage:
-          type: string
-    GoogleAssistantImage:
-      type: object
-      properties:
-        googleCardImageUrl:
-          type: string
-        googleCardImageAccessibilityText:
-          type: string
-    ServiceLatencyLog:
-      type: object
-      properties:
-        date_format:
-          type: string
-        currentMetric:
-          $ref: '#/components/schemas/ServiceLatencyMetric'
-        serviceLatencyMetricSet:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServiceLatencyMetric'
-          uniqueItems: true
-        init_STAGE:
-          type: string
-        currentStageMetric:
-          $ref: '#/components/schemas/ServiceLatencyMetric'
-    User:
-      type: object
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        emailId:
-          type: string
-        phone:
-          type: string
-    ServiceLatencyMetric:
-      type: object
-      properties:
-        metricName:
-          type: string
-        startTime:
-          type: integer
-          format: int64
-        latency:
-          type: integer
-          format: int64
-        prevLatency:
-          type: integer
-          format: int64
-    Attachment:
-      type: object
-      discriminator:
-        propertyName: type
-      properties:
-        uri:
-          type: string
-        title:
-          type: string
-        text:
-          type: string
-        maskedText:
-          type: string
-        attachmentId:
-          type: string
-        description:
-          type: string
-        style:
-          type: string
-        quickReply:
-          $ref: '#/components/schemas/QuickReply'
-        timestamp:
-          type: integer
-          format: int64
-        isReviewEnabled:
-          type: boolean
-        feedbackValue:
-          type: string
-        isCustomReplyEnabled:
-          type: boolean
-        attachmentLambdaId:
-          type: string
-        srcLangForSavedQNA:
-          type: string
-        attachmentResponseType:
-          type: string
-          enum:
-          - KNOWLEDGE_BASE_RESPONSE
-          - ANSWER_AI_RESPONSE
-          - INTENT_RESPONSE
-          - SUB_WORKFLOW_RESPONSE
-          - ANSWER_GPT_RESPONSE
-          - ANSWER_NET_MULTI_SOURCE
-          - NBA_RESPONSE
-          - SUGGESTIONS_RESPONSE
-        variantId:
-          type: string
-        intentId:
-          type: string
-        responseId:
-          type: integer
-          format: int64
-        nodeName:
-          type: string
-        tooltip:
-          type: string
-        properties:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attribute'
-        version:
-          type: string
-        type:
-          type: string
-      required:
-      - type
-    Attribute:
-      type: object
-      properties:
-        type:
-          type: string
-        name:
-          type: string
-        value:
-          type: string
-        scope:
-          type: string
-          enum:
-          - SESSION
-          - LIFE_TIME
-          - INTENT
-          - DAILY_TIMER
-          - WEEKLY_TIMER
-          - MONTHLY_TIMER
-          - YEARLY_TIMER
-          - TIME_BASED
-          - RESPONSE_MERGE
-          - CONDITION_VALIDATION
-          - BOTH
-          - DEFAULT
-          - DEFAULT_RESPONSE
-          - NODE
-          - MESSAGE
-    ContentDisposition:
-      type: object
-      properties:
-        type:
-          type: string
-        name:
-          type: string
-        filename:
-          type: string
-        charset:
-          type: string
-        formData:
-          type: boolean
-        attachment:
-          type: boolean
-        inline:
-          type: boolean
-    Card:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          buttons:
-            type: array
-            items:
-              $ref: '#/components/schemas/Button'
-    OneTimeNotificationRequest:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          payload:
-            type: string
-    PriceInfo:
-      type: object
-      properties:
-        title:
-          type: string
-        amount:
-          type: number
-          format: double
-        currency:
-          type: string
-    RetryHistory:
-      type: object
-      properties:
-        category:
-          type: string
-        reasoning:
-          type: string
-        retryFeedback:
-          type: string
-    SourceDetails:
-      type: object
-      properties:
-        text:
-          type: string
-        uuid:
-          type: string
-        page_number:
-          type: array
-          items:
-            type: integer
-            format: int32
-        name:
-          type: string
-        type:
-          type: string
-        index:
-          type: integer
-          format: int32
-    Email:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          from:
-            type: string
-          replyTo:
-            type: string
-          to:
-            type: array
-            items:
-              type: string
-          cc:
-            type: array
-            items:
-              type: string
-          sentDate:
-            type: string
-            format: date-time
-          subject:
-            type: string
-          body:
-            type: string
-          attachmentUrls:
-            type: array
-            items:
-              type: string
-          htmlBody:
-            type: string
-          threadId:
-            type: string
-          emailThread:
-            $ref: '#/components/schemas/Email'
-          eventType:
-            type: string
-          ticketOwnerType:
-            type: string
-          status:
-            type: string
-          sendStatus:
-            type: string
-          caseCategory:
-            type: string
-          user:
-            $ref: '#/components/schemas/User'
-          payload:
-            type: object
-            additionalProperties:
-              type: string
-          bcc:
-            type: array
-            items:
-              type: string
-          maskedHtml:
-            type: string
-    GoogleAssistantButton:
-      type: object
-      properties:
-        googleCardButtonTitle:
-          type: string
-        googleCardButtonUrl:
-          type: string
-    GroupList:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          subTitle:
-            type: string
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/GroupItem'
-    ReceiptElement:
-      type: object
-      properties:
-        title:
-          type: string
-        subtitle:
-          type: string
-        quantity:
-          type: integer
-          format: int32
-        price:
-          type: number
-          format: float
-        currency:
-          type: string
-        imageUrl:
-          type: string
-    NBAAttachment:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          nbaObjects:
-            type: array
-            items:
-              $ref: '#/components/schemas/NBAServiceObject'
-    AbstractPostback:
-      type: object
-      discriminator:
-        propertyName: type
-      properties:
-        payload:
-          type: string
-        type:
-          type: string
-      required:
-      - type
-    Carousel:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          elements:
-            type: array
-            items:
-              $ref: '#/components/schemas/GenericElement'
-          carouselImageAspectRatio:
-            type: string
-            enum:
-            - SQUARE
-            - HORIZONTAL
-    GoogleAssistantSuggestionChip:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          chipDisplayResponse:
-            type: string
-          chipVoiceResponse:
-            type: string
-          chips:
-            type: array
-            items:
-              type: string
-    EventTemplatePayload:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          eventType:
-            type: string
-          values:
-            type: object
-            additionalProperties: {}
-    ConversationContextHistory:
-      type: object
-      properties:
-        actor:
-          type: string
-        content:
-          type: string
-        rephrasedQuery:
-          type: string
-        responseSubType:
-          type: string
-        responseType:
-          type: string
-        properties:
-          type: array
-          items:
-            $ref: '#/components/schemas/Attribute'
-        intent:
-          type: string
-        icInfo:
-          type: object
-          additionalProperties: {}
-        agenticInfo:
-          type: object
-          additionalProperties: {}
-        toolsInvoked:
-          type: array
-          items: {}
-        gaiModeration:
-          $ref: '#/components/schemas/GenAiModerationInfo'
-        fillers:
-          type: array
-          items:
-            $ref: '#/components/schemas/FillerInfo'
-    FillerText:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          id:
-            type: string
-          isVariationsEnabled:
-            type: boolean
-          variations:
-            type: array
-            items:
-              $ref: '#/components/schemas/Variation'
-    Text:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          id:
-            type: string
-          isVariationsEnabled:
-            type: boolean
-          variations:
-            type: array
-            items:
-              $ref: '#/components/schemas/Variation'
-    MultiSource:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          multipleSourceDetails:
-            type: array
-            items:
-              $ref: '#/components/schemas/SourceDetails'
-    Button:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - POST_BACK
-          - BUY
-          - CALL
-          - NESTED
-          - SHARE
-          - WEB
-          - DEEP_LINK
-        url:
-          type: string
-        title:
-          type: string
-        payload:
-          type: string
-        webview_height_ratio:
-          type: string
-          enum:
-          - compact
-          - tall
-          - full
-        messenger_extensions:
-          type: boolean
-        fallback_url:
-          type: string
-    GenericElement:
-      type: object
-      properties:
-        title:
-          type: string
-        imageUrl:
-          type: string
-        subtitle:
-          type: string
-        itemUrl:
-          type: string
-        buttons:
-          type: array
-          items:
-            $ref: '#/components/schemas/Button'
-        description:
-          type: string
-        videoUrl:
-          type: string
-        thumbnailUrl:
-          type: string
-    Session:
-      type: object
-      properties:
-        sessionId:
-          type: string
-        isFirst:
-          type: boolean
-        startTime:
-          type: integer
-          format: int64
-        endTime:
-          type: integer
-          format: int64
-        duration:
-          type: integer
-          format: int64
-        status:
-          type: string
-    NLUEntityValue:
-      type: object
-      properties:
-        type:
-          type: string
-        value:
-          type: string
-    PostbackItem:
-      allOf:
-      - $ref: '#/components/schemas/AbstractPostback'
-      - type: object
-        properties:
-          referral:
-            $ref: '#/components/schemas/PostbackReferral'
-    ProductInfo:
-      type: object
-      properties:
-        title:
-          type: string
-        value:
-          type: string
-    PromptValue:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        synonyms:
-          type: array
-          items:
-            type: string
-    ListTemplate:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          elements:
-            type: array
-            items:
-              $ref: '#/components/schemas/GenericElement'
-          buttons:
-            type: array
-            items:
-              $ref: '#/components/schemas/Button'
-    AgentDeskForm:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          status:
-            type: string
-            enum:
-            - PENDING
-            - REJECTED
-            - SUBMITTED
-    Adjustment:
-      type: object
-      properties:
-        name:
-          type: string
-        amount:
-          type: number
-          format: double
     Error:
       type: object
       properties:
@@ -1867,7 +472,6 @@ components:
           - CLIENT_REQUEST
           - HUMAN_HANDOFF_RESPONSE
           - HUMAN_HANDOFF_REQUEST
-    HttpRange: {}
     ContextualAttributeServiceObject:
       type: object
       properties:
@@ -2053,6 +657,958 @@ components:
           type: string
         defaultValue:
           type: string
+    ContentDisposition:
+      type: object
+      properties:
+        type:
+          type: string
+        name:
+          type: string
+        filename:
+          type: string
+        charset:
+          type: string
+        formData:
+          type: boolean
+        attachment:
+          type: boolean
+        inline:
+          type: boolean
+    Visitor:
+      type: object
+      properties:
+        externalId:
+          type: string
+        token:
+          type: string
+        conversationId:
+          type: string
+        mobileNumber:
+          type: string
+        emailId:
+          type: string
+        name:
+          type: string
+        gender:
+          type: string
+          enum:
+          - MALE
+          - FEMALE
+          - UNKNOWN
+          - BOT
+        channel:
+          type: string
+          enum:
+          - MESSENGER
+          - SUNSHINE_CONVERSATIONS_LINE
+          - EMAIL
+          - TWITTER
+          - REST
+          - LINE
+          - WHATS_APP
+          - AGENTDESK
+          - FRESHDESK
+          - ZENDESK
+          - SALESFORCE
+          - WEB_PLUGIN
+          - PUB_SUB
+          - ANDROID
+          - IOS
+          - WINDOWS
+          - LITHIUM
+          - ALEXA
+          - GOOGLE_ASSISTANT
+          - ZENDESK_CHAT
+          - FACEBOOK_POST
+          - SPRINKLR_FACEBOOK
+          - SPRINKLR_WHATSAPP_BUSINESS
+          - KHOROS_FB_POST
+          - KHOROS_TWITTER_POST
+          - KHOROS_TWITTER_CHAT
+          - KHOROS_FACEBOOK_CHAT
+          - PUBNUB
+          - ZOHO_DESK
+          - NETOMI_WEB_WIDGET
+          - DEFAULT_CHANNEL
+          - NLU_API
+          - HELPSHIFT
+          - GLADLY_EMAIL
+          - GLADLY_WEB_CHAT
+          - CHAT_API
+          - EMAIL_API
+          - CHAT_CHANNEL
+          - EMAIL_CHANNEL
+          - VOICE_CHANNEL
+          - NETOMI_VOICE
+        location:
+          type: string
+        type:
+          type: string
+          enum:
+          - EXTERNAL
+          - INTERNAL
+          - TEST
+        conversationMode:
+          type: string
+          enum:
+          - BLOCKED_TEMPORARY
+          - BLOCKED_PERMANENTLY
+          - ACTIVE_HUMAN_ASSISTANCE
+          - ACTIVE_BOT
+        profilePictureUrl:
+          type: string
+        botReferenceId:
+          type: string
+        botId:
+          type: string
+        actor:
+          type: string
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+        authorId:
+          type: string
+    FlightSchedule:
+      type: object
+      properties:
+        boardingTime:
+          type: string
+          format: date-time
+        departureTime:
+          type: string
+          format: date-time
+        arrivalTime:
+          type: string
+          format: date-time
+    SemanticMessage:
+      type: object
+      properties:
+        language:
+          type: string
+          enum:
+          - ENGLISH
+          - FRENCH
+          - ITALIAN
+        enrichedMessage:
+          type: string
+        tone:
+          type: string
+          enum:
+          - ANGRY
+          - HAPPY
+          - POLITE
+          - SAD
+          - DELIGHTFUL
+        sentiment:
+          type: string
+          enum:
+          - POSITIVE
+          - NEGATIVE
+          - NEUTRAL
+        metaIntent:
+          $ref: '#/components/schemas/MetaIntent'
+        intents:
+          type: array
+          items:
+            $ref: '#/components/schemas/Intent'
+        keywords:
+          type: array
+          items:
+            type: string
+          uniqueItems: true
+        isUtteranceAnAnswer:
+          type: boolean
+        entityConfusion:
+          type: boolean
+        entityConfusionType:
+          type: string
+          enum:
+          - INTER
+          - INTRA
+          - NONE
+        maskedUtterance:
+          type: string
+        nluInfo: {}
+        entities:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContextualAttributeServiceObject'
+        conversationContextHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversationContextHistory'
+    CustomResponseField:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        botId:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        values:
+          type: array
+          items:
+            type: string
+        customId:
+          type: integer
+          format: int64
+        rule:
+          type: string
+        customFieldId:
+          type: string
+        customFieldValueType:
+          type: string
+        valueHtml:
+          type: string
+        active:
+          type: boolean
+    PostbackButton:
+      allOf:
+      - $ref: '#/components/schemas/AbstractPostback'
+      - type: object
+        properties:
+          title:
+            type: string
+    GroupItem:
+      type: object
+      properties:
+        header:
+          type: string
+        title:
+          type: string
+        subTitle:
+          type: string
+        description:
+          type: string
+        value:
+          type: string
+    ServiceResponse:
+      type: object
+      properties:
+        statusCode:
+          type: string
+        statusMessage:
+          type: string
+        exceptionCode:
+          type: string
+          enum:
+          - DATA_NOT_FOUND
+          - INVALID_PAYMENT_MODE_ERROR
+          - LINK_CANNOT_CREATED
+          - OBJECT_DEEP_COPY_CLONE_FAILED_ERROR
+          - API_EMPTY_PAYLOAD_ERROR
+          - LANGUAGE_NOT_CONFIGURED
+          - CLIENT_API_CREDENTIAL_MISSING_ERROR
+          - CLIENT_API_CREDENTIAL_DOES_NOT_EXIST_ERROR
+          - INVALID_PAYMENT_CARD_ERROR
+          - INVALID_JOB_CLASS_NAME_ERROR
+          - JOB_SCHEDULER_ERROR
+          - DB_FETCH_ERROR
+          - DB_INSERT_ERROR
+          - DOWN_STREAM_SERVICE_ERROR
+          - ILLEGAL_LINK_ID
+          - DESERIALIZATION_FAILED_ERROR
+          - SERIALIZATION_FAILED_ERROR
+          - READING_FILE_FAILED_ERROR
+          - INVALID_INPUT_ERROR
+          - UN_SUPPORTED_OPERATION_ERROR
+          - CONNECTION_TIME_OUT_ERROR
+          - DRUID_QUERY_TIME_OUT_ERROR
+          - AUTHENTICATION_FAILED_ERROR
+          - AUTHORIZATION_FAILED_ERROR
+          - HTTPS_SECURE_GATEWAY_ERROR
+          - CONNECTION_REFUSED_ERROR
+          - RESOURCE_NOT_FOUND_ERROR
+          - ENCRYPTION_FAILED_ERROR
+          - INPUT_DATA_CORRUPTED_ERROR
+          - CONNECTION_RESET_ERROR
+          - THROTTLE_ERROR
+          - RATE_LIMIT_EXCEED_ERROR
+          - UN_AUTHORISED_ERROR
+          - CASSANDRA_DB_ERROR
+          - MYSQL_DB_ERROR
+          - KAFKA_BROKER_ERROR
+          - DRUID_TRANQUILITY_SERVER_ERROR
+          - INSTANTIATION_FAILED_ERROR
+          - ILLEGAL_ACCESS_ERROR
+          - DRUID_QUERY_BROKER_ERROR
+          - UN_AUTHORISED_ACCESS
+          - BAD_CREDENTIAL
+          - ACCESS_TOKEN_EXPIRED
+          - USER_DOES_NOT_EXIST
+          - SIGN_UP_LINK_EXPIRED
+          - RESET_PASSWORD_LINK_EXPIRED
+          - USER_ACCOUNT_TEMPORARY_BLOCKED
+          - LOGIN_SUCCESS
+          - ILLEGAL_PERMISSION_ENTITY_ADDITION
+          - NO_TWO_PERMISSION_ENITITY_EXCEPTION
+          - ILLEGEAL_TOKEN_HEADER
+          - NO_SECURITY_CONTEXT_HOLDER
+          - UNAUTHORIZED_API_REQUEST
+          - INVALID_ROLE
+          - INSUFFICIENT_PERMISSION
+          - MVEL_EXPRESSION_INVALID
+          - MVEL_EXPRESSION_PROPERTY_MISSING
+          - STANDARD_RESPONSE_EMPTY
+          - TARGET_BUCKET_NOT_FOUND
+          - TARGET_BUCKET_RESPONSE_NOT_FOUND
+          - INSUFFICIENT_ATTRIBUTE
+          - CONTEXT_RESPONSE_EMPTY
+          - CONVERSATION_NULL
+          - NULL_TOKEN_CREATED
+          - USER_NOT_FOUND
+          - WORKFLOW_NOT_FOUND
+          - USER_NOT_ACTIVATED
+          - INVALID_BOT_DETAILS
+          - INVALID_CONF
+          - INVALID_CONFIGURATION
+          - COMPRESS_STRING_ERROR
+          - DE_COMPRESS_STRING_ERROR
+          - EXPERIMENT_NOT_FOUND
+          - NO_LOCALE_CONFIGURED
+          - ACCESS_LOCKED
+          - ATTEMPTS_EXCEEDED
+          - MESSAGE_SWALLOWED
+          - INTERNAL_SERVER_ERROR
+          - FACEBOOK_API_EXCEPTION
+          - ALREADY_EXISTS_ENTITY_EXCEPTION
+          - CLUSTERING_FILE_REJECTED_EXCEPTION
+          - CLUSTERING_DATA_INSERTION_INTO_DB_EXCEPTION
+          - DATA_SCIENCE_CLUSTERING_FAILED_EXCEPTION
+          - CLUSTERING_UTTERANCE_DATA_INSERTION_FAILED_EXCEPTION
+          - CLUSTERING_UTTERANCE_INFO_INSERTION_FAILED_EXCEPTION
+          - EXISTING_CLUSTERS_DELETION_EXCEPTION
+          - REQUEST_PAYLOAD_MAX_SIZE_EXCEED_ERROR
+          - GO_LIVE_PRECONDITION_FAILED
+          - DEFAULT_TEMPLATE_DOES_NOT_EXIST_EXCEPTION
+          - SUB_WORKFLOW_DELETE_PRECONDITION_FAILED
+          - INTENT_IN_USE
+          - DECRYPTION_EXCEPTION
+          - ENCRYPTION_EXCEPTION
+          - CONNECTION_FAILED
+          - DELETE_FAILED
+          - GOOGLE_TRANSLATION_API_EXCEPTION
+          - AWS_LAMBDA_API_EXCEPTION
+          - TRANSLATION_FAILED
+          - INVALID_ORCHESTRATOR_STATE_REACHED
+          - MCP_ERROR
+          - MCP_VALIDATION_ERROR
+          - MCP_SERVER_NOT_FOUND
+          - MAX_MANIFEST_LIMIT_REACHED
+          - MANIFEST_DELETE_VALIDATION_FAILED
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/BaseError'
+        taskStatus:
+          type: array
+          items: {}
+        payload: {}
+    GoogleAssistantImage:
+      type: object
+      properties:
+        googleCardImageUrl:
+          type: string
+        googleCardImageAccessibilityText:
+          type: string
+    ReceiptElement:
+      type: object
+      properties:
+        title:
+          type: string
+        subtitle:
+          type: string
+        quantity:
+          type: integer
+          format: int32
+        price:
+          type: number
+          format: float
+        currency:
+          type: string
+        imageUrl:
+          type: string
+    GenericFileAttachment:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          fileURL:
+            type: string
+          fileType:
+            type: string
+          fileSize:
+            type: string
+    ServiceLatencyLog:
+      type: object
+      properties:
+        date_format:
+          type: string
+        currentMetric:
+          $ref: '#/components/schemas/ServiceLatencyMetric'
+        serviceLatencyMetricSet:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceLatencyMetric'
+          uniqueItems: true
+        init_STAGE:
+          type: string
+        currentStageMetric:
+          $ref: '#/components/schemas/ServiceLatencyMetric'
+    MessageInfoAttachment:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          values:
+            type: object
+            additionalProperties:
+              type: array
+              items:
+                type: string
+    AirlineItineraryTemplatePayload:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          introMessage:
+            type: string
+          locale:
+            type: string
+          themeColor:
+            type: string
+          pnrNumber:
+            type: string
+          passengerInfoList:
+            type: array
+            items:
+              $ref: '#/components/schemas/PassengerInfo'
+          flightInfoList:
+            type: array
+            items:
+              $ref: '#/components/schemas/FlightInfo'
+          passengerSegmentInfoList:
+            type: array
+            items:
+              $ref: '#/components/schemas/PassengerSegmentInfo'
+          priceInfoList:
+            type: array
+            items:
+              $ref: '#/components/schemas/PriceInfo'
+          basePrice:
+            type: number
+            format: double
+          tax:
+            type: number
+            format: double
+          totalPrice:
+            type: number
+            format: double
+          currency:
+            type: string
+    HttpRange: {}
+    SourceDetails:
+      type: object
+      properties:
+        text:
+          type: string
+        uuid:
+          type: string
+        page_number:
+          type: array
+          items:
+            type: integer
+            format: int32
+        name:
+          type: string
+        type:
+          type: string
+        index:
+          type: integer
+          format: int32
+    ModerationResponse:
+      type: object
+      properties:
+        triggered:
+          type: boolean
+        category:
+          type: string
+        reasoning:
+          type: string
+        retryFeedback:
+          type: string
+        retryHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/RetryHistory'
+        moderationResponse:
+          $ref: '#/components/schemas/GenAiModerationResponseType'
+    AirlineUpdateTemplatePayload:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          introMessage:
+            type: string
+          updateType:
+            type: string
+          locale:
+            type: string
+          themeColor:
+            type: string
+          pnrNumber:
+            type: string
+          updateFlightInfo:
+            $ref: '#/components/schemas/FlightInfo'
+    OneTimeNotificationRequest:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          payload:
+            type: string
+    FillerText:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          id:
+            type: string
+          isVariationsEnabled:
+            type: boolean
+          variations:
+            type: array
+            items:
+              $ref: '#/components/schemas/Variation'
+    FlightAirport:
+      type: object
+      properties:
+        airportCode:
+          type: string
+        city:
+          type: string
+        terminal:
+          type: string
+        gate:
+          type: string
+    GroupList:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          subTitle:
+            type: string
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/GroupItem'
+    FlightInfo:
+      type: object
+      properties:
+        connectionId:
+          type: string
+        segmentId:
+          type: string
+        flightNumber:
+          type: string
+        aircraftType:
+          type: string
+        departureAirport:
+          $ref: '#/components/schemas/FlightAirport'
+        arrivalAirport:
+          $ref: '#/components/schemas/FlightAirport'
+        flightSchedule:
+          $ref: '#/components/schemas/FlightSchedule'
+        travelClass:
+          type: string
+    ProductInfo:
+      type: object
+      properties:
+        title:
+          type: string
+        value:
+          type: string
+    GoogleAssistantMicAttachment:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          micStatus:
+            type: string
+    HttpMethod: {}
+    EmailTemplate:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          id:
+            type: integer
+            format: int64
+          name:
+            type: string
+          scope:
+            type: string
+            enum:
+            - GLOBAL_TEMPLATE
+            - BOT_TEMPLATE
+            - INSTANCE
+          salutation:
+            type: string
+          greetings:
+            type: string
+          feedback:
+            type: string
+          signOff:
+            type: string
+          toneId:
+            type: string
+          from:
+            type: string
+          replyTo:
+            type: string
+          to:
+            type: array
+            items:
+              type: string
+          cc:
+            type: array
+            items:
+              type: string
+          bcc:
+            type: array
+            items:
+              type: string
+          subject:
+            type: string
+          textHtml:
+            type: string
+          maskedHtml:
+            type: string
+          body:
+            type: string
+          attachmentUrls:
+            type: array
+            items:
+              type: string
+          priority:
+            type: integer
+            format: int32
+          eventType:
+            type: string
+          ticketOwnerType:
+            type: string
+          status:
+            type: string
+          ticketStatus:
+            type: string
+          referenceId:
+            type: string
+          sendStatus:
+            type: string
+          caseCategory:
+            type: string
+          isEdited:
+            type: boolean
+          isDeleted:
+            type: boolean
+          emailAttachmentId:
+            type: string
+          isVariationsEnabled:
+            type: boolean
+          variations:
+            type: array
+            items:
+              $ref: '#/components/schemas/Variation'
+    Video:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          thumbnailUrl:
+            type: string
+          thumbnail:
+            type: string
+    BoardingPass:
+      type: object
+      properties:
+        passengerName:
+          type: string
+        pnrNumber:
+          type: string
+        travelClass:
+          type: string
+        seat:
+          type: string
+        auxiliaryFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/AirlineField'
+        secondaryFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/AirlineField'
+        logoImageUrl:
+          type: string
+        headerImageUrl:
+          type: string
+        headerTextField:
+          type: string
+        qrCode:
+          type: string
+        barcodeImageUrl:
+          type: string
+        aboveBarCodeImageUrl:
+          type: string
+        flightInfo:
+          $ref: '#/components/schemas/FlightInfo'
+    ImageCard:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          largeImageUrl:
+            type: string
+          buttons:
+            type: array
+            items:
+              $ref: '#/components/schemas/Button'
+    AgentDeskResponse:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          sendStatus:
+            type: string
+          caseCategory:
+            type: string
+          caseStatus:
+            type: string
+          eventType:
+            type: string
+          ticketOwnerType:
+            type: string
+          standby:
+            type: boolean
+          emailId:
+            type: string
+    AbstractPostback:
+      type: object
+      discriminator:
+        propertyName: type
+      properties:
+        payload:
+          type: string
+        type:
+          type: string
+      required:
+      - type
+    NLUEntityValue:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+    Audio:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+    AgentDeskChannelMetaInfo:
+      allOf:
+      - $ref: '#/components/schemas/AbstractChannelMetaInfo'
+      - type: object
+        properties:
+          sendStatus:
+            type: string
+          caseCategory:
+            type: string
+          caseStatus:
+            type: string
+          ticketOwnerType:
+            type: string
+          eventType:
+            type: string
+          subject:
+            type: string
+          emailId:
+            type: string
+          phone:
+            type: string
+          firstName:
+            type: string
+          lastName:
+            type: string
+          acquisitionChannel:
+            type: string
+            enum:
+            - SMS
+            - EMAIL
+            - MESSENGER
+            writeOnly: true
+          visitorAcquisitionChannel:
+            type: string
+            enum:
+            - SMS
+            - EMAIL
+            - MESSENGER
+    Receipt:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          name:
+            type: string
+          orderNumber:
+            type: string
+          currency:
+            type: string
+          paymentMethod:
+            type: string
+          orderUrl:
+            type: string
+          address:
+            $ref: '#/components/schemas/Address'
+          summary:
+            $ref: '#/components/schemas/Summary'
+          adjustments:
+            type: array
+            items:
+              $ref: '#/components/schemas/Adjustment'
+          elements:
+            type: array
+            items:
+              $ref: '#/components/schemas/ReceiptElement'
+    PostbackReferral:
+      type: object
+      properties:
+        ref:
+          type: string
+        source:
+          type: string
+        type:
+          type: string
+    ServiceLatencyMetric:
+      type: object
+      properties:
+        metricName:
+          type: string
+        startTime:
+          type: integer
+          format: int64
+        latency:
+          type: integer
+          format: int64
+        prevLatency:
+          type: integer
+          format: int64
+    GoogleAssistantText:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          voiceText:
+            type: string
+          displayText:
+            type: string
+    FillerInfo:
+      type: object
+      properties:
+        text:
+          type: string
+    AbstractChannelMetaInfo:
+      discriminator:
+        propertyName: type
+      properties:
+        type:
+          type: string
+      required:
+      - type
+    MediaType:
+      type: object
+      properties:
+        type:
+          type: string
+        subtype:
+          type: string
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+        qualityValue:
+          type: number
+          format: double
+        wildcardType:
+          type: boolean
+        wildcardSubtype:
+          type: boolean
+        subtypeSuffix:
+          type: string
+        concrete:
+          type: boolean
+        charset:
+          type: string
+    GenericAttachment:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          payloadType:
+            type: string
+          payloadValue:
+            type: string
+    NBAAttachment:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          nbaObjects:
+            type: array
+            items:
+              $ref: '#/components/schemas/NBAServiceObject'
+    GoogleAssistantButton:
+      type: object
+      properties:
+        googleCardButtonTitle:
+          type: string
+        googleCardButtonUrl:
+          type: string
+    AgentInfo:
+      type: object
+      properties:
+        agentId:
+          type: string
+        avatar:
+          type: string
+        displayName:
+          type: string
+        agentUserSessionId:
+          type: string
+    GoogleAssistantSuggestionChip:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          chipDisplayResponse:
+            type: string
+          chipVoiceResponse:
+            type: string
+          chips:
+            type: array
+            items:
+              type: string
+    Location:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          latitude:
+            type: string
+          longitude:
+            type: string
     PassengerSegmentInfo:
       type: object
       properties:
@@ -2068,6 +1624,493 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProductInfo'
+    BotMetaInfo:
+      type: object
+      properties:
+        channel:
+          type: string
+        channelType:
+          type: string
+        botId:
+          type: string
+        botReferenceId:
+          type: string
+        region:
+          type: string
+        packageId:
+          type: string
+        languages:
+          type: array
+          items:
+            type: string
+        includeSubjectForIC:
+          type: object
+          additionalProperties:
+            type: boolean
+        multiChannelId:
+          type: string
+    AirlineBoardingPassTemplatePayload:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          introMessage:
+            type: string
+          locale:
+            type: string
+          themeColor:
+            type: string
+          boardingPass:
+            type: array
+            items:
+              $ref: '#/components/schemas/BoardingPass'
+    Message:
+      type: object
+      properties:
+        originalMessage:
+          type: string
+        maskedOriginalMessage:
+          type: string
+        visitorMessageType:
+          type: string
+          enum:
+          - TEXT
+          - LOCATION
+          - IMAGE
+          - VIDEO
+          - GIF
+          - EMOTICON
+          - CALL
+          - AUDIO
+          - POST_BACK
+          - TYPING_ON
+          - REFERRAL
+          - FACEBOOK_HANDOVER
+          - ZENDESK_CHAT_HANDOVER
+          - SUNSHINE_CONVERSATIONS_HANDOVER
+          - KHOROS_HANDOVER
+          - EMAIL
+          - SMS
+          - OTHERS
+          - OPTIN
+          - HANDOVER
+          - GLADLY_HANDOVER
+          - ATTRIBUTE_UPDATE
+          - ONE_TIME_NOTIFICATION
+        callbackUrl:
+          type: string
+        messageId:
+          type: string
+        type:
+          type: string
+          enum:
+          - VISITOR
+          - BOT
+          - INTERNAL_AGENT
+          - THIRD_PARTY_AGENT
+          - INTERNAL_EVENT
+          - AD_EVENT
+          - ASSET_EVENT
+        timestamp:
+          type: integer
+          format: int64
+        postBack:
+          oneOf:
+          - $ref: '#/components/schemas/PostbackButton'
+          - $ref: '#/components/schemas/PostbackItem'
+        referral:
+          $ref: '#/components/schemas/PostbackReferral'
+        attachments:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/AgentDeskForm'
+            - $ref: '#/components/schemas/AgentDeskResponse'
+            - $ref: '#/components/schemas/AirlineBoardingPassTemplatePayload'
+            - $ref: '#/components/schemas/AirlineCheckinTemplatePayload'
+            - $ref: '#/components/schemas/AirlineItineraryTemplatePayload'
+            - $ref: '#/components/schemas/AirlineUpdateTemplatePayload'
+            - $ref: '#/components/schemas/Audio'
+            - $ref: '#/components/schemas/Card'
+            - $ref: '#/components/schemas/Carousel'
+            - $ref: '#/components/schemas/Email'
+            - $ref: '#/components/schemas/EmailTemplate'
+            - $ref: '#/components/schemas/EventTemplatePayload'
+            - $ref: '#/components/schemas/FillerText'
+            - $ref: '#/components/schemas/GenericAttachment'
+            - $ref: '#/components/schemas/GenericFileAttachment'
+            - $ref: '#/components/schemas/GoogleAssistantBasicCard'
+            - $ref: '#/components/schemas/GoogleAssistantMicAttachment'
+            - $ref: '#/components/schemas/GoogleAssistantSuggestionChip'
+            - $ref: '#/components/schemas/GoogleAssistantText'
+            - $ref: '#/components/schemas/GroupList'
+            - $ref: '#/components/schemas/Image'
+            - $ref: '#/components/schemas/ImageCard'
+            - $ref: '#/components/schemas/ListTemplate'
+            - $ref: '#/components/schemas/Location'
+            - $ref: '#/components/schemas/MessageInfoAttachment'
+            - $ref: '#/components/schemas/MultiSource'
+            - $ref: '#/components/schemas/NBAAttachment'
+            - $ref: '#/components/schemas/NLUCard'
+            - $ref: '#/components/schemas/OneTimeNotificationRequest'
+            - $ref: '#/components/schemas/Receipt'
+            - $ref: '#/components/schemas/Text'
+            - $ref: '#/components/schemas/Video'
+        semanticMessages:
+          type: array
+          items:
+            $ref: '#/components/schemas/SemanticMessage'
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+        error:
+          $ref: '#/components/schemas/Error'
+        handoffControlType:
+          type: string
+          enum:
+          - IMPLICIT
+          - EXPLICIT
+    NLUEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/NLUEntityValue'
+    ConversationResponse:
+      type: object
+      properties:
+        propertyMap:
+          type: object
+          additionalProperties:
+            type: string
+        requestId:
+          type: string
+        botMetaInfo:
+          $ref: '#/components/schemas/BotMetaInfo'
+        visitor:
+          $ref: '#/components/schemas/Visitor'
+        locale:
+          type: string
+        channelId:
+          type: string
+        caseId:
+          type: string
+        session:
+          $ref: '#/components/schemas/Session'
+        conversationEnvironment:
+          type: string
+          enum:
+          - DEV
+          - QA
+          - UAT
+          - PROD
+          - STAGING
+          - SANDBOX
+          - LIVE
+          - SGUAT
+        channelType:
+          type: string
+          enum:
+          - EMAIL
+          - CHAT
+          - VOICE
+          - POST
+          - DEFAULT
+          - NLU_API
+        messageType:
+          type: string
+        abstractChannelMetaInfo:
+          oneOf:
+          - $ref: '#/components/schemas/AgentDeskChannelMetaInfo'
+        serviceLatencyMetrics:
+          $ref: '#/components/schemas/ServiceLatencyLog'
+        time:
+          type: string
+        intentId:
+          type: string
+        intent:
+          type: string
+        originalMessage:
+          type: string
+        skill:
+          type: string
+        skillId:
+          type: string
+        socialChannel:
+          type: string
+        requestTime:
+          type: integer
+          format: int64
+        displayName:
+          type: string
+        linkId:
+          type: string
+        status:
+          type: string
+        sendStatus:
+          type: string
+        reviewModeResponse:
+          type: string
+        tagIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        candidates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Intent'
+        responses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        allRecognizedAttributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContextualAttributeServiceObject'
+        customFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomResponseField'
+        customPayload:
+          type: object
+          additionalProperties: {}
+        agentInfo:
+          $ref: '#/components/schemas/AgentInfo'
+        requestMessageId:
+          type: string
+        ownerType:
+          type: string
+        conversationId:
+          type: string
+        triggerType:
+          type: string
+        responseStatus:
+          type: string
+        testResponse:
+          type: boolean
+        responseAnalyserResponse:
+          type: boolean
+        type:
+          type: string
+          enum:
+          - CONVERSATION_REQUEST
+          - CONVERSATION_RESPONSE
+          - ERROR
+          - AUDIT_ERROR
+          - CONVERSATION_STATE
+          - INTEGRATION_REQUEST
+          - INTEGRATION_RESPONSE
+          - CONVERSATION
+          - ASSET_TRACKING
+          - CLIENT_REQUEST
+          - HUMAN_HANDOFF_RESPONSE
+          - HUMAN_HANDOFF_REQUEST
+    ListTemplate:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          elements:
+            type: array
+            items:
+              $ref: '#/components/schemas/GenericElement'
+          buttons:
+            type: array
+            items:
+              $ref: '#/components/schemas/Button'
+    NLUCard:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          intents:
+            type: array
+            items:
+              $ref: '#/components/schemas/NLUIntent'
+          entities:
+            type: array
+            items:
+              $ref: '#/components/schemas/NLUEntity'
+    GenericElement:
+      type: object
+      properties:
+        title:
+          type: string
+        imageUrl:
+          type: string
+        subtitle:
+          type: string
+        itemUrl:
+          type: string
+        buttons:
+          type: array
+          items:
+            $ref: '#/components/schemas/Button'
+        description:
+          type: string
+        videoUrl:
+          type: string
+        thumbnailUrl:
+          type: string
+    Session:
+      type: object
+      properties:
+        sessionId:
+          type: string
+        isFirst:
+          type: boolean
+        startTime:
+          type: integer
+          format: int64
+        endTime:
+          type: integer
+          format: int64
+        duration:
+          type: integer
+          format: int64
+        status:
+          type: string
+    Attachment:
+      type: object
+      discriminator:
+        propertyName: type
+      properties:
+        uri:
+          type: string
+        title:
+          type: string
+        text:
+          type: string
+        maskedText:
+          type: string
+        attachmentId:
+          type: string
+        description:
+          type: string
+        style:
+          type: string
+        quickReply:
+          $ref: '#/components/schemas/QuickReply'
+        timestamp:
+          type: integer
+          format: int64
+        isReviewEnabled:
+          type: boolean
+        feedbackValue:
+          type: string
+        isCustomReplyEnabled:
+          type: boolean
+        attachmentLambdaId:
+          type: string
+        srcLangForSavedQNA:
+          type: string
+        attachmentResponseType:
+          type: string
+          enum:
+          - KNOWLEDGE_BASE_RESPONSE
+          - ANSWER_AI_RESPONSE
+          - INTENT_RESPONSE
+          - SUB_WORKFLOW_RESPONSE
+          - ANSWER_GPT_RESPONSE
+          - ANSWER_NET_MULTI_SOURCE
+          - NBA_RESPONSE
+          - SUGGESTIONS_RESPONSE
+        variantId:
+          type: string
+        intentId:
+          type: string
+        responseId:
+          type: integer
+          format: int64
+        nodeName:
+          type: string
+        tooltip:
+          type: string
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+        version:
+          type: string
+        type:
+          type: string
+      required:
+      - type
+    EventTemplatePayload:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          eventType:
+            type: string
+          values:
+            type: object
+            additionalProperties: {}
+    Image:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          largeImageUrl:
+            type: string
+          thumbnail:
+            type: string
+    GenAiModerationInfo:
+      type: object
+      properties:
+        type:
+          type: string
+        moderationProperties:
+          $ref: '#/components/schemas/ModerationResponse'
+    PostbackItem:
+      allOf:
+      - $ref: '#/components/schemas/AbstractPostback'
+      - type: object
+        properties:
+          referral:
+            $ref: '#/components/schemas/PostbackReferral'
+    MultiSource:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          multipleSourceDetails:
+            type: array
+            items:
+              $ref: '#/components/schemas/SourceDetails'
+    Adjustment:
+      type: object
+      properties:
+        name:
+          type: string
+        amount:
+          type: number
+          format: double
+    RetryHistory:
+      type: object
+      properties:
+        category:
+          type: string
+        reasoning:
+          type: string
+        retryFeedback:
+          type: string
+    PassengerInfo:
+      type: object
+      properties:
+        name:
+          type: string
+        ticketNumber:
+          type: string
+        passengerId:
+          type: string
     AirlineField:
       type: object
       properties:
@@ -2075,31 +2118,62 @@ components:
           type: string
         value:
           type: string
-    Video:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          thumbnailUrl:
-            type: string
-          thumbnail:
-            type: string
-    PostbackButton:
-      allOf:
-      - $ref: '#/components/schemas/AbstractPostback'
-      - type: object
-        properties:
-          title:
-            type: string
-    GenericAttachment:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          payloadType:
-            type: string
-          payloadValue:
-            type: string
+    User:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        emailId:
+          type: string
+        phone:
+          type: string
+    Summary:
+      type: object
+      properties:
+        subtotal:
+          type: number
+          format: double
+        shipping_cost:
+          type: number
+          format: double
+        total_tax:
+          type: number
+          format: double
+        total_cost:
+          type: number
+          format: double
+    MetaIntent:
+      type: object
+      properties:
+        tone:
+          $ref: '#/components/schemas/MetaEntity'
+        topic:
+          $ref: '#/components/schemas/MetaEntity'
+        returnType:
+          $ref: '#/components/schemas/MetaEntity'
+    NBAServiceObject:
+      type: object
+      properties:
+        type:
+          type: string
+        description:
+          type: string
+        shortText:
+          type: string
+        longText:
+          type: string
+        pageURL:
+          type: string
+    MetaEntity:
+      type: object
+      properties:
+        name:
+          type: string
+        confidence:
+          type: number
+          format: double
     GenAiModerationResponseType:
       type: object
       properties:
@@ -2109,6 +2183,184 @@ components:
           type: string
         fallbackResponseType:
           type: string
+    QuickReply:
+      type: object
+      properties:
+        description:
+          type: string
+        type:
+          type: string
+        style:
+          type: string
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/Option'
+    Variation:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - TEXT
+          - IMAGE
+        text:
+          type: string
+        isEnabled:
+          type: boolean
+    PromptValue:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        synonyms:
+          type: array
+          items:
+            type: string
+    GoogleAssistantBasicCard:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          googleCardTitle:
+            type: string
+          googleCardSubTitle:
+            type: string
+          googleCardTextBody:
+            type: string
+          googleCardButtons:
+            type: array
+            items:
+              $ref: '#/components/schemas/GoogleAssistantButton'
+          googleCardImage:
+            $ref: '#/components/schemas/GoogleAssistantImage'
+          googleCardFormattedText:
+            type: string
+          googleCardImageDisplayOption:
+            type: string
+    Option:
+      type: object
+      properties:
+        label:
+          type: string
+        description:
+          type: string
+        metadata:
+          type: string
+        contentType:
+          type: string
+        url:
+          type: string
+        optionLambdaId:
+          type: string
+        variableIds:
+          type: array
+          items:
+            type: string
+    AirlineCheckinTemplatePayload:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          introMessage:
+            type: string
+          locale:
+            type: string
+          themeColor:
+            type: string
+          pnrNumber:
+            type: string
+          flightInfoList:
+            type: array
+            items:
+              $ref: '#/components/schemas/FlightInfo'
+          checkinUrl:
+            type: string
+    ConversationContextHistory:
+      type: object
+      properties:
+        actor:
+          type: string
+        content:
+          type: string
+        rephrasedQuery:
+          type: string
+        responseSubType:
+          type: string
+        responseType:
+          type: string
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attribute'
+        intent:
+          type: string
+        icInfo:
+          type: object
+          additionalProperties: {}
+        agenticInfo:
+          type: object
+          additionalProperties: {}
+        toolsInvoked:
+          type: array
+          items: {}
+        gaiModeration:
+          $ref: '#/components/schemas/GenAiModerationInfo'
+        fillers:
+          type: array
+          items:
+            $ref: '#/components/schemas/FillerInfo'
+    Text:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          id:
+            type: string
+          isVariationsEnabled:
+            type: boolean
+          variations:
+            type: array
+            items:
+              $ref: '#/components/schemas/Variation'
+    Attribute:
+      type: object
+      properties:
+        type:
+          type: string
+        name:
+          type: string
+        value:
+          type: string
+        scope:
+          type: string
+          enum:
+          - SESSION
+          - LIFE_TIME
+          - INTENT
+          - DAILY_TIMER
+          - WEEKLY_TIMER
+          - MONTHLY_TIMER
+          - YEARLY_TIMER
+          - TIME_BASED
+          - RESPONSE_MERGE
+          - CONDITION_VALIDATION
+          - BOTH
+          - DEFAULT
+          - DEFAULT_RESPONSE
+          - NODE
+          - MESSAGE
+    Card:
+      allOf:
+      - $ref: '#/components/schemas/Attachment'
+      - type: object
+        properties:
+          buttons:
+            type: array
+            items:
+              $ref: '#/components/schemas/Button'
     HttpHeaders:
       type: object
       properties:
@@ -2282,265 +2534,13 @@ components:
         date:
           type: integer
           format: int64
-    NLUEntity:
+    PriceInfo:
       type: object
       properties:
-        id:
-          type: string
-        name:
-          type: string
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/NLUEntityValue'
-    MetaEntity:
-      type: object
-      properties:
-        name:
-          type: string
-        confidence:
-          type: number
-          format: double
-    AgentDeskResponse:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          sendStatus:
-            type: string
-          caseCategory:
-            type: string
-          caseStatus:
-            type: string
-          eventType:
-            type: string
-          ticketOwnerType:
-            type: string
-          standby:
-            type: boolean
-          emailId:
-            type: string
-    Image:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          largeImageUrl:
-            type: string
-          thumbnail:
-            type: string
-    BotMetaInfo:
-      type: object
-      properties:
-        channel:
-          type: string
-        channelType:
-          type: string
-        botId:
-          type: string
-        botReferenceId:
-          type: string
-        region:
-          type: string
-        packageId:
-          type: string
-        languages:
-          type: array
-          items:
-            type: string
-        includeSubjectForIC:
-          type: object
-          additionalProperties:
-            type: boolean
-        multiChannelId:
-          type: string
-    NLUIntent:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        confidence:
-          type: number
-          format: double
-    ModerationResponse:
-      type: object
-      properties:
-        triggered:
-          type: boolean
-        category:
-          type: string
-        reasoning:
-          type: string
-        retryFeedback:
-          type: string
-        retryHistory:
-          type: array
-          items:
-            $ref: '#/components/schemas/RetryHistory'
-        moderationResponse:
-          $ref: '#/components/schemas/GenAiModerationResponseType'
-    AirlineCheckinTemplatePayload:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          introMessage:
-            type: string
-          locale:
-            type: string
-          themeColor:
-            type: string
-          pnrNumber:
-            type: string
-          flightInfoList:
-            type: array
-            items:
-              $ref: '#/components/schemas/FlightInfo'
-          checkinUrl:
-            type: string
-    CustomResponseField:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        botId:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-        values:
-          type: array
-          items:
-            type: string
-        customId:
-          type: integer
-          format: int64
-        rule:
-          type: string
-        customFieldId:
-          type: string
-        customFieldValueType:
-          type: string
-        valueHtml:
-          type: string
-        active:
-          type: boolean
-    Receipt:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          name:
-            type: string
-          orderNumber:
-            type: string
-          currency:
-            type: string
-          paymentMethod:
-            type: string
-          orderUrl:
-            type: string
-          address:
-            $ref: '#/components/schemas/Address'
-          summary:
-            $ref: '#/components/schemas/Summary'
-          adjustments:
-            type: array
-            items:
-              $ref: '#/components/schemas/Adjustment'
-          elements:
-            type: array
-            items:
-              $ref: '#/components/schemas/ReceiptElement'
-    Audio:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-    GoogleAssistantText:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          voiceText:
-            type: string
-          displayText:
-            type: string
-    PostbackReferral:
-      type: object
-      properties:
-        ref:
-          type: string
-        source:
-          type: string
-        type:
-          type: string
-    ImageCard:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          largeImageUrl:
-            type: string
-          buttons:
-            type: array
-            items:
-              $ref: '#/components/schemas/Button'
-    HttpMethod: {}
-    Variation:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - TEXT
-          - IMAGE
-        text:
-          type: string
-        isEnabled:
-          type: boolean
-    GoogleAssistantBasicCard:
-      allOf:
-      - $ref: '#/components/schemas/Attachment'
-      - type: object
-        properties:
-          googleCardTitle:
-            type: string
-          googleCardSubTitle:
-            type: string
-          googleCardTextBody:
-            type: string
-          googleCardButtons:
-            type: array
-            items:
-              $ref: '#/components/schemas/GoogleAssistantButton'
-          googleCardImage:
-            $ref: '#/components/schemas/GoogleAssistantImage'
-          googleCardFormattedText:
-            type: string
-          googleCardImageDisplayOption:
-            type: string
-    PassengerInfo:
-      type: object
-      properties:
-        name:
-          type: string
-        ticketNumber:
-          type: string
-        passengerId:
-          type: string
-    GroupItem:
-      type: object
-      properties:
-        header:
-          type: string
         title:
           type: string
-        subTitle:
-          type: string
-        description:
-          type: string
-        value:
+        amount:
+          type: number
+          format: double
+        currency:
           type: string
