@@ -1,0 +1,12 @@
+{
+ "url": "https://api.netomi.com/v3/api-docs",
+ "requested_url": "https://api.netomi.com/v3/api-docs",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 73260,
+ "sha256": "d458e8eb7f43b235829e69ccb3f5b0669183b757092b135c9019a75f705a026a",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
