@@ -1,22 +1,118 @@
-generated: '2026-08-01'
+generated: '2026-09-23'
 method: generated
-source: openapi/netomi-agentdesk-openapi.json
+source: openapi/netomi-agent-desk-rest-api-controller-api-openapi.yml, openapi/netomi-agent-desk-webhook-controller-api-openapi.yml,
+  openapi/netomi-asset-tracker-controller-api-openapi.yml, openapi/netomi-booking-confirmation-controller-api-openapi.yml,
+  openapi/netomi-facebook-webhook-controller-api-openapi.yml, openapi/netomi-firebase-rest-controller-api-openapi.yml,
+  openapi/netomi-freshdesk-webhook-controller-api-openapi.yml, openapi/netomi-generic-webhook-controller-api-openapi.yml,
+  openapi/netomi-generic-webhook-controller-v-2-api-openapi.yml, openapi/netomi-gladly-webhook-controller-api-openapi.yml,
+  openapi/netomi-google-assistant-webhook-controller-api-openapi.yml, openapi/netomi-health-check-controller-api-openapi.yml,
+  openapi/netomi-helpshift-webhook-controller-api-openapi.yml, openapi/netomi-nluapi-controller-api-openapi.yml,
+  openapi/netomi-oauth-token-redirect-controller-api-openapi.yml, openapi/netomi-platform-status-controller-api-openapi.yml,
+  openapi/netomi-pub-sub-controller-api-openapi.yml, openapi/netomi-query-analyzer-controller-api-openapi.yml,
+  openapi/netomi-rate-limiter-config-controller-api-openapi.yml, openapi/netomi-rest-api-controller-api-openapi.yml,
+  openapi/netomi-rest-api-controller-v-2-api-openapi.yml, openapi/netomi-rest-api-controller-v-3-api-openapi.yml,
+  openapi/netomi-salesforce-webhook-controller-api-openapi.yml, openapi/netomi-singtel-roaming-activation-webhook-controller-api-openapi.yml,
+  openapi/netomi-sprinklr-webhook-controller-api-openapi.yml, openapi/netomi-sunshine-conversations-webhook-controller-api-openapi.yml,
+  openapi/netomi-test-utterance-script-controller-api-openapi.yml, openapi/netomi-twitter-webhook-controller-api-openapi.yml,
+  openapi/netomi-visitor-authorize-webhook-controller-api-openapi.yml, openapi/netomi-webhook-event-controller-api-openapi.yml,
+  openapi/netomi-zen-desk-chat-rest-controller-api-openapi.yml, openapi/netomi-zendesk-webhook-controller-api-openapi.yml,
+  openapi/netomi-zoho-webhook-controller-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 67
   by_action_class:
-    connected: 26
-    acting: 41
+    acting: 39
+    connected: 28
   by_consequence:
-    read: 26
-    safety-critical: 41
-  human_in_the_loop_required: 41
+    safety-critical: 39
+    read: 28
+  human_in_the_loop_required: 39
 operations:
-- path: /v1/rate-limit
+- path: /v1/agentdesk/batch
+  method: post
+  operationId: conversationEngineAsync_12
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v1/agentdesk/batch/poll
+  method: post
+  operationId: postResponse_3
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v1/agentdesk/webhook
+  method: post
+  operationId: conversationEngineAsync_11
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v1/agentdesk/webhook/messages/poll
+  method: post
+  operationId: postResponse_2
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v1/agentdesk/webhook/form/submit
+  method: post
+  operationId: submitForm
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v1/agentdesk/webhook/messages
   method: get
-  operationId: fetchRateConfig
+  operationId: getResponse_7
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -24,121 +120,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/rate-limit
-  method: put
-  operationId: updatedRateConfig
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v1/rate-limit
-  method: post
-  operationId: saveRateConfig
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v1/rate-limit
-  method: delete
-  operationId: deleteRateConfig
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v2/webhook/event
-  method: post
-  operationId: triggerWebHookEvent
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v2/test-utterances/bulk
-  method: post
-  operationId: submitRequest
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v2/test-utterances/bulk/poll
-  method: post
-  operationId: pollScript
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v2/query-analyzer
-  method: post
-  operationId: submitRequest_1
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v2/messages
+- path: /v1/track
   method: get
-  operationId: getResponse
+  operationId: assets
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -146,9 +130,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v2/messages
+- path: /v1/booking
   method: post
-  operationId: conversationEngineAsync
+  operationId: bookingConfirmation
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -162,9 +146,9 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /v1/zoho/webhook
+- path: /v1/facebook/webhook
   method: get
-  operationId: subscribe
+  operationId: subscribe_2
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -172,9 +156,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/zoho/webhook
+- path: /v1/facebook/webhook
   method: post
-  operationId: conversationEngineAsync_1
+  operationId: messagesPost_3
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -188,9 +172,9 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /v1/zoho/webhook/{botRefId}
+- path: /v1/firebase/messages
   method: get
-  operationId: subscribeWithBotRefId
+  operationId: getResponse_2
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -198,9 +182,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/zoho/webhook/{botRefId}
+- path: /v1/firebase/messages
   method: post
-  operationId: conversationEngineAsyncWithBotRefId
+  operationId: conversationEngineAsync_9
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -214,57 +198,9 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /v1/zendesk/webhook
+- path: /v1/freshdesk/webhook
   method: post
-  operationId: conversationEngineAsync_2
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v1/zendesk-chat/response
-  method: post
-  operationId: getStructuredResponse
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v1/zendesk-chat/publish-social
-  method: post
-  operationId: publishToSocialOutbound
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v1/zendesk-chat/poll
-  method: post
-  operationId: getResponse_1
+  operationId: conversationEngineAsync_8
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -342,9 +278,9 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /v1/twitter/webhook/{appId}
+- path: /v1/webhook/history/{conversationId}
   method: get
-  operationId: subscribe_1
+  operationId: getConversationHistory_1
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -352,9 +288,29 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/twitter/webhook/{appId}
+- path: /v2/webhook/history/{conversationId}
+  method: get
+  operationId: getConversationHistory
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/gladly/webhook
+  method: get
+  operationId: ping
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/gladly/webhook
   method: post
-  operationId: messagesPost_2
+  operationId: conversationEngineAsync_7
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -368,9 +324,311 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /v1/sunshine-conversations/webhook
+- path: /v1/google/assistant/webhook
   method: post
-  operationId: conversationEngineAsync_3
+  operationId: googleAssistantPost
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /ceaas/v1/health/{secretId}
+  method: get
+  operationId: healthCheck
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/helpshift/webhook
+  method: post
+  operationId: conversationEngineAsync_6
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v1/helpshift/quick-reply
+  method: get
+  operationId: helpShiftQuickReply
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/nlu/predict
+  method: post
+  operationId: postRequest
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v1/nlu/poll
+  method: post
+  operationId: pollResponse
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v1/oauth/redirect
+  method: get
+  operationId: oAuthRedirect
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/platform/status
+  method: get
+  operationId: statusAPI
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/messages
+  method: get
+  operationId: getResponse
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/messages
+  method: post
+  operationId: conversationEngineAsync
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v2/query-analyzer
+  method: post
+  operationId: submitRequest_1
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v1/rate-limit
+  method: get
+  operationId: fetchRateConfig
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/rate-limit
+  method: put
+  operationId: updatedRateConfig
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v1/rate-limit
+  method: post
+  operationId: saveRateConfig
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v1/rate-limit
+  method: delete
+  operationId: deleteRateConfig
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v1/ceaas/messages
+  method: get
+  operationId: getResponse_3
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/ceaas/messages
+  method: post
+  operationId: conversationEngineAsync_10
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v2/ceaas/messages
+  method: get
+  operationId: getResponse_5
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/ceaas/messages
+  method: get
+  operationId: getResponse_4
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/ceaas/historical/messages
+  method: get
+  operationId: getHistoricalConversation
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/salesforce/webhook
+  method: post
+  operationId: conversationEngineAsync_5
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v1/salesforce/webhook/messages/poll
+  method: post
+  operationId: postResponse_1
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v1/salesforce/webhook/messages
+  method: get
+  operationId: getResponse_6
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/facebook/webhook/singtelRoamingActivation/updateTolerancePriorityCost
+  method: post
+  operationId: updateTolerancePriorityCost
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -416,9 +674,9 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /v1/salesforce/webhook
+- path: /v1/sunshine-conversations/webhook
   method: post
-  operationId: conversationEngineAsync_5
+  operationId: conversationEngineAsync_3
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -432,9 +690,9 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /v1/salesforce/webhook/messages/poll
+- path: /v2/test-utterances/bulk
   method: post
-  operationId: postResponse_1
+  operationId: submitRequest
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -448,9 +706,9 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /v1/nlu/predict
+- path: /v2/test-utterances/bulk/poll
   method: post
-  operationId: postRequest
+  operationId: pollScript
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -464,57 +722,9 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /v1/nlu/poll
-  method: post
-  operationId: pollResponse
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v1/helpshift/webhook
-  method: post
-  operationId: conversationEngineAsync_6
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v1/google/assistant/webhook
-  method: post
-  operationId: googleAssistantPost
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v1/gladly/webhook
+- path: /v1/twitter/webhook/{appId}
   method: get
-  operationId: ping
+  operationId: subscribe_1
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -522,135 +732,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/gladly/webhook
+- path: /v1/twitter/webhook/{appId}
   method: post
-  operationId: conversationEngineAsync_7
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v1/freshdesk/webhook
-  method: post
-  operationId: conversationEngineAsync_8
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v1/firebase/messages
-  method: get
-  operationId: getResponse_2
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/firebase/messages
-  method: post
-  operationId: conversationEngineAsync_9
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v1/facebook/webhook
-  method: get
-  operationId: subscribe_2
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/facebook/webhook
-  method: post
-  operationId: messagesPost_3
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v1/facebook/webhook/singtelRoamingActivation/updateTolerancePriorityCost
-  method: post
-  operationId: updateTolerancePriorityCost
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v1/ceaas/messages
-  method: get
-  operationId: getResponse_3
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/ceaas/messages
-  method: post
-  operationId: conversationEngineAsync_10
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v1/booking
-  method: post
-  operationId: bookingConfirmation
+  operationId: messagesPost_2
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -680,9 +764,9 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /v1/agentdesk/webhook
+- path: /v2/webhook/event
   method: post
-  operationId: conversationEngineAsync_11
+  operationId: triggerWebHookEvent
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -696,73 +780,9 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /v1/agentdesk/webhook/messages/poll
+- path: /v1/zendesk-chat/response
   method: post
-  operationId: postResponse_2
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v1/agentdesk/webhook/form/submit
-  method: post
-  operationId: submitForm
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v1/agentdesk/batch
-  method: post
-  operationId: conversationEngineAsync_12
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v1/agentdesk/batch/poll
-  method: post
-  operationId: postResponse_3
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
-- path: /v3/ceaas/messages
-  method: get
-  operationId: getResponse_4
+  operationId: getStructuredResponse
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -770,19 +790,25 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v2/webhook/history/{conversationId}
-  method: get
-  operationId: getConversationHistory
+- path: /v1/zendesk-chat/publish-social
+  method: post
+  operationId: publishToSocialOutbound
   x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
     token:
-      max-ttl: 3600
-    audit: none
-- path: /v2/ceaas/messages
-  method: get
-  operationId: getResponse_5
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v1/zendesk-chat/poll
+  method: post
+  operationId: getResponse_1
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -840,9 +866,25 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/webhook/history/{conversationId}
+- path: /v1/zendesk/webhook
+  method: post
+  operationId: conversationEngineAsync_2
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v1/zoho/webhook
   method: get
-  operationId: getConversationHistory_1
+  operationId: subscribe
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -850,9 +892,25 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/track
+- path: /v1/zoho/webhook
+  method: post
+  operationId: conversationEngineAsync_1
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v1/zoho/webhook/{botRefId}
   method: get
-  operationId: assets
+  operationId: subscribeWithBotRefId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -860,73 +918,19 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/salesforce/webhook/messages
-  method: get
-  operationId: getResponse_6
+- path: /v1/zoho/webhook/{botRefId}
+  method: post
+  operationId: conversationEngineAsyncWithBotRefId
   x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
     token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/platform/status
-  method: get
-  operationId: statusAPI
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/oauth/redirect
-  method: get
-  operationId: oAuthRedirect
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/helpshift/quick-reply
-  method: get
-  operationId: helpShiftQuickReply
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/ceaas/historical/messages
-  method: get
-  operationId: getHistoricalConversation
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/agentdesk/webhook/messages
-  method: get
-  operationId: getResponse_7
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /ceaas/v1/health/{secretId}
-  method: get
-  operationId: healthCheck
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
