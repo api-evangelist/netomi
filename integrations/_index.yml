@@ -15,3 +15,138 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
+- slug: netomi-maven-central
+  label: Maven Central
+  partner: maven-central
+  partner_name: Maven Central
+  category: official SDK (Java/JVM)
+  type: register
+  channel: package-registry
+  evidence: https://central.sonatype.com/artifact/com.netomi.chat/-android
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Maven Central (public registry JSON)
+    spec_file: null
+    language: Java/JVM
+    packages:
+    - name: com.netomi.chat:-android
+      version: 1.1.12
+      released: '2025-10-03'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/com.netomi.chat/-android
+      repo_leg: github-org:msgai
+      publisher_leg: groupId:netomi.com
+      matched_by: domain
+    - name: com.netomi.chat:chat-widget-android
+      version: 1.31.0
+      released: '2026-10-14'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/com.netomi.chat/chat-widget-android
+      repo_leg: github-org:msgai
+      publisher_leg: groupId:netomi.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: netomi-npm-registry
+  label: npm registry
+  partner: npm
+  partner_name: npm registry
+  category: official SDK (JavaScript/TypeScript)
+  type: register
+  channel: package-registry
+  evidence: https://www.npmjs.com/package/@netomi.com/netomi-chat-react-native
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@netomi.com/netomi-chat-react-native'
+      version: 1.7.0
+      released: '2026-06-30'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@netomi.com/netomi-chat-react-native
+      repo_leg: github-org:msgai
+      publisher_leg: email:netomi.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: netomi-salesforce-appexchange-security-review
+  label: Salesforce AppExchange Security Review
+  partner: salesforce
+  partner_name: Salesforce AppExchange Security Review
+  category: AppExchange security-reviewed publisher
+  type: register
+  channel: standard-directory
+  evidence: https://developer.salesforce.com/docs/atlas.en-us.packagingGuide.meta/packagingGuide/security_review_overview.htm
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Salesforce AppExchange public listings (listing JSON) under the AgentExchange Security Review requirement
+    standard: Salesforce AppExchange Security Review
+    spec_file: null
+    role: security-reviewed-publisher
+    registered_name: Netomi
+    register_country: null
+    matched_domain: netomi.com
+    matched_by: domain
+    identity_source: the listing's own publisher.website (no lookup)
+    certified_products:
+    - product: Salesforce package (security-reviewed)
+      product_type: force/package
+      certifier: Salesforce (AgentExchange / AppExchange Security Review)
+      listings: 2
+      example_listing: https://appexchange.salesforce.com/appxListingDetail?listingId=5a74f134-d7e2-420d-91f3-e1ba1d2c40b8
+      latest_approval: '2024-02-08'
+      lapsed: false
+      lapsed_note: the listing JSON prints solution.securityReview.approvalDate on a LIVE public listing; Salesforce
+        publishes no expiry, so no entry is marked lapsed (latest_approval is context)
+    signal_note: certified_products = ONE entry per product type (listing technology) with a printed securityReview.approvalDate,
+      never per listing or version; a listing with no approval date reads nothing; listing counts / versions are
+      context
+    requirement: https://developer.salesforce.com/docs/atlas.en-us.packagingGuide.meta/packagingGuide/security_review_overview.htm
+    detected_by: sweep-salesforce-appexchange.py
+    detected: '2026-10-21'
+  status: not-a-workflow
+  arazzo: null
+- slug: netomi-zendesk-own
+  label: Zendesk (own)
+  partner: zendesk
+  partner_name: Zendesk (own)
+  category: AI and Bots
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.zendesk.com/marketplace/apps/support/209060/netomi-virtual-agent/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: netomi-salesforce-own
+  label: Salesforce (own)
+  partner: salesforce
+  partner_name: Salesforce (own)
+  category: customerService
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=5a74f134-d7e2-420d-91f3-e1ba1d2c40b8
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
